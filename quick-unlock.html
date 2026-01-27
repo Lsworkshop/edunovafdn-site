@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quick Unlock — SuperEdu</title>
+
+  <!-- icons (same as index.html) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/android-chrome-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icons/android-chrome-512.png">
+  <link rel="icon" href="/assets/icons/favicon.ico">
+
+  <!-- main site CSS (keeps consistent styling) -->
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <!-- ensure menu + lang behavior same as other pages -->
+  <script src="/assets/js/menu.js" defer></script>
+  <script src="/assets/js/toast.js" defer></script>
+  <script src="/assets/js/lang.js" defer></script>
+  <script src="/assets/js/auth-nav.js" defer></script>
+  <script src="/assets/js/access.js" defer></script>
+
+  <style>
+    /* small page-specific tweaks to match visual style */
+    .page-wrap { max-width: 980px; margin: 110px auto 60px; padding: 0 20px; }
+    .quick-card { padding: 22px; border-radius: 12px; box-shadow: 0 8px 26px rgba(9,30,66,0.04); background: linear-gradient(180deg,#fff,#FAF5E9); border:1px solid rgba(10,10,10,0.03); }
+    .quick-title { font-size: 26px; margin: 0 0 6px; color: var(--brand-2); font-weight:700; }
+    .quick-desc { color: var(--muted); margin-bottom:18px; }
+
+    /* form layout — use registration-card styles if present */
+    .quick-form label { display:block; font-size:13px; margin-top:12px; }
+    .quick-form input[type="text"], .quick-form input[type="email"] {
+      width:100%; padding:12px; border-radius:8px; border:1px solid #e8e8e8; margin-top:6px; font-size:15px;
+    }
+
+    .form-actions{ display:flex; gap:12px; align-items:center; margin-top:16px; flex-wrap:wrap; }
+    .status { font-size:14px; color:var(--muted); }
+
+    .enter-btn { display:none; }
+
+    /* small responsive */
+    @media (max-width:720px){
+      .page-wrap{ margin-top:80px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+
+<nav id="topNav" class="nav--transparent">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <div class="brand">
+      <a href="/index.html#home" class="brand">
+        <img src="/assets/img/superedu-logo.png" alt="Edunova" class="logo-img" />
+        <span class="brand-text">Edunova</span>
+      </a>
+    </div>
+
+    <!-- =========================
+         Desktop Menu
+    ========================== -->
+    <div class="menu" id="menu">
+
+      <!-- Home -->
+      <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+      <!-- About -->
+      <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Dropdown -->
+<div class="nav-item dropdown">
+
+  <span class="dropdown-toggle"
+        role="button"
+        aria-haspopup="true"
+        tabindex="0"
+        data-en="Programs ⬇︎"
+        data-zh="项目 ⬇︎"> 
+  </span> 
+
+  <div class="dropdown-menu">
+    <a href="/education.html"
+       id="navEduCenter"
+       data-en="EduCenter"
+       data-zh="教育中心">
+      EduCenter
+    </a>
+
+    <a href="/community.html"
+       id="navEduCommunity"
+       data-en="EduCommunity"
+       data-zh="教育社区">
+      EduCommunity
+    </a>
+
+    <a href="/forum.html"
+       id="navForum"
+       data-en="EduForum"
+       data-zh="教育论坛">
+      EduForum 
+    </a>
+
+    <a href="/events.html" data-en="Events" data-zh="活动"> Events</a>
+    
+  </div>
+
+</div>
+
+      <!-- Services -->
+      <a href="/index.html#services" data-en="Services" data-zh="服务">Services</a>
+
+      <!-- Membership -->
+     <a href="/membership.html" id="navMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+      <!-- Get Involved Dropdown -->
+<div class="nav-item dropdown">
+  <span class="dropdown-toggle" role="button" aria-haspopup="true" tabindex="0"
+        data-en="Get Involved ⬇︎" data-zh="参与方式 ⬇︎">
+   
+</span>
+
+  <div class="dropdown-menu">
+    <a href="/volunteer.html"
+       data-en="Volunteer"
+       data-zh="志愿者">
+      Volunteer
+    </a>
+
+    <a href="/donation.html"
+       data-en="Donation"
+       data-zh="捐赠">
+      Donation
+    </a>
+
+    <a href="/scholarship.html"
+       data-en="scholarship"
+       data-zh="奖学金">
+      scholarship
+    </a>
+
+    <a href="/index.html#resources"
+       data-en="Resources"
+       data-zh="资源">
+      Resources
+    </a>
+  </div>
+</div>
+
+      <!-- Contact -->
+      <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+      <!-- Login -->
+     <a href="/login.html" id="desktopAuth" data-en="Login" data-zh="登录">Login</a>
+
+      <!-- Slide underline -->
+      <span class="nav-underline"></span>
+    </div>
+
+    <!-- Right side -->
+    <div class="nav-right">
+      <button id="langToggle" class="lang-toggle" aria-label="Language toggle">
+        中文
+      </button>
+
+      <button id="hamburger" class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile slide menu -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <!-- Home -->
+    <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+    <!-- About -->
+    <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Programs" data-zh="项目">Programs</summary>
+      <a href="/education.html" id="mobileEduCenter" data-en="EduCenter" data-zh="教育中心">EduCenter</a>
+      <a href="/community.html" id="mobileEduCommunity" data-en="EduCommunity" data-zh="教育社区">EduCommunity</a>
+      <a href="/forum.html" id="mobileForum" data-en="EduForum" data-zh="教育论坛">EduForum</a>
+      <a href="/events.html" data-en="Events" data-zh="活动">Events</a>
+    </details>
+
+    <!-- Service -->
+    <a href="/index.html#services" data-en="Service" data-zh="服务">Service</a>
+
+    <!-- Membership -->
+    <a href="/membership.html" id="mobileMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+    <!-- Get Involved Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Get Involved" data-zh="参与方式">Get Involved</summary>
+      <a href="/volunteer.html" data-en="Volunteer" data-zh="志愿者">Volunteer</a>
+      <a href="/donation.html" data-en="Donation" data-zh="捐赠">Donation</a>
+      <a href="/scholarship.html"
+       data-en="scholarship"
+       data-zh="奖学金">
+      scholarship
+    </a>
+      <a href="/index.html#resources" data-en="Resources" data-zh="资源">Resources</a>
+    </details>
+
+    <!-- Contact -->
+    <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+    <!-- Login -->
+    <a href="/login.html" id="mobileAuth" data-en="Login" data-zh="登录">Login</a>
+
+    <!-- Mobile action buttons -->
+    <div class="mobile-actions">
+      <button class="btn btn-ghost" id="mobileRegister" data-en="Register/Join" data-zh="注册/加入">
+        Register / Join
+      </button>
+      <button class="btn" id="mobileUnlock" data-en="Unlock Education" data-zh="解锁教育">
+        Unlock Education
+      </button>
+    </div>
+  </div>
+</nav> 
+
+  <!-- PAGE CONTENT -->
+  <div class="page-wrap">
+    <div class="card quick-card quick-unlock-card">
+      <div class="card-inner">
+        <h2 class="quick-title" data-en="Quick Unlock" data-zh="快速解锁">Quick Unlock</h2>
+        <div class="quick-desc" data-en="Enter your name and email to unlock access to the Education Center." data-zh="请输入姓名与邮箱以解锁教育中心访问权限。">
+          Enter your name and email to unlock access to the Education Center.
+        </div>
+
+        <form id="quickUnlockForm" class="quick-form" novalidate autocomplete="off">
+          <label for="q-first" data-en="First name" data-zh="名">First name</label>
+          <input id="q-first" name="firstName" type="text" required placeholder="e.g. John / 例如：小明" />
+
+          <label for="q-last" data-en="Last name" data-zh="姓">Last name</label>
+          <input id="q-last" name="lastName" type="text" required placeholder="e.g. Smith / 例如：张" />
+
+          <label for="q-email" data-en="Email" data-zh="邮箱">Email</label>
+          <input id="q-email" name="email" type="email" required placeholder="you@domain.com / 您的邮箱" />
+          <div id="emailStatus" class="field-hint"></div>
+
+          <div class="form-actions">
+            <button type="submit" id="unlockSubmit" class="btn btn-primary" data-en="Unlock" data-zh="解锁">Unlock</button>
+            <button type="button" id="enterEduBtn" class="btn btn-outline enter-btn" data-en="Enter Education Center" data-zh="进入教育中心">Enter Education Center</button>
+            <div id="quickStatus" class="status"></div>
+          </div>
+        </form>
+
+        <p class="small muted" style="margin-top:12px" data-en="Unlocks are recorded by email and stored for access checks." data-zh="解锁将根据邮箱记录并用于访问验证。">Unlocks are recorded by email and stored for access checks.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Inline JS: form handling + token set (keeps behavior same as index) -->
+  <script>
+/* =====================================================
+   Quick Unlock (Standalone Page) — Toast Upgrade
+   - Keep ALL original logic
+   - Replace statusEl/alert with bilingual Toast
+   - Language follows localStorage.superedu-lang (zh/en)
+===================================================== */
+
+(() => {
+  // keep same email pattern as backend
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Elements
+  const form = document.getElementById("quickUnlockForm");
+  const statusEl = document.getElementById("quickStatus"); // 保留但不再用于提示
+  const enterBtn = document.getElementById("enterEduBtn");
+
+  /* =========================
+     i18n helper
+  ========================= */
+  function getLang() {
+    return (localStorage.getItem("superedu-lang") || "en").toLowerCase();
+  }
+
+  const MSG = {
+    needUnlock: {
+      en: "Please unlock access first.",
+      zh: "请先解锁教育中心。"
+    },
+    fillRequired: {
+      en: "Please fill all required fields.",
+      zh: "请填写所有必填项。"
+    },
+    invalidEmail: {
+      en: "Please enter a valid email.",
+      zh: "请输入有效邮箱。"
+    },
+    submitting: {
+      en: "Submitting…",
+      zh: "提交中…"
+    },
+    alreadyUnlocked: {
+      en: "Already unlocked — you may enter the Education Center.",
+      zh: "已解锁 — 您现在可以进入教育中心。"
+    },
+    unlockedRedirecting: {
+      en: "Unlocked — redirecting…",
+      zh: "解锁成功！正在跳转…"
+    },
+    submitFailed: {
+      en: "Submission failed.",
+      zh: "提交失败。"
+    },
+    submitFailedRetry: {
+      en: "Submission failed — please try again.",
+      zh: "提交失败，请重试。"
+    }
+  };
+
+  /* =========================
+     Toast (minimal, modern)
+  ========================= */
+  function ensureToastStyles() {
+    if (document.getElementById("superedu-toast-style")) return;
+    const style = document.createElement("style");
+    style.id = "superedu-toast-style";
+    style.textContent = `
+      .se-toast-wrap{
+        position:fixed;
+        left:50%;
+        transform:translateX(-50%);
+        bottom:20px;
+        z-index:99999;
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        pointer-events:none;
+        padding:0 12px;
+        width:min(520px, calc(100vw - 24px));
+      }
+      .se-toast{
+        pointer-events:auto;
+        display:flex;
+        align-items:flex-start;
+        gap:10px;
+        padding:12px 14px;
+        border-radius:14px;
+        background:rgba(255,255,255,0.92);
+        border:1px solid rgba(0,0,0,0.08);
+        box-shadow:0 18px 46px rgba(20,30,60,0.18);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        color:#1f2937;
+        animation: seToastIn .18s ease-out;
+      }
+      .se-toast__dot{
+        width:10px;height:10px;border-radius:999px;margin-top:4px;flex:0 0 auto;
+        background:#3b82f6;
+      }
+      .se-toast--ok .se-toast__dot{ background:#22c55e; }
+      .se-toast--warn .se-toast__dot{ background:#f59e0b; }
+      .se-toast--err .se-toast__dot{ background:#ef4444; }
+      .se-toast__msg{ font-size:14.5px; line-height:1.35; }
+      .se-toast__x{
+        margin-left:auto;
+        background:transparent;border:0;cursor:pointer;
+        color:#6b7280;font-size:16px;line-height:1;
+        padding:2px 6px;border-radius:8px;
+      }
+      .se-toast__x:hover{ background:rgba(0,0,0,0.06); }
+      @keyframes seToastIn{
+        from{ transform:translateY(6px); opacity:0; }
+        to{ transform:translateY(0); opacity:1; }
+      }
+      @media (max-width: 640px){
+        .se-toast-wrap{ bottom:14px; }
+        .se-toast{ padding:12px 12px; }
+        .se-toast__msg{ font-size:14px; }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  function getToastWrap() {
+    ensureToastStyles();
+    let wrap = document.querySelector(".se-toast-wrap");
+    if (!wrap) {
+      wrap = document.createElement("div");
+      wrap.className = "se-toast-wrap";
+      document.body.appendChild(wrap);
+    }
+    return wrap;
+  }
+
+  function toast(message, type = "info", durationMs) {
+    const wrap = getToastWrap();
+    const lang = getLang();
+    const isMobile = window.matchMedia("(max-width: 640px)").matches;
+
+    // 默认：移动端更久，避免看不完
+    const ttl =
+      typeof durationMs === "number"
+        ? durationMs
+        : (isMobile ? 4800 : 3200);
+
+    const el = document.createElement("div");
+    el.className = `se-toast se-toast--${type}`;
+
+    el.innerHTML = `
+      <span class="se-toast__dot" aria-hidden="true"></span>
+      <div class="se-toast__msg">${message}</div>
+      <button class="se-toast__x" aria-label="${lang === "zh" ? "关闭" : "Close"}">✕</button>
+    `;
+
+    const close = () => {
+      el.style.opacity = "0";
+      el.style.transform = "translateY(6px)";
+      setTimeout(() => el.remove(), 160);
+    };
+
+    el.querySelector(".se-toast__x").addEventListener("click", close);
+    wrap.appendChild(el);
+
+    setTimeout(close, ttl);
+  }
+
+  // 小工具：隐藏旧 statusEl，避免重复 UI
+  function clearLegacyStatus() {
+    if (!statusEl) return;
+    statusEl.innerText = "";
+    statusEl.style.color = "";
+    statusEl.style.display = "none"; // 可选：直接隐藏旧文本区域
+  }
+
+  /* =========================
+     If token exists, show Enter button
+  ========================= */
+  function checkLocalToken() {
+    const t = JSON.parse(localStorage.getItem("edu_unlocked_token") || "null");
+    if (t && t.email) {
+      enterBtn.style.display = "inline-block";
+    } else {
+      enterBtn.style.display = "none";
+    }
+  }
+
+  clearLegacyStatus();
+  checkLocalToken();
+
+  /* =========================
+     Enter Education Center behaviour
+  ========================= */
+  enterBtn?.addEventListener("click", () => {
+    const token = JSON.parse(localStorage.getItem("edu_unlocked_token") || "null");
+    if (!token) {
+      const lang = getLang();
+      toast(lang === "zh" ? MSG.needUnlock.zh : MSG.needUnlock.en, "warn");
+      return;
+    }
+    window.location = "/education.html";
+  });
+
+/* =========================
+   Email Real-time Validation (Quick Unlock Page)
+   - uses #q-email + #emailStatus
+   - bilingual follows localStorage superedu-lang
+========================= */
+(function () {
+  const emailInput  = document.getElementById("q-email");
+  const emailStatus = document.getElementById("emailStatus");
+  if (!emailInput || !emailStatus) return;
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function getLang() {
+    return localStorage.getItem("superedu-lang") === "zh" ? "zh" : "en";
+  }
+
+  function setHint(msgKey, type) {
+    // type: "error" | "ok" | ""
+    if (!msgKey) {
+      emailStatus.textContent = "";
+      emailStatus.classList.remove("hint-error", "hint-ok");
+      return;
+    }
+
+    const zhMap = {
+      invalid: "❌ 邮箱格式不正确",
+      ok: "✅ 邮箱格式正确"
+    };
+    const enMap = {
+      invalid: "❌ Invalid email format",
+      ok: "✅ Email looks good"
+    };
+
+    const lang = getLang();
+    emailStatus.textContent = (lang === "zh" ? zhMap : enMap)[msgKey] || "";
+
+    emailStatus.classList.remove("hint-error", "hint-ok");
+    if (type === "error") emailStatus.classList.add("hint-error");
+    if (type === "ok") emailStatus.classList.add("hint-ok");
+  }
+
+  // realtime
+  emailInput.addEventListener("input", () => {
+    const v = emailInput.value.trim();
+    if (!v) return setHint("", "");
+    if (!emailPattern.test(v)) return setHint("invalid", "error");
+    return setHint("ok", "ok");
+  });
+
+  // on blur: if user leaves invalid, keep hint
+  emailInput.addEventListener("blur", () => {
+    const v = emailInput.value.trim();
+    if (!v) return setHint("", "");
+    if (!emailPattern.test(v)) return setHint("invalid", "error");
+    return setHint("ok", "ok");
+  });
+})();
+
+
+  /* =========================
+     Form submit
+  ========================= */
+  form?.addEventListener("submit", async function (e) {
+    e.preventDefault();
+    clearLegacyStatus();
+
+    const lang = getLang();
+
+    const firstName = document.getElementById("q-first")?.value.trim();
+    const lastName  = document.getElementById("q-last")?.value.trim();
+    const email     = document.getElementById("q-email")?.value.trim();
+
+    if (!firstName || !lastName || !email) {
+      toast(lang === "zh" ? MSG.fillRequired.zh : MSG.fillRequired.en, "err");
+      return;
+    }
+    if (!emailPattern.test(email)) {
+      toast(lang === "zh" ? MSG.invalidEmail.zh : MSG.invalidEmail.en, "err");
+      return;
+    }
+
+    toast(lang === "zh" ? MSG.submitting.zh : MSG.submitting.en, "info", 1400);
+
+    try {
+      // 1) Optional: check-auth
+      let already = false;
+      try {
+        const chk = await fetch("/api/check-auth", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+        });
+        if (chk.ok) {
+          const j = await chk.json();
+          if (j.exists) {
+            already = true;
+
+            // set local token
+            localStorage.setItem("edu_unlocked_token", JSON.stringify({ email, ts: Date.now() }));
+            localStorage.setItem("snovaRole", "quick");
+
+            toast(lang === "zh" ? MSG.alreadyUnlocked.zh : MSG.alreadyUnlocked.en, "ok", 2400);
+            enterBtn.style.display = "inline-block";
+          }
+        }
+      } catch (err) {
+        // optional check-auth failure ignored
+      }
+
+      if (already) return;
+
+      // 2) call /api/unlock to persist
+      const res = await fetch("/api/unlock", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ firstName, lastName, email }),
+      });
+
+      const out = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        const msg = out.error || out.message || (lang === "zh" ? MSG.submitFailed.zh : MSG.submitFailed.en);
+        toast(msg, "err", 4200);
+        return;
+      }
+
+      // success -> set token locally
+      localStorage.setItem("edu_unlocked_token", JSON.stringify({ email, ts: Date.now() }));
+      localStorage.setItem("snovaRole", "quick");
+
+      toast(lang === "zh" ? MSG.unlockedRedirecting.zh : MSG.unlockedRedirecting.en, "ok", 2200);
+      enterBtn.style.display = "inline-block";
+
+      // small delay then go to Education Center
+      setTimeout(() => window.location.assign("/education.html"), 900);
+    } catch (err) {
+      console.error(err);
+      toast(lang === "zh" ? MSG.submitFailedRetry.zh : MSG.submitFailedRetry.en, "err", 4500);
+    }
+  });
+
+  /* =========================
+     Keep your original mobile menu button behaviors
+  ========================= */
+  document.getElementById("mobileRegister")?.addEventListener("click", () => (location.href = "/membership.html"));
+  document.getElementById("mobileUnlock")?.addEventListener("click", () => {
+    /* we're already on quick-unlock */
+  });
+})();
+</script>  
+      
+  <!-- Footer (reuse your site footer if you have one) -->
+   <!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+
+    <!-- Column 1 -->
+    <div class="footer-col">
+      <h4>Edunova</h4>
+      <a href="/apply.html" target="_blank"
+         data-en="Apply for Services"
+         data-zh="申请服务">
+        申请服务
+      </a>
+      <a href="/membership.html"
+         data-en="Membership"
+         data-zh="会员中心">
+        会员中心
+      </a>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="footer-col">
+      <h4 data-en="Education & Fund" data-zh="教育与基金">
+        教育与基金
+      </h4>
+      <a href="/home#resources"
+         data-en="Resources"
+         data-zh="学习资源">
+        学习资源
+      </a>
+      <a href="https://www.lsfinova.com/aid" target="_blank"
+         data-en="Aid Calculator"
+         data-zh="教育资助计算器">
+        教育资助计算器
+      </a>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="footer-col">
+      <h4 data-en="Contact" data-zh="联系我们">
+        联系我们
+      </h4>
+      <div class="muted"
+           data-en="Phone: 1-916-793-0676 (Text)"
+           data-zh="电话 / 短信：1-916-793-0676">
+        电话 / 短信：1-916-793-0676
+      </div>
+      <div class="muted"
+           data-en="WeChat: Leon_Song_PhD"
+           data-zh="微信：Leon_Song_PhD">
+        微信：Leon_Song_PhD
+      </div>
+    </div>
+
+    <!-- Column 4 -->
+    <div class="footer-col">
+      <h4 data-en="Legal" data-zh="法律信息">
+        法律信息
+      </h4>
+      <a href="/privacy.html"
+         data-en="Privacy Policy"
+         data-zh="隐私政策">
+        隐私政策
+      </a>
+      <a href="/terms.html"
+         data-en="Terms of Service"
+         data-zh="服务条款">
+        服务条款
+      </a>
+    </div>
+
+  </div>
+
+  <div class="footer-copy"
+       data-en="© 2025 Edunova Foundation. All rights reserved."
+       data-zh="© 2025 Edunova Foundation 版权所有">
+    © 2025 Edunova — LSFinova 版权所有
+  </div>
+</footer>
+</body>
+</html>
+

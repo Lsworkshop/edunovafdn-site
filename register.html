@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Create Account — SnovaEdu</title>
+
+<!-- icons -->
+<link rel="icon" href="/assets/icons/favicon.ico">
+
+<!-- main styles -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!-- scripts -->
+<script src="/assets/js/menu.js" defer></script>
+<script src="/assets/js/toast.js" defer></script>
+<script src="/assets/js/lang.js" defer></script>
+<script src="/assets/js/access.js" defer></script>
+<script src="/assets/js/auth-nav.js" defer></script>
+
+<style>
+/* =========================
+   Page Background
+========================= */
+body.register-page {
+  font-family: Inter, Arial, sans-serif;
+  margin: 0;
+}
+
+/* =========================
+   Layout
+========================= */
+.register-wrap {
+  max-width: 520px;
+  margin: 120px auto 80px;
+  padding: 0 20px;
+  padding-bottom: 64px;
+}
+
+
+.register-title {
+  text-align: center;
+  margin-bottom: 26px;
+}
+
+.register-title h1 {
+  font-size: 34px;
+  font-weight: 400;
+  color: var(--brand-2);
+  margin-bottom: 8px;
+}
+
+.register-title p {
+  font-size: 16px;
+  color: #555;
+}
+
+/* =========================
+   Card
+========================= */
+.register-card {
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 10px 28px rgba(9,30,66,0.06);
+  border: 1px solid rgba(10,10,10,0.04);
+}
+
+/* =========================
+   Form
+========================= */
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.register-form label {
+  font-size: 14px;
+  color: #333;
+}
+
+.register-form input {
+  padding: 11px 12px;
+  border-radius: 8px;
+  border: 1px solid #e2e2e2;
+  font-size: 14px;
+}
+
+.register-form input:focus {
+  outline: none;
+  border-color: #3B82F6;
+}
+
+.form-note {
+  font-size: 13px;
+  color: #666;
+  margin-top: 6px;
+}
+
+
+.password-hint {
+  background-color: #fefcf5; /* 浅黄色底色 */
+  border-left: 4px solid #f4c430; /* 黄色侧边条，强调 */
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  font-family: Inter, Arial, sans-serif;
+}
+
+.password-hint .hint-title {
+  font-weight: 600;
+  font-size: 1rem;        /* 比之前小一点 */
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.password-hint .hint-list li {
+  font-size: 0.92rem;     /* 正文略小 */
+  line-height: 1.55;
+  color: #555;
+}
+
+
+.password-hint .hint-list {
+  margin: 0;
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+/* =========================
+   Password Eye Toggle
+========================= */
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 42px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  opacity: 0.6;
+  user-select: none;
+}
+
+.toggle-password:hover {
+  opacity: 1;
+}
+
+/* =========================
+   Password Rules UX
+========================= */
+
+.password-hint {
+  margin: 12px 0 18px;
+  font-size: 14px;
+  color: #5a4a3b;
+}
+
+.password-hint strong {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.password-hint ul {
+  padding-left: 18px;
+  margin: 0;
+}
+
+.password-hint li {
+  margin: 4px 0;
+}
+
+.password-hint li.valid {
+  color: #2e7d32;
+}
+
+.password-hint li.invalid {
+  color: #b71c1c;
+}
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 46px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  opacity: 0.65;
+  z-index: 10;               /* 🔴 非常关键 */
+  pointer-events: auto;     /* 🔴 非常关键 */
+}
+
+.toggle-password:hover {
+  opacity: 1;
+}
+
+.password-hint {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #555;
+}
+
+.password-hint .hint-title {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.password-hint ul {
+  padding-left: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.password-hint li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0;
+}
+
+.password-hint .icon {
+  font-size: 13px;
+  width: 14px;
+}
+
+/* 状态 */
+.password-hint li.valid {
+  color: #1a7f37;
+}
+
+.password-hint li.valid .icon {
+  content: "✔";
+}
+
+.password-hint li.invalid {
+  color: #c62828;
+}
+
+/* 密码 / 确认密码 提示通用样式 */
+.password-hint,
+.confirm-hint {
+  gap: 8px;              /* ⭐ 关键：拉开 icon 与文字距离 */
+  margin-top: 6px;
+  font-size: 13px;
+}
+
+/* icon 稍微独立一些 */
+.password-hint .icon,
+.confirm-hint .icon {
+  min-width: 16px;       /* 防止挤压 */
+}
+
+/* =========================
+   Submit Button
+========================= */
+.register-form .btn {
+  margin-top: 12px;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.register-form .btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 8px 18px rgba(59,130,246,0.25);
+}
+
+/* =========================
+   Status
+========================= */
+.form-status {
+  font-size: 13px;
+  margin-top: 8px;
+}
+
+.form-status.error {
+  color: #c0392b;
+}
+
+.form-status.success {
+  color: #2e7d32;
+}
+
+/* =========================
+   Footer helper text
+========================= */
+.register-footer {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+.register-footer a {
+  color: var(--brand-2);
+  text-decoration: underline;
+}
+
+</style>
+</head>
+
+<body class="register-page">
+
+<!-- NAV -->
+
+<nav id="topNav" class="nav--transparent">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <div class="brand">
+      <a href="/index.html#home" class="brand">
+        <img src="/assets/img/superedu-logo.png" alt="Edunova" class="logo-img" />
+        <span class="brand-text">Edunova</span>
+      </a>
+    </div>
+
+    <!-- =========================
+         Desktop Menu
+    ========================== -->
+    <div class="menu" id="menu">
+
+      <!-- Home -->
+      <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+      <!-- About -->
+      <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Dropdown -->
+<div class="nav-item dropdown">
+
+  <span class="dropdown-toggle"
+        role="button"
+        aria-haspopup="true"
+        tabindex="0"
+        data-en="Programs ⬇︎"
+        data-zh="项目 ⬇︎"> 
+  </span> 
+
+  <div class="dropdown-menu">
+    <a href="/education.html"
+       id="navEduCenter"
+       data-en="EduCenter"
+       data-zh="教育中心">
+      EduCenter
+    </a>
+
+    <a href="/community.html"
+       id="navEduCommunity"
+       data-en="EduCommunity"
+       data-zh="教育社区">
+      EduCommunity
+    </a>
+
+    <a href="/forum.html"
+       id="navForum"
+       data-en="EduForum"
+       data-zh="教育论坛">
+      EduForum 
+    </a>
+
+    <a href="/events.html" data-en="Events" data-zh="活动"> Events</a>
+    
+  </div>
+
+</div>
+
+      <!-- Services -->
+      <a href="/index.html#services" data-en="Services" data-zh="服务">Services</a>
+
+      <!-- Membership -->
+     <a href="/membership.html" id="navMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+      <!-- Get Involved Dropdown -->
+<div class="nav-item dropdown">
+  <span class="dropdown-toggle" role="button" aria-haspopup="true" tabindex="0"
+        data-en="Get Involved ⬇︎" data-zh="参与方式 ⬇︎">
+   
+</span>
+
+  <div class="dropdown-menu">
+    <a href="/volunteer.html"
+       data-en="Volunteer"
+       data-zh="志愿者">
+      Volunteer
+    </a>
+
+    <a href="/donation.html"
+       data-en="Donation"
+       data-zh="捐赠">
+      Donation
+    </a>
+    <a href="/scholarship.html"
+       data-en="scholarship"
+       data-zh="奖学金">
+      scholarship
+    </a>
+
+    <a href="/index.html#resources"
+       data-en="Resources"
+       data-zh="资源">
+      Resources
+    </a>
+  </div>
+</div>
+
+      <!-- Contact -->
+      <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+      <!-- Login -->
+     <a href="/login.html" id="desktopAuth" data-en="Login" data-zh="登录">Login</a>
+
+      <!-- Slide underline -->
+      <span class="nav-underline"></span>
+    </div>
+
+    <!-- Right side -->
+    <div class="nav-right">
+      <button id="langToggle" class="lang-toggle" aria-label="Language toggle">
+        中文
+      </button>
+
+      <button id="hamburger" class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile slide menu -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <!-- Home -->
+    <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+    <!-- About -->
+    <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Programs" data-zh="项目">Programs</summary>
+      <a href="/education.html" id="mobileEduCenter" data-en="EduCenter" data-zh="教育中心">EduCenter</a>
+      <a href="/community.html" id="mobileEduCommunity" data-en="EduCommunity" data-zh="教育社区">EduCommunity</a>
+      <a href="/forum.html" id="mobileForum" data-en="EduForum" data-zh="教育论坛">EduForum</a>
+      <a href="/events.html" data-en="Events" data-zh="活动">Events</a>
+    </details>
+
+    <!-- Service -->
+    <a href="/index.html#services" data-en="Service" data-zh="服务">Service</a>
+
+    <!-- Membership -->
+    <a href="/membership.html" id="mobileMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+    <!-- Get Involved Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Get Involved" data-zh="参与方式">Get Involved</summary>
+      <a href="/volunteer.html" data-en="Volunteer" data-zh="志愿者">Volunteer</a>
+      <a href="/donation.html" data-en="Donation" data-zh="捐赠">Donation</a>
+      <a href="/scholarship.html"
+       data-en="scholarship"
+       data-zh="奖学金">
+      scholarship
+    </a>
+      <a href="/index.html#resources" data-en="Resources" data-zh="资源">Resources</a>
+    </details>
+
+    <!-- Contact -->
+    <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+    <!-- Login -->
+    <a href="/login.html" id="mobileAuth" data-en="Login" data-zh="登录">Login</a>
+
+    <!-- Mobile action buttons -->
+    <div class="mobile-actions">
+      <button class="btn btn-ghost" id="mobileRegister" data-en="Register/Join" data-zh="注册/加入">
+        Register / Join
+      </button>
+      <button class="btn" id="mobileUnlock" data-en="Unlock Education" data-zh="解锁教育">
+        Unlock Education
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="register-wrap">
+
+  <div class="register-title">
+    <h1 data-en="Create Your Account" data-zh="创建您的账户">
+      Create Your Account
+    </h1>
+    <p
+      data-en="Unlock full access to member-only resources and services."
+      data-zh="解锁会员专属资源与服务。"
+    >
+      Unlock full access to member-only resources and services.
+    </p>
+  </div>
+
+  <div class="register-card">
+
+    <form id="registerForm" class="register-form" novalidate autocomplete="off">
+
+      <!-- First Name -->
+      <label for="firstName" data-en="First Name*" data-zh="名*">First Name*</label>
+      <input
+        type="text"
+        id="firstName"
+        name="first_name"
+        required
+        placeholder="First name"
+        data-en="First name"
+        data-zh="名字"
+      />
+
+      <!-- Last Name -->
+      <label for="lastName" data-en="Last Name*" data-zh="姓*">Last Name*</label>
+      <input
+        type="text"
+        id="lastName"
+        name="last_name"
+        required
+        placeholder="Last name"
+        data-en="Last name"
+        data-zh="姓氏"
+      />
+
+      <!-- Email -->
+      <label for="email" data-en="Email*" data-zh="邮箱*">Email*</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        required
+        placeholder="Email address"
+        data-en="Email address"
+        data-zh="电子邮箱"
+      />
+      <div id="registerEmailStatus" class="field-hint"></div>
+
+      <!-- Password -->
+      <label for="password" data-en="Password*" data-zh="密码*">Password*</label>
+      <div class="password-wrapper">
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          placeholder="Create a password"
+          data-en="Create a password"
+          data-zh="设置密码"
+        />
+        <button
+          type="button"
+          class="toggle-password"
+          data-target="password"
+          aria-label="Toggle password visibility"
+        >
+          👁
+        </button>
+      </div>
+
+      <!-- Password Rules -->
+      <div class="password-hint">
+        <div
+          class="hint-title"
+          data-en="Password requirements:"
+          data-zh="密码设置要求："
+        >
+          Password requirements:
+        </div>
+
+        <ul>
+          <li id="rule-length">
+            <span class="icon">✖</span>
+            <span
+              data-en="At least 8 characters"
+              data-zh="至少 8 位字符"
+            >
+              At least 8 characters
+            </span>
+          </li>
+
+          <li id="rule-letter">
+            <span class="icon">✖</span>
+            <span
+              data-en="Include at least one letter (A–Z)"
+              data-zh="至少包含 1 个英文字母"
+            >
+              Include at least one letter (A–Z)
+            </span>
+          </li>
+
+          <li id="rule-number">
+            <span class="icon">✖</span>
+            <span
+              data-en="Include at least one number (0–9)"
+              data-zh="至少包含 1 个数字"
+            >
+              Include at least one number (0–9)
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Confirm Password -->
+      <label
+        for="confirmPassword"
+        data-en="Confirm Password*"
+        data-zh="确认密码*"
+      >
+        Confirm Password*
+      </label>
+      <div class="password-wrapper">
+        <input
+          type="password"
+          id="confirmPassword"
+          required
+          placeholder="Confirm your password"
+          data-en="Confirm your password"
+          data-zh="再次输入密码"
+        />
+        <button
+          type="button"
+          class="toggle-password"
+          data-target="confirmPassword"
+          aria-label="Toggle password visibility"
+        >
+          👁
+        </button>
+      </div>
+
+      <div id="confirmHint" class="password-hint" style="display:none;">
+        <span class="icon">❌</span>
+        <span
+          class="text"
+          data-en="Passwords do not match"
+          data-zh="两次输入的密码不一致"
+        >
+          Passwords do not match
+        </span>
+      </div>
+
+      <!-- Referral Code -->
+      <label for="referral_code"
+       data-en="Referral Code (optional)"
+       data-zh="推荐码（可选）">
+  Referral Code <span class="optional">(optional)</span>
+</label>
+
+<input
+  type="text"
+  id="referral_code"
+  name="referral_code"
+  placeholder="Enter referral code if you have one"
+    data-en="Enter referral code if you have one"
+    data-zh="如有推荐码请输入"
+  autocomplete="off"
+/>
+
+      <!-- Submit -->
+      <button
+        type="submit"
+        class="btn btn-primary"
+        data-en="Create Account"
+        data-zh="创建账户"
+      >
+        Create Account
+      </button>
+
+      <div id="formStatus" class="form-status"></div>
+
+      <div
+        class="form-note"
+        data-en="Already have an account? Log in instead."
+        data-zh="已有账户？直接登录。"
+      >
+        Already have an account? Log in instead.
+      </div>
+
+    </form>
+
+  </div>
+
+  <div class="register-footer">
+    <a href="/login.html" data-en="Go to Login" data-zh="前往登录">
+      Go to Login
+    </a>
+  </div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const form          = document.getElementById("registerForm");
+  const status        = document.getElementById("formStatus");
+  const passwordInput = document.getElementById("password");
+  const confirmInput  = document.getElementById("confirmPassword");
+  const confirmHint   = document.getElementById("confirmHint");
+  /* =========================
+     Email Live Validation (Register)
+  ========================= */
+  const emailInput = document.getElementById("email");
+  const emailHint  = document.getElementById("registerEmailStatus");
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  function isZh() {
+    return (localStorage.getItem("superedu-lang") || "en") === "zh";
+  }
+
+  if (emailInput && emailHint) {
+    emailInput.addEventListener("input", () => {
+      const v = emailInput.value.trim();
+
+      // 空值：不提示
+      if (!v) {
+        emailHint.textContent = "";
+        emailHint.style.color = "";
+        return;
+      }
+
+      // 不合法：显示双语提示
+      if (!emailPattern.test(v)) {
+        emailHint.textContent = isZh()
+          ? "❌ 请输入正确的邮箱格式"
+          : "❌ Please enter a valid email format";
+        emailHint.style.color = "#dc2626";
+        return;
+      }
+
+      // 合法：清空（或者你也可以显示 ✅）
+      emailHint.textContent = "";
+      emailHint.style.color = "";
+    });
+  }
+
+  // ===== Toast helpers (bilingual) =====
+  function lang() {
+    return localStorage.getItem("superedu-lang") === "zh" ? "zh" : "en";
+  }
+  function t(en, zh) {
+    return lang() === "zh" ? zh : en;
+  }
+  function toast(msg, type = "info", opts = {}) {
+    if (typeof window.showToast === "function") {
+      window.showToast(msg, type, opts);
+    } else {
+      // fallback (just in case toast.js not loaded)
+      alert(msg);
+    }
+  }
+
+  /* =========================
+     Password Rule Definition
+  ========================= */
+  const passwordRules = {
+    length: {
+      el: document.getElementById("rule-length"),
+      test: pw => pw.length >= 8
+    },
+    letter: {
+      el: document.getElementById("rule-letter"),
+      test: pw => /[A-Za-z]/.test(pw)
+    },
+    number: {
+      el: document.getElementById("rule-number"),
+      test: pw => /[0-9]/.test(pw)
+    }
+  };
+
+  function isValidPassword(pw) {
+    return Object.values(passwordRules).every(rule => rule.test(pw));
+  }
+
+  /* =========================
+     Password Live Validation
+  ========================= */
+  passwordInput.addEventListener("input", () => {
+    const pw = passwordInput.value;
+
+    Object.values(passwordRules).forEach(rule => {
+      const ok = rule.test(pw);
+      rule.el.classList.toggle("valid", ok);
+      rule.el.classList.toggle("invalid", !ok);
+      rule.el.querySelector(".icon").textContent = ok ? "✔" : "✖";
+    });
+
+    checkConfirmPassword();
+  });
+
+  function checkConfirmPassword() {
+    const pw  = passwordInput.value;
+    const cpw = confirmInput.value;
+
+    if (!cpw) {
+      confirmHint.style.display = "none";
+      return;
+    }
+
+    confirmHint.style.display = "flex";
+    const match = pw === cpw;
+
+    confirmHint.classList.toggle("valid", match);
+
+    const icon = confirmHint.querySelector(".icon");
+    const text = confirmHint.querySelector(".text");
+
+    if (match) {
+      icon.textContent = "✔ ";
+      text.dataset.en = "Passwords match";
+      text.dataset.zh = "两次输入的密码一致";
+    } else {
+      icon.textContent = "❌ ";
+      text.dataset.en = "Passwords do not match";
+      text.dataset.zh = "两次输入的密码不一致";
+    }
+
+    // 如果页面有语言系统，可刷新
+    if (typeof window.refreshLang === "function") window.refreshLang();
+    if (typeof window.applyLanguage === "function") window.applyLanguage();
+  }
+
+  confirmInput.addEventListener("input", checkConfirmPassword);
+
+  /* =========================
+     Toggle Password Visibility
+  ========================= */
+  document.querySelectorAll(".toggle-password").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const input = document.getElementById(btn.dataset.target);
+      const hidden = input.type === "password";
+      input.type = hidden ? "text" : "password";
+      btn.textContent = hidden ? "🙈" : "👁";
+    });
+  });
+
+  /* =========================
+     Submit
+  ========================= */
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // 清空原 status（成功时我们仍然用它展示 Member ID）
+    status.textContent = "";
+    status.className = "form-status";
+
+    const first_name    = document.getElementById("firstName").value.trim();
+    const last_name     = document.getElementById("lastName").value.trim();
+    const email         = document.getElementById("email").value.trim();
+    const password      = passwordInput.value;
+    const confirm       = confirmInput.value;
+    const referral_code = document.getElementById("referral_code")?.value.trim() || null;
+
+    // ===== Required fields =====
+    if (!first_name || !last_name || !email || !password || !confirm) {
+      toast(
+        t("Please complete all required fields.", "请填写所有必填项。"),
+        "error",
+        { duration: 3200 }
+      );
+      status.className = "form-status error";
+      return;
+    }
+
+    // ===== Password rules =====
+    if (!isValidPassword(password)) {
+      toast(
+        t(
+          "Password must be at least 8 characters and include letters and numbers.",
+          "密码至少 8 位，并且必须包含字母和数字。"
+        ),
+        "error",
+        { duration: 3800 }
+      );
+      status.className = "form-status error";
+      return;
+    }
+
+    // ===== Confirm match =====
+    if (password !== confirm) {
+      toast(
+        t("Passwords do not match.", "两次输入的密码不一致。"),
+        "error",
+        { duration: 3200 }
+      );
+      status.className = "form-status error";
+      return;
+    }
+
+    // ===== Submitting toast =====
+    toast(t("Creating your account…", "正在创建账户…"), "info", { duration: 1800 });
+
+    try {
+      status.textContent = t("Creating your account…", "正在创建账户…");
+      status.className = "form-status loading";
+
+      const res = await fetch("/api/member", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          first_name,
+          last_name,
+          email,
+          password,
+          referral_code
+        })
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        const msg = data?.error || data?.message || "Registration failed.";
+        toast(
+          lang() === "zh"
+            ? (msg === "Registration failed." ? "注册失败，请稍后重试。" : msg)
+            : msg,
+          "error",
+          { duration: 4200 }
+        );
+
+        status.textContent = lang() === "zh" ? "注册失败。" : "Registration failed.";
+        status.className = "form-status error";
+        return;
+      }
+
+      // ✅ 成功：Toast + 在 status 区域显示详细信息（Member ID、邮箱验证提示）
+      toast(
+        t("Account created! Please verify your email.", "创建成功！请前往邮箱完成验证。"),
+        "success",
+        { duration: 4200 }
+      );
+
+      status.innerHTML = `
+        ${t("Account created successfully.", "账户创建成功。")}<br>
+        <strong>${t("Your Member ID:", "您的会员编号：")}</strong> ${data.member_id}<br><br>
+        📧 ${t(
+          "Please check your email to verify your account before logging in.",
+          "请查收邮箱并完成验证后再登录。"
+        )}
+      `;
+      status.className = "form-status success";
+
+      // 如果你后面还有“Redirecting…”逻辑（例如跳到 welcome.html），可以在这里加：
+      // setTimeout(() => window.location.href = "/welcome.html", 1200);
+
+    } catch (err) {
+      console.error(err);
+      toast(
+        t("Network error. Please try again.", "网络错误，请稍后重试。"),
+        "error",
+        { duration: 4200 }
+      );
+      status.textContent = t("Network error. Please try again.", "网络错误，请稍后重试。");
+      status.className = "form-status error";
+    }
+  });
+
+});
+</script>
+
+<!-- Footer (reuse your site footer if you have one) -->
+   <!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+
+    <!-- Column 1 -->
+    <div class="footer-col">
+      <h4>Edunova</h4>
+      <a href="/apply.html" target="_blank"
+         data-en="Apply for Services"
+         data-zh="申请服务">
+        申请服务
+      </a>
+      <a href="/membership.html"
+         data-en="Membership"
+         data-zh="会员中心">
+        会员中心
+      </a>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="footer-col">
+      <h4 data-en="Education & Fund" data-zh="教育与基金">
+        教育与基金
+      </h4>
+      <a href="/home#resources"
+         data-en="Resources"
+         data-zh="学习资源">
+        学习资源
+      </a>
+      <a href="https://www.lsfinova.com/aid" target="_blank"
+         data-en="Aid Calculator"
+         data-zh="教育资助计算器">
+        教育资助计算器
+      </a>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="footer-col">
+      <h4 data-en="Contact" data-zh="联系我们">
+        联系我们
+      </h4>
+      <div class="muted"
+           data-en="Phone: 1-916-793-0676 (Text)"
+           data-zh="电话 / 短信：1-916-793-0676">
+        电话 / 短信：1-916-793-0676
+      </div>
+      <div class="muted"
+           data-en="WeChat: Leon_Song_PhD"
+           data-zh="微信：Leon_Song_PhD">
+        微信：Leon_Song_PhD
+      </div>
+    </div>
+
+    <!-- Column 4 -->
+    <div class="footer-col">
+      <h4 data-en="Legal" data-zh="法律信息">
+        法律信息
+      </h4>
+      <a href="/privacy.html"
+         data-en="Privacy Policy"
+         data-zh="隐私政策">
+        隐私政策
+      </a>
+      <a href="/terms.html"
+         data-en="Terms of Service"
+         data-zh="服务条款">
+        服务条款
+      </a>
+    </div>
+
+  </div>
+
+  <div class="footer-copy"
+       data-en="© 2025 Edunova Foundation. All rights reserved."
+       data-zh="© 2025 Edunova Foundation 版权所有">
+    © 2025 Edunova — LSFinova 版权所有
+  </div>
+</footer>
+</body>
+</html>
+

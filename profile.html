@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title data-en="My Profile | Edunova Education" data-zh="个人资料 | 超能教育">
+  My Profile | Edunova Education
+</title>
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<script src="/assets/js/menu.js" defer></script>
+<script src="/assets/js/lang.js" defer></script>
+
+<style>
+/* ===============================
+   Profile Page — Production
+   Match Volunteer / Donation visual language
+=============================== */
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body{
+  margin:0;
+  font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+  background:#F9FAF7;
+  color:#2B2B2B;
+  line-height:1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Reserved for main header (menu) */
+.top-offset{ height: 88px; }
+
+/* ===============================
+   Zones (match Volunteer)
+=============================== */
+.zone { padding: 28px 0; }
+.zone-inner{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Zone backgrounds (final palette you used) */
+.zone-a { background: #FFFFFF; }
+.zone-b { background: #F1F3EF; }
+.zone-c { background: #EFE9DA; } /* ⭐ keep consistent with Volunteer */
+.zone-d { background: #F8F9F6; }
+
+/* ===============================
+   Page Header
+=============================== */
+.profile-hero{
+  padding: 24px 0 6px;
+}
+
+.profile-title{
+  font-size: clamp(1.7rem, 2.6vw, 2.15rem);
+  font-weight: 650;
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+}
+
+.profile-sub{
+  margin: 0;
+  color: #555;
+  font-size: 1.02rem;
+  opacity: .92;
+  max-width: 860px;
+}
+
+/* ===============================
+   Layout Grid
+=============================== */
+.grid{
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+/* On smaller screens */
+@media (max-width: 880px){
+  .grid{ grid-template-columns: 1fr; }
+}
+
+/* ===============================
+   Card (match Volunteer)
+=============================== */
+.card{
+  background: linear-gradient(180deg, #FFFDF8, #F2EAD3);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow:
+    0 8px 22px rgba(0,0,0,0.08),
+    0 2px 6px rgba(0,0,0,0.04);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.card:hover{
+  transform: translateY(-3px);
+  box-shadow:
+    0 14px 36px rgba(0,0,0,0.12),
+    0 4px 12px rgba(0,0,0,0.06);
+}
+
+.card-title{
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.card-title h2{
+  margin:0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #256F3A;
+  letter-spacing: -0.01em;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 650;
+  background: rgba(59,130,246,0.10);
+  color:#2563eb;
+  border: 1px solid rgba(59,130,246,0.22);
+  white-space: nowrap;
+}
+
+.badge.ok{
+  background: rgba(44,156,71,0.10);
+  color:#2C9C47;
+  border-color: rgba(44,156,71,0.22);
+}
+
+.badge.warn{
+  background: rgba(245,158,11,0.12);
+  color:#b45309;
+  border-color: rgba(245,158,11,0.24);
+}
+
+.badge.danger{
+  background: rgba(220,38,38,0.10);
+  color:#dc2626;
+  border-color: rgba(220,38,38,0.22);
+}
+
+/* ===============================
+   Info rows
+=============================== */
+.info{
+  display:flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row{
+  display:flex;
+  gap: 16px;
+  align-items: flex-start;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.label{
+  width: 190px;
+  color:#6b7280;
+  font-size: 0.95rem;
+}
+
+.value{
+  flex:1;
+  font-size: 0.98rem;
+  font-weight: 650;
+  color:#111827;
+  word-break: break-word;
+}
+
+.muted{
+  color:#6b7280;
+  font-weight: 500;
+}
+
+@media (max-width: 640px){
+  .label{ width: 100%; }
+  .row{ flex-direction: column; gap: 6px; }
+}
+
+/* ===============================
+   Quick actions
+=============================== */
+.actions{
+  display:flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 650;
+  font-size: 0.95rem;
+  text-decoration:none;
+  border: none;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+}
+
+.btn:active{ transform: translateY(0); }
+
+.btn-primary{
+  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+  color:#fff;
+  box-shadow: 0 10px 24px rgba(99,102,241,0.28);
+}
+.btn-primary:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(99,102,241,0.42);
+}
+
+.btn-secondary{
+  background:#ffffff;
+  color:#3b82f6;
+  border: 2px solid rgba(59,130,246,0.9);
+}
+.btn-secondary:hover{
+  background:#3b82f6;
+  color:#fff;
+  transform: translateY(-2px);
+}
+
+.btn-ghost{
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(0,0,0,0.10);
+  color:#374151;
+}
+.btn-ghost:hover{
+  background: rgba(255,255,255,0.8);
+  transform: translateY(-2px);
+}
+
+.btn-danger{
+  background: rgba(220,38,38,0.10);
+  border: 1px solid rgba(220,38,38,0.25);
+  color:#dc2626;
+}
+.btn-danger:hover{
+  background: rgba(220,38,38,0.16);
+  transform: translateY(-2px);
+}
+
+/* ===============================
+   Tips / Notice list
+=============================== */
+.note{
+  margin: 10px 0 0;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.55);
+  border: 1px solid rgba(0,0,0,0.06);
+  color:#444;
+}
+
+.note ul{
+  margin: 10px 0 0;
+  padding-left: 18px;
+}
+.note li{ margin: 6px 0; }
+
+/* ===============================
+   Loading
+=============================== */
+.skeleton{
+  height: 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(0,0,0,0.05), rgba(0,0,0,0.09), rgba(0,0,0,0.05));
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite linear;
+}
+@keyframes shimmer{
+  0%{ background-position: 0% 0; }
+  100%{ background-position: 200% 0; }
+}
+</style>
+</head>
+
+<body data-page="member-only">
+
+<!-- NAV -->
+
+<nav id="topNav" class="nav--transparent">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <div class="brand">
+      <a href="/index.html#home" class="brand">
+        <img src="/assets/img/superedu-logo.png" alt="Edunova" class="logo-img" />
+        <span class="brand-text">Edunova</span>
+      </a>
+    </div>
+
+    <!-- =========================
+         Desktop Menu
+    ========================== -->
+    <div class="menu" id="menu">
+
+      <!-- Home -->
+      <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+      <!-- About -->
+      <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Dropdown -->
+<div class="nav-item dropdown">
+
+  <span class="dropdown-toggle"
+        role="button"
+        aria-haspopup="true"
+        tabindex="0"
+        data-en="Programs ⬇︎"
+        data-zh="项目 ⬇︎"> 
+  </span> 
+
+  <div class="dropdown-menu">
+    <a href="/education.html"
+       id="navEduCenter"
+       data-en="EduCenter"
+       data-zh="教育中心">
+      EduCenter
+    </a>
+
+    <a href="/community.html"
+       id="navEduCommunity"
+       data-en="EduCommunity"
+       data-zh="教育社区">
+      EduCommunity
+    </a>
+
+    <a href="/forum.html"
+       id="navForum"
+       data-en="EduForum"
+       data-zh="教育论坛">
+      EduForum 
+    </a>
+
+    <a href="/events.html" data-en="Events" data-zh="活动"> Events</a>
+    
+  </div>
+
+</div>
+
+      <!-- Services -->
+      <a href="/index.html#services" data-en="Services" data-zh="服务">Services</a>
+
+      <!-- Membership -->
+     <a href="/membership.html" id="navMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+      <!-- Get Involved Dropdown -->
+<div class="nav-item dropdown">
+  <span class="dropdown-toggle" role="button" aria-haspopup="true" tabindex="0"
+        data-en="Get Involved ⬇︎" data-zh="参与方式 ⬇︎">
+   
+</span>
+
+  <div class="dropdown-menu">
+    <a href="/volunteer.html"
+       data-en="Volunteer"
+       data-zh="志愿者">
+      Volunteer
+    </a>
+
+    <a href="/donation.html"
+       data-en="Donation"
+       data-zh="捐赠">
+      Donation
+    </a>
+    <a href="/scholarship.html"
+       data-en="scholarship"
+       data-zh="奖学金">
+      scholarship
+    </a>
+
+    <a href="/index.html#resources"
+       data-en="Resources"
+       data-zh="资源">
+      Resources
+    </a>
+  </div>
+</div>
+
+      <!-- Contact -->
+      <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+      <!-- Login -->
+     <a href="/login.html" id="desktopAuth" data-en="Login" data-zh="登录">Login</a>
+
+      <!-- Slide underline -->
+      <span class="nav-underline"></span>
+    </div>
+
+    <!-- Right side -->
+    <div class="nav-right">
+      <button id="langToggle" class="lang-toggle" aria-label="Language toggle">
+        中文
+      </button>
+
+      <button id="hamburger" class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile slide menu -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <!-- Home -->
+    <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+    <!-- About -->
+    <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Programs" data-zh="项目">Programs</summary>
+      <a href="/education.html" id="mobileEduCenter" data-en="EduCenter" data-zh="教育中心">EduCenter</a>
+      <a href="/community.html" id="mobileEduCommunity" data-en="EduCommunity" data-zh="教育社区">EduCommunity</a>
+      <a href="/forum.html" id="mobileForum" data-en="EduForum" data-zh="教育论坛">EduForum</a>
+      <a href="/events.html" data-en="Events" data-zh="活动">Events</a>
+    </details>
+
+    <!-- Service -->
+    <a href="/index.html#services" data-en="Service" data-zh="服务">Service</a>
+
+    <!-- Membership -->
+    <a href="/membership.html" id="mobileMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+    <!-- Get Involved Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Get Involved" data-zh="参与方式">Get Involved</summary>
+      <a href="/volunteer.html" data-en="Volunteer" data-zh="志愿者">Volunteer</a>
+      <a href="/donation.html" data-en="Donation" data-zh="捐赠">Donation</a>
+      <a href="/scholarship.html"
+       data-en="scholarship"
+       data-zh="奖学金">
+      scholarship
+    </a>
+      <a href="/index.html#resources" data-en="Resources" data-zh="资源">Resources</a>
+    </details>
+
+    <!-- Contact -->
+    <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+    <!-- Login -->
+    <a href="/login.html" id="mobileAuth" data-en="Login" data-zh="登录">Login</a>
+
+    <!-- Mobile action buttons -->
+    <div class="mobile-actions">
+      <button class="btn btn-ghost" id="mobileRegister" data-en="Register/Join" data-zh="注册/加入">
+        Register / Join
+      </button>
+      <button class="btn" id="mobileUnlock" data-en="Unlock Education" data-zh="解锁教育">
+        Unlock Education
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="top-offset"></div>
+
+<!-- ===============================
+   Zone A — Header
+=============================== -->
+<section class="zone zone-a">
+  <div class="zone-inner">
+    <div class="profile-hero">
+      <h1 class="profile-title" data-en="My Profile" data-zh="个人资料">My Profile</h1>
+      <p class="profile-sub"
+         data-en="Your personal information, account status, and member access — securely loaded after login."
+         data-zh="这里是您的个人信息与账户状态（仅登录后可访问），用于安全管理与会员功能入口。">
+        Your personal information, account status, and member access — securely loaded after login.
+      </p>
+    </div>
+
+    <div class="grid">
+      <!-- LEFT: Basic info -->
+      <div class="card" id="cardBasic">
+        <div class="card-title">
+          <h2 data-en="Basic Information" data-zh="基本信息">Basic Information</h2>
+          <span class="badge" id="memberBadge">
+            <span data-en="Member" data-zh="会员">Member</span>
+          </span>
+        </div>
+
+        <div class="info" id="basicInfo">
+          <div class="row"><div class="label" data-en="Full Name" data-zh="姓名">Full Name</div><div class="value"><div class="skeleton" style="width:220px"></div></div></div>
+          <div class="row"><div class="label" data-en="Email" data-zh="邮箱">Email</div><div class="value"><div class="skeleton" style="width:260px"></div></div></div>
+          <div class="row"><div class="label" data-en="Member ID" data-zh="会员编号">Member ID</div><div class="value"><div class="skeleton" style="width:160px"></div></div></div>
+        </div>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="/dashboard.html">
+            📊 <span data-en="Go to Dashboard" data-zh="进入仪表盘">Go to Dashboard</span>
+          </a>
+          <a class="btn btn-ghost" href="/membership.html">
+            🧾 <span data-en="Membership Center" data-zh="会员中心">Membership Center</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT: Account status -->
+      <div class="card" id="cardAccount">
+        <div class="card-title">
+          <h2 data-en="Account Status" data-zh="账户状态">Account Status</h2>
+          <span class="badge warn" id="verifyBadge">
+            <span data-en="Checking…" data-zh="检查中…">Checking…</span>
+          </span>
+        </div>
+
+        <div class="info" id="accountInfo">
+          <div class="row"><div class="label" data-en="Role" data-zh="角色">Role</div><div class="value"><div class="skeleton" style="width:120px"></div></div></div>
+          <div class="row"><div class="label" data-en="Status" data-zh="状态">Status</div><div class="value"><div class="skeleton" style="width:120px"></div></div></div>
+          <div class="row"><div class="label" data-en="Email Verified" data-zh="邮箱验证">Email Verified</div><div class="value"><div class="skeleton" style="width:140px"></div></div></div>
+          <div class="row"><div class="label" data-en="Last Login" data-zh="最近登录">Last Login</div><div class="value"><div class="skeleton" style="width:200px"></div></div></div>
+        </div>
+
+        <div class="note">
+          <div data-en="Security tips:" data-zh="安全提示：">Security tips:</div>
+          <ul>
+            <li data-en="Your session is protected with HttpOnly cookie (recommended)." data-zh="您的登录使用 HttpOnly Cookie（更安全，推荐）。">
+              Your session is protected with HttpOnly cookie (recommended).
+            </li>
+            <li data-en="If you suspect unauthorized access, log out on all devices (coming soon) and reset password." data-zh="如怀疑账户异常，请先退出登录（未来支持全设备退出）并重置密码。">
+              If you suspect unauthorized access, log out on all devices (coming soon) and reset password.
+            </li>
+          </ul>
+        </div>
+
+        <div class="actions">
+          <a class="btn btn-secondary" href="/settings.html">
+            ⚙️ <span data-en="Settings" data-zh="设置">Settings</span>
+          </a>
+          <button class="btn btn-danger" id="logoutBtn" type="button">
+            🔒 <span data-en="Log out" data-zh="安全退出">Log out</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===============================
+   Zone B — Member Access
+=============================== -->
+<section class="zone zone-b">
+  <div class="zone-inner">
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">
+          <h2 data-en="Member Access" data-zh="会员入口">Member Access</h2>
+          <span class="badge ok">
+            <span data-en="Quick Links" data-zh="快捷入口">Quick Links</span>
+          </span>
+        </div>
+
+        <div class="note" style="margin-top:0">
+          <div data-en="Recommended next steps:" data-zh="建议下一步：">Recommended next steps:</div>
+          <ul>
+            <li data-en="Visit EduCenter to explore programs and resources." data-zh="进入 EduCenter 浏览课程与资源。">Visit EduCenter to explore programs and resources.</li>
+            <li data-en="Join EduCommunity discussions and peer learning." data-zh="进入 EduCommunity 讨论与互助学习。">Join EduCommunity discussions and peer learning.</li>
+            <li data-en="Access Member-only areas (Forum / Events) as they open." data-zh="随着开放进度进入会员专区（论坛 / 活动等）。">Access Member-only areas (Forum / Events) as they open.</li>
+          </ul>
+        </div>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="/education.html">🎓 <span data-en="EduCenter" data-zh="教育中心">EduCenter</span></a>
+          <a class="btn btn-ghost" href="/community.html">💬 <span data-en="EduCommunity" data-zh="教育社区">EduCommunity</span></a>
+          <a class="btn btn-ghost" href="/volunteer.html">🤝 <span data-en="Volunteer" data-zh="志愿者">Volunteer</span></a>
+          <a class="btn btn-ghost" href="/donation.html">💖 <span data-en="Donate" data-zh="捐赠">Donate</span></a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <h2 data-en="Profile Management" data-zh="资料管理">Profile Management</h2>
+          <span class="badge warn">
+            <span data-en="Coming Soon" data-zh="即将上线">Coming Soon</span>
+          </span>
+        </div>
+
+        <div class="note" style="margin-top:0">
+          <div data-en="We will gradually enable:" data-zh="我们将逐步开放：">We will gradually enable:</div>
+          <ul>
+            <li data-en="Edit profile details" data-zh="编辑资料">Edit profile details</li>
+            <li data-en="Change password" data-zh="修改密码">Change password</li>
+            <li data-en="Notification preferences" data-zh="通知偏好设置">Notification preferences</li>
+            <li data-en="Security audit & sessions" data-zh="安全审计与会话管理">Security audit & sessions</li>
+          </ul>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn-secondary" type="button" disabled>
+            ✏️ <span data-en="Edit Profile (Coming Soon)" data-zh="编辑资料（即将上线）">Edit Profile (Coming Soon)</span>
+          </button>
+          <button class="btn btn-ghost" type="button" disabled>
+            🔑 <span data-en="Change Password (Coming Soon)" data-zh="修改密码（即将上线）">Change Password (Coming Soon)</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===============================
+   Scripts
+=============================== -->
+<script>
+async function loadProfile() {
+  try {
+    const res = await fetch("/api/me", { credentials: "include" });
+    const data = await res.json();
+
+    if (!res.ok || !data.success) {
+      location.href = "/login.html";
+      return;
+    }
+
+    const m = data.member;
+
+    // Fill Basic
+    const name = `${m.first_name || ""} ${m.last_name || ""}`.trim() || "—";
+    const email = m.email || "—";
+    const memberId = m.member_id || "—";
+
+    // Replace skeleton blocks
+    document.getElementById("basicInfo").innerHTML = `
+      <div class="row">
+        <div class="label" data-en="Full Name" data-zh="姓名">Full Name</div>
+        <div class="value">${name}</div>
+      </div>
+      <div class="row">
+        <div class="label" data-en="Email" data-zh="邮箱">Email</div>
+        <div class="value">${email}</div>
+      </div>
+      <div class="row">
+        <div class="label" data-en="Member ID" data-zh="会员编号">Member ID</div>
+        <div class="value">${memberId}</div>
+      </div>
+    `;
+
+    // Account fields
+    const role = m.role || "member";
+    const status = m.status || "active";
+    const verified = (m.is_verified === 1 || m.is_verified === true);
+    const lastLogin = m.last_login_at || "N/A";
+
+    document.getElementById("accountInfo").innerHTML = `
+      <div class="row">
+        <div class="label" data-en="Role" data-zh="角色">Role</div>
+        <div class="value">${role}</div>
+      </div>
+      <div class="row">
+        <div class="label" data-en="Status" data-zh="状态">Status</div>
+        <div class="value">${status}</div>
+      </div>
+      <div class="row">
+        <div class="label" data-en="Email Verified" data-zh="邮箱验证">Email Verified</div>
+        <div class="value">${verified ? "Yes / 已验证" : "No / 未验证"}</div>
+      </div>
+      <div class="row">
+        <div class="label" data-en="Last Login" data-zh="最近登录">Last Login</div>
+        <div class="value">${lastLogin}</div>
+      </div>
+    `;
+
+    // Badges
+    const verifyBadge = document.getElementById("verifyBadge");
+    if (verified) {
+      verifyBadge.className = "badge ok";
+      verifyBadge.innerHTML = `<span data-en="Verified" data-zh="已验证">Verified</span>`;
+    } else {
+      verifyBadge.className = "badge warn";
+      verifyBadge.innerHTML = `<span data-en="Not Verified" data-zh="未验证">Not Verified</span>`;
+    }
+
+    const memberBadge = document.getElementById("memberBadge");
+    memberBadge.innerHTML = `✅ <span data-en="Member" data-zh="会员">Member</span>`;
+
+    // If your lang.js reads data-en/zh, re-apply after dynamic HTML injection
+    if (typeof window.applyLanguage === "function") {
+      window.applyLanguage();
+    }
+
+  } catch (err) {
+    console.error("Profile load error:", err);
+    location.href = "/login.html";
+  }
+}
+
+// Logout
+async function doLogout() {
+  try {
+    await fetch("/api/logout", { method: "POST", credentials: "include" });
+  } catch (e) {
+    // even if API fails, still redirect to login
+  }
+  location.href = "/login.html";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  loadProfile();
+  const btn = document.getElementById("logoutBtn");
+  if (btn) btn.addEventListener("click", doLogout);
+});
+</script>
+<script src="/assets/js/auth-nav.js" defer></script>
+<!-- Footer (reuse your site footer if you have one) -->
+   <!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+
+    <!-- Column 1 -->
+    <div class="footer-col">
+      <h4>Edunova</h4>
+      <a href="/apply.html" target="_blank"
+         data-en="Apply for Services"
+         data-zh="申请服务">
+        申请服务
+      </a>
+      <a href="/membership.html"
+         data-en="Membership"
+         data-zh="会员中心">
+        会员中心
+      </a>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="footer-col">
+      <h4 data-en="Education & Fund" data-zh="教育与基金">
+        教育与基金
+      </h4>
+      <a href="/home#resources"
+         data-en="Resources"
+         data-zh="学习资源">
+        学习资源
+      </a>
+      <a href="https://www.lsfinova.com/aid" target="_blank"
+         data-en="Aid Calculator"
+         data-zh="教育资助计算器">
+        教育资助计算器
+      </a>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="footer-col">
+      <h4 data-en="Contact" data-zh="联系我们">
+        联系我们
+      </h4>
+      <div class="muted"
+           data-en="Phone: 1-916-793-0676 (Text)"
+           data-zh="电话 / 短信：1-916-793-0676">
+        电话 / 短信：1-916-793-0676
+      </div>
+      <div class="muted"
+           data-en="WeChat: Leon_Song_PhD"
+           data-zh="微信：Leon_Song_PhD">
+        微信：Leon_Song_PhD
+      </div>
+    </div>
+
+    <!-- Column 4 -->
+    <div class="footer-col">
+      <h4 data-en="Legal" data-zh="法律信息">
+        法律信息
+      </h4>
+      <a href="/privacy.html"
+         data-en="Privacy Policy"
+         data-zh="隐私政策">
+        隐私政策
+      </a>
+      <a href="/terms.html"
+         data-en="Terms of Service"
+         data-zh="服务条款">
+        服务条款
+      </a>
+    </div>
+
+  </div>
+
+  <div class="footer-copy"
+       data-en="© 2025 Edunova Foundation. All rights reserved."
+       data-zh="© 2025 Edunova Foundation 版权所有">
+    © 2025 Edunova — LSFinova 版权所有
+  </div>
+</footer>
+</body>
+</html>

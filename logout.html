@@ -1,0 +1,35 @@
+<script>
+/* =========================
+   Logout Logic — FINAL
+========================= */
+
+(async function logout() {
+  try {
+    await fetch("/api/logout", {
+      method: "POST",
+      credentials: "include",   // ⭐ 必须带 cookie
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+  } catch (err) {
+    console.error("Logout error:", err);
+  }
+
+  // ⭐ 清除权限角色（非常重要）
+  localStorage.removeItem("snovaRole");
+  sessionStorage.removeItem("snovaRole");
+
+  // 可选：如果你还有其他状态
+  localStorage.removeItem("snovaAuth");
+  localStorage.removeItem("snovaUserEmail");
+
+  // 回到登录页
+  window.location.replace("/login.html");
+})();
+
+localStorage.removeItem("snovaRole");
+sessionStorage.removeItem("snovaRole");
+
+</script>
+<script src="/assets/js/auth-nav.js" defer></script>

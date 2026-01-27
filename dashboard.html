@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dashboard | Edunova Education</title>
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<script src="/assets/js/menu.js" defer></script>
+<script src="/assets/js/lang.js" defer></script>
+
+<style>
+/* =========================
+   Base
+========================= */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Arial, sans-serif;
+  background-color: #f5f5f4;
+  color: #1f2937;
+  line-height: 1.65;
+}
+
+.top-offset { height: 80px; }
+
+.dashboard-wrap {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 20px 72px;
+}
+
+/* =========================
+   Welcome
+========================= */
+.welcome-title {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.welcome-sub {
+  font-size: 15px;
+  color: #6b7280;
+  margin: 6px 0 36px;
+}
+
+/* =========================
+   Section Wrapper
+========================= */
+.section {
+  margin-bottom: 48px;
+  padding: 28px 26px 32px;
+  border-radius: 18px;
+}
+
+/* 不同区块背景 */
+.section-edu {
+  background-color: #fafaf9;
+}
+
+.section-engage {
+  background-color: #fff7ed;
+}
+
+.section-personal {
+  background-color: #ffffff;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 22px;
+  color: #374151;
+}
+
+/* =========================
+   Card Grid
+========================= */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 640px) {
+  .card-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .card-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* =========================
+   Card
+========================= */
+.card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 22px 22px 26px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  transition: all 0.18s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  border-color: #d1d5db;
+}
+
+.card-icon {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.card-title {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.card-desc {
+  font-size: 14.5px;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+.card a {
+  font-size: 14.5px;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.card a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Footer Links
+========================= */
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-links a {
+  font-size: 14.5px;
+  text-decoration: none;
+  color: #374151;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* =========================
+   Logout
+========================= */
+.logout {
+  margin-top: 36px;
+}
+
+.logout button {
+  background-color: transparent;
+  border: 1px solid #d1d5db;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.logout button:hover {
+  background-color: #f3f4f6;
+  border-color: #9ca3af;
+}
+</style>
+</head>
+
+<body data-page="member-only">
+
+<!-- NAV -->
+
+<nav id="topNav" class="nav--transparent">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <div class="brand">
+      <a href="/index.html#home" class="brand">
+        <img src="/assets/img/superedu-logo.png" alt="Edunova" class="logo-img" />
+        <span class="brand-text">Edunova</span>
+      </a>
+    </div>
+
+    <!-- =========================
+         Desktop Menu
+    ========================== -->
+    <div class="menu" id="menu">
+
+      <!-- Home -->
+      <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+      <!-- About -->
+      <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Dropdown -->
+<div class="nav-item dropdown">
+
+  <span class="dropdown-toggle"
+        role="button"
+        aria-haspopup="true"
+        tabindex="0"
+        data-en="Programs ⬇︎"
+        data-zh="项目 ⬇︎"> 
+  </span> 
+
+  <div class="dropdown-menu">
+    <a href="/education.html"
+       id="navEduCenter"
+       data-en="EduCenter"
+       data-zh="教育中心">
+      EduCenter
+    </a>
+
+    <a href="/community.html"
+       id="navEduCommunity"
+       data-en="EduCommunity"
+       data-zh="教育社区">
+      EduCommunity
+    </a>
+
+    <a href="/forum.html"
+       id="navForum"
+       data-en="EduForum"
+       data-zh="教育论坛">
+      EduForum 
+    </a>
+
+    <a href="/events.html" data-en="Events" data-zh="活动"> Events</a>
+    
+  </div>
+
+</div>
+
+      <!-- Services -->
+      <a href="/index.html#services" data-en="Services" data-zh="服务">Services</a>
+
+      <!-- Membership -->
+     <a href="/membership.html" id="navMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+      <!-- Get Involved Dropdown -->
+<div class="nav-item dropdown">
+  <span class="dropdown-toggle" role="button" aria-haspopup="true" tabindex="0"
+        data-en="Get Involved ⬇︎" data-zh="参与方式 ⬇︎">
+   
+</span>
+
+  <div class="dropdown-menu">
+    <a href="/volunteer.html"
+       data-en="Volunteer"
+       data-zh="志愿者">
+      Volunteer
+    </a>
+
+    <a href="/donation.html"
+       data-en="Donation"
+       data-zh="捐赠">
+      Donation
+    </a>
+
+    <a href="/scholarship.html"
+       data-en="scholarship"
+       data-zh="奖学金">
+      scholarship
+    </a>
+
+    <a href="/index.html#resources"
+       data-en="Resources"
+       data-zh="资源">
+      Resources
+    </a>
+  </div>
+</div>
+
+      <!-- Contact -->
+      <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+      <!-- Login -->
+     <a href="/login.html" id="desktopAuth" data-en="Login" data-zh="登录">Login</a>
+
+      <!-- Slide underline -->
+      <span class="nav-underline"></span>
+    </div>
+
+    <!-- Right side -->
+    <div class="nav-right">
+      <button id="langToggle" class="lang-toggle" aria-label="Language toggle">
+        中文
+      </button>
+
+      <button id="hamburger" class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile slide menu -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <!-- Home -->
+    <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+    <!-- About -->
+    <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Programs" data-zh="项目">Programs</summary>
+      <a href="/education.html" id="mobileEduCenter" data-en="EduCenter" data-zh="教育中心">EduCenter</a>
+      <a href="/community.html" id="mobileEduCommunity" data-en="EduCommunity" data-zh="教育社区">EduCommunity</a>
+      <a href="/forum.html" id="mobileForum" data-en="EduForum" data-zh="教育论坛">EduForum</a>
+      <a href="/events.html" data-en="Events" data-zh="活动">Events</a>
+    </details>
+
+    <!-- Service -->
+    <a href="/index.html#services" data-en="Service" data-zh="服务">Service</a>
+
+    <!-- Membership -->
+    <a href="/membership.html" id="mobileMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+    <!-- Get Involved Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Get Involved" data-zh="参与方式">Get Involved</summary>
+      <a href="/volunteer.html" data-en="Volunteer" data-zh="志愿者">Volunteer</a>
+      <a href="/donation.html" data-en="Donation" data-zh="捐赠">Donation</a>
+      <a href="/scholarship.html"
+       data-en="scholarship"
+       data-zh="奖学金">
+      scholarship
+    </a>
+      <a href="/index.html#resources" data-en="Resources" data-zh="资源">Resources</a>
+    </details>
+
+    <!-- Contact -->
+    <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+    <!-- Login -->
+    <a href="/login.html" id="mobileAuth" data-en="Login" data-zh="登录">Login</a>
+
+    <!-- Mobile action buttons -->
+    <div class="mobile-actions">
+      <button class="btn btn-ghost" id="mobileRegister" data-en="Register/Join" data-zh="注册/加入">
+        Register / Join
+      </button>
+      <button class="btn" id="mobileUnlock" data-en="Unlock Education" data-zh="解锁教育">
+        Unlock Education
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="top-offset"></div>
+
+<main class="dashboard-wrap">
+
+  <!-- Welcome -->
+  <h1 class="welcome-title"
+      id="welcomeMessage"
+      data-en="Welcome"
+      data-zh="欢迎回来">
+    Welcome
+  </h1>
+
+  <div class="welcome-sub"
+       data-en="Your personal space within Edunova Education."
+       data-zh="这是您在 Edunova 教育体系中的个人空间。">
+    Your personal space within Edunova Education.
+  </div>
+
+  <!-- Education -->
+  <section class="section section-edu">
+    <div class="section-title"
+         data-en="Education & Community"
+         data-zh="教育与学习社区">
+      Education & Community
+    </div>
+
+    <div class="card-grid">
+
+      <div class="card" onclick="location.href='/education.html'">
+        <div class="card-icon">🎓</div>
+        <div class="card-title"
+             data-en="EduCenter"
+             data-zh="教育中心">
+          EduCenter
+        </div>
+        <div class="card-desc"
+             data-en="Structured learning and academic programs."
+             data-zh="系统化学习内容与学术项目。">
+          Structured learning and academic programs.
+        </div>
+        <a href="/education.html"
+           data-en="Explore →"
+           data-zh="进入 →">
+          Explore →
+        </a>
+      </div>
+
+      <div class="card" onclick="location.href='/community.html'">
+        <div class="card-icon">💬</div>
+        <div class="card-title"
+             data-en="EduCommunity"
+             data-zh="学习社区">
+          EduCommunity
+        </div>
+        <div class="card-desc"
+             data-en="Discussion, sharing, and peer learning."
+             data-zh="讨论、分享与同伴学习。">
+          Discussion, sharing, and peer learning.
+        </div>
+        <a href="/community.html"
+           data-en="Enter →"
+           data-zh="进入 →">
+          Enter →
+        </a>
+      </div>
+
+      <div class="card" onclick="location.href='/forum.html'">
+        <div class="card-icon">🧠</div>
+        <div class="card-title"
+             data-en="Forum"
+             data-zh="学术论坛">
+          Forum
+        </div>
+        <div class="card-desc"
+             data-en="Ask, discuss, and deepen understanding."
+             data-zh="提问、讨论并加深理解。">
+          Ask, discuss, and deepen understanding.
+        </div>
+        <a href="/forum.html"
+           data-en="Visit →"
+           data-zh="进入 →">
+          Visit →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Engagement -->
+  <section class="section section-engage">
+    <div class="section-title"
+         data-en="Get Involved"
+         data-zh="参与与支持">
+      Get Involved
+    </div>
+
+    <div class="card-grid">
+
+      <div class="card" onclick="location.href='/volunteer.html'">
+        <div class="card-icon">🤝</div>
+        <div class="card-title"
+             data-en="Volunteer"
+             data-zh="志愿者">
+          Volunteer
+        </div>
+        <div class="card-desc"
+             data-en="Participate in education initiatives."
+             data-zh="参与教育公益与支持项目。">
+          Participate in education initiatives.
+        </div>
+        <a href="/volunteer.html"
+           data-en="Join →"
+           data-zh="加入 →">
+          Join →
+        </a>
+      </div>
+
+      <div class="card" onclick="location.href='/donation.html'">
+        <div class="card-icon">💖</div>
+        <div class="card-title"
+             data-en="Donate"
+             data-zh="捐赠支持">
+          Donate
+        </div>
+        <div class="card-desc"
+             data-en="Support education through donation."
+             data-zh="通过捐赠支持教育发展。">
+          Support education through donation.
+        </div>
+        <a href="/donation.html"
+           data-en="Support →"
+           data-zh="支持 →">
+          Support →
+        </a>
+      </div>
+
+      <div class="card" onclick="location.href='/events.html'">
+        <div class="card-icon">📅</div>
+        <div class="card-title"
+             data-en="Events"
+             data-zh="活动与讲座">
+          Events
+        </div>
+        <div class="card-desc"
+             data-en="Talks, workshops, and activities."
+             data-zh="讲座、工作坊与各类活动。">
+          Talks, workshops, and activities.
+        </div>
+        <a href="/events.html"
+           data-en="View →"
+           data-zh="查看 →">
+          View →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Personal -->
+  <section class="section section-personal">
+
+    <div class="footer-links">
+      <a href="/profile.html"
+         data-en="👤 Profile"
+         data-zh="👤 个人资料">
+        👤 Profile
+      </a>
+
+      <a href="/settings.html"
+         data-en="⚙️ Settings"
+         data-zh="⚙️ 设置">
+        ⚙️ Settings
+      </a>
+
+      <a href="#"
+         data-en="🧭 My Journey"
+         data-zh="🧭 我的学习旅程">
+        🧭 My Journey
+      </a>
+    </div>
+
+    <div class="logout">
+      <button id="logoutBtn"
+              data-en="Log out"
+              data-zh="退出登录">
+        Log out
+      </button>
+    </div>
+
+  </section>
+
+</main>
+
+
+<script>
+async function init() {
+  const res = await fetch("/api/me");
+  const data = await res.json();
+  if (!res.ok || !data.success) {
+    location.href = "/login.html";
+    return;
+  }
+  document.getElementById("welcomeMessage").textContent =
+    `Welcome, ${data.member.first_name}`;
+}
+
+document.getElementById("logoutBtn").onclick = async () => {
+  await fetch("/api/logout", { method: "POST" });
+  location.href = "/login.html";
+};
+
+init();
+</script>
+<script src="/assets/js/auth-nav.js" defer></script>
+<!-- Footer (reuse your site footer if you have one) -->
+   <!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+
+    <!-- Column 1 -->
+    <div class="footer-col">
+      <h4>Edunova</h4>
+      <a href="/apply.html" target="_blank"
+         data-en="Apply for Services"
+         data-zh="申请服务">
+        申请服务
+      </a>
+      <a href="/membership.html"
+         data-en="Membership"
+         data-zh="会员中心">
+        会员中心
+      </a>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="footer-col">
+      <h4 data-en="Education & Fund" data-zh="教育与基金">
+        教育与基金
+      </h4>
+      <a href="/home#resources"
+         data-en="Resources"
+         data-zh="学习资源">
+        学习资源
+      </a>
+      <a href="https://www.lsfinova.com/aid" target="_blank"
+         data-en="Aid Calculator"
+         data-zh="教育资助计算器">
+        教育资助计算器
+      </a>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="footer-col">
+      <h4 data-en="Contact" data-zh="联系我们">
+        联系我们
+      </h4>
+      <div class="muted"
+           data-en="Phone: 1-916-793-0676 (Text)"
+           data-zh="电话 / 短信：1-916-793-0676">
+        电话 / 短信：1-916-793-0676
+      </div>
+      <div class="muted"
+           data-en="WeChat: Leon_Song_PhD"
+           data-zh="微信：Leon_Song_PhD">
+        微信：Leon_Song_PhD
+      </div>
+    </div>
+
+    <!-- Column 4 -->
+    <div class="footer-col">
+      <h4 data-en="Legal" data-zh="法律信息">
+        法律信息
+      </h4>
+      <a href="/privacy.html"
+         data-en="Privacy Policy"
+         data-zh="隐私政策">
+        隐私政策
+      </a>
+      <a href="/terms.html"
+         data-en="Terms of Service"
+         data-zh="服务条款">
+        服务条款
+      </a>
+    </div>
+
+  </div>
+
+  <div class="footer-copy"
+       data-en="© 2025 Edunova Foundation. All rights reserved."
+       data-zh="© 2025 Edunova Foundation 版权所有">
+    © 2025 Edunova — LSFinova 版权所有
+  </div>
+</footer>
+</body>
+</html>
+
+

@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Edunova — Smart Education. Lasting Wealth.</title>
+  <meta name="description" content="Edunova — education planning, FAFSA guidance, college funding, and family education resources." />
+
+  <!-- icons (put files under /assets/icons/) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/android-chrome-192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="/assets/icons/android-chrome-512.png">
+  <link rel="icon" href="/assets/icons/favicon.ico">
+
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="/assets/js/access.js" defer></script>
+  <script src="/assets/js/auth-nav.js" defer></script>
+  <script src="/assets/js/toast.js" defer></script>
+
+   
+  <!-- You may later place per-page CSS overrides near end of document in Part 5-D -->
+</head>
+
+<body>
+
+<!-- TOP BANNER (显示在 Desktop + 手机) -->
+<div class="top-banner">
+  <img src="/assets/img/top-banner.webp" alt="Top Banner">
+</div>
+
+
+<!-- SVG symbols: brand gradient, large section bg + happy face, small card happy face -->
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden;" aria-hidden="true" focusable="false">
+  <!-- brand gradient (4B89FF -> 6E4BFF) -->
+  <linearGradient id="grad-brand" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#4B89FF"/>
+    <stop offset="100%" stop-color="#6E4BFF"/>
+  </linearGradient>
+
+  <!-- bg-rounded: rounded block used as section big-icon background (48x48) -->
+  <symbol id="bg-rounded" viewBox="0 0 48 48">
+    <rect x="0.5" y="0.5" width="47" height="47" rx="10" fill="url(#grad-brand)" opacity="0.95"></rect>
+  </symbol>
+
+  <!-- line-family: LINES for the large "happy face" (48x48) — for About section -->
+  <symbol id="line-family" viewBox="0 0 48 48">
+    <!-- face circle (white ring) -->
+    <circle cx="24" cy="24" r="9.2" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.98"/>
+    <!-- left eye -->
+    <path d="M19 21.2c0.4-0.6 1.0-0.6 1.6-0.2" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/>
+    <!-- right eye -->
+    <path d="M29 21.2c-0.4-0.6-1.0-0.6-1.6-0.2" fill="none" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/>
+    <!-- smiling mouth -->
+    <path d="M18.2 27.2c1.5 1.4 3.1 2.1 5 2.1s3.5-0.7 5-2.1" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- subtle sparkle to denote positivity (small) -->
+    <path d="M34 12 L34 14.4 M35.4 13.2 L32.6 13.2" fill="none" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.9"/>
+  </symbol>
+
+  <!-- card-family: small rounded rect + white line happy face (24x24) — for service card -->
+  <symbol id="card-family" viewBox="0 0 24 24">
+    <!-- small rounded background -->
+    <rect x="0.25" y="0.25" width="23.5" height="23.5" rx="5" fill="url(#grad-brand)" />
+    <!-- simple white face lines -->
+    <g transform="translate(0,0)" fill="none" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="11.6" r="4.6" opacity="0.0"></circle> <!-- invisible for centering -->
+      <path d="M9.2 10.4h.01"></path>
+      <path d="M14.8 10.4h.01"></path>
+      <path d="M9.2 13.2c0.9 0.9 1.9 1.3 2.8 1.3s1.9-0.4 2.8-1.3"></path>
+    </g>
+  </symbol>
+</svg>
+
+
+
+  <!-- ------ SVG defs: brand gradient + reusable rounded-square icon shapes + line icons ------ -->
+  <!-- These live in the DOM so every section/card can reference them via <svg class="icon"><use href="#sym-..."/></svg> -->
+  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" focusable="false">
+    <defs>
+      <!-- brand gradient used across all icons -->
+      <linearGradient id="grad-brand" x1="0" x2="1" y1="0" y2="1">
+        <stop offset="0%" stop-color="#4B89FF"/>
+        <stop offset="100%" stop-color="#6E4BFF"/>
+      </linearGradient>
+
+      <!-- Rounded rect mask/background for icon blocks -->
+      <symbol id="bg-rounded" viewBox="0 0 48 48" preserveAspectRatio="xMidYMid meet">
+        <rect x="0" y="0" width="48" height="48" rx="10" ry="10" fill="url(#grad-brand)"/>
+      </symbol>
+
+      <!-- White stroke line icons placed over rounded block -->
+      <!-- 1. Education / Book -->
+      <symbol id="line-book" viewBox="0 0 48 48" preserveAspectRatio="xMidYMid meet">
+        <g fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 10h22v26H12z" transform="translate(0,0)"/>
+          <path d="M12 14h22" />
+          <path d="M12 28c2-1.2 6-1.2 10 0s8 1.2 10 0" />
+        </g>
+      </symbol>
+
+      <!-- 2. Strategy / Target -->
+      <symbol id="line-target" viewBox="0 0 48 48" preserveAspectRatio="xMidYMid meet">
+        <g fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="24" cy="20" r="8" />
+          <circle cx="24" cy="20" r="14" />
+          <path d="M24 6v6" />
+          <path d="M34 20h6" />
+        </g>
+      </symbol>
+
+      <!-- 3. AP / Programs (certificate) -->
+      <symbol id="line-certificate" viewBox="0 0 48 48" preserveAspectRatio="xMidYMid meet">
+        <g fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="10" y="8" width="28" height="22" rx="2" />
+          <path d="M18 32l-3 8 7-4 7 4-3-8" />
+        </g>
+      </symbol>
+
+      <!-- 4. Financial Aid / Dollar -->
+      <symbol id="line-dollar" viewBox="0 0 48 48" preserveAspectRatio="xMidYMid meet">
+        <g fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 10v28" />
+          <path d="M20 12c-4 1-6 3-6 8s2 7 6 8c4 1 6 3 6 8s-2 7-6 8" transform="translate(0,-2)"/>
+          <circle cx="24" cy="24" r="12" />
+        </g>
+      </symbol>
+
+      <!-- 5. Scholarship / Star -->
+      <symbol id="line-star" viewBox="0 0 48 48" preserveAspectRatio="xMidYMid meet">
+        <g fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 9l3.8 8.2L36 19l-7 5 2.5 8.6L24 30l-7.5 2.6L19 24l-7-5 8.2-1.8L24 9z"/>
+        </g>
+      </symbol>
+
+      <!-- 6. Family Planning / Family -->
+      <symbol id="line-family" viewBox="0 0 48 48" preserveAspectRatio="xMidYMid meet">
+        <g fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="18" cy="18" r="3" />
+          <circle cx="30" cy="18" r="3" />
+          <path d="M8 34c4-6 12-8 16-8s12 2 16 8" />
+        </g>
+      </symbol>
+
+      <!-- 7. Savings & Tax / Piggy -->
+      <symbol id="line-piggy" viewBox="0 0 48 48" preserveAspectRatio="xMidYMid meet">
+        <g fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 28c0-6 6-10 12-10s12 4 12 10-4 8-12 8-12-2-12-8z"/>
+          <path d="M30 18l6-2" />
+          <circle cx="16" cy="24" r="1.5" />
+        </g>
+      </symbol>
+
+      <!-- 8. College Fund / Graph -->
+      <symbol id="line-graph" viewBox="0 0 48 48" preserveAspectRatio="xMidYMid meet">
+        <g fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 34v-8l8-6 6 6 8-10v18" />
+          <rect x="6" y="6" width="36" height="36" rx="4" />
+        </g>
+      </symbol>
+
+      <!-- 9. Foundation / Building -->
+      <symbol id="line-building" viewBox="0 0 48 48" preserveAspectRatio="xMidYMid meet">
+        <g fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="12" y="14" width="24" height="22" rx="2" />
+          <path d="M8 38h32" />
+          <path d="M20 18v6M28 18v6" />
+        </g>
+      </symbol>
+
+      <!-- 10. Trust / Shield -->
+      <symbol id="line-shield" viewBox="0 0 48 48" preserveAspectRatio="xMidYMid meet">
+        <g fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 6l10 6v8c0 8-6 14-10 16-4-2-10-8-10-16V12z" />
+        </g>
+      </symbol>
+
+      <!-- 11. Real Estate near Campus / House -->
+      <symbol id="line-house" viewBox="0 0 48 48" preserveAspectRatio="xMidYMid meet">
+        <g fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 26L24 10l18 16" />
+          <rect x="10" y="26" width="28" height="14" rx="2" />
+          <path d="M20 32v8M28 32v8" />
+        </g>
+      </symbol>
+
+      <!-- small inline small-line icon variants for service-card left-of-title (scaled) -->
+      <!-- These will be used by <svg class="icon small"><use href="#sym-card-1"/></svg> -->
+      <symbol id="card-book" viewBox="0 0 24 24">
+        <rect x="0" y="0" width="24" height="24" rx="5" fill="url(#grad-brand)"/>
+        <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="translate(2,2) scale(0.5)">
+          <path d="M12 4h11v18H12z"/>
+          <path d="M12 8h11"/>
+        </g>
+      </symbol>
+
+      <symbol id="card-target" viewBox="0 0 24 24">
+        <rect x="0" y="0" width="24" height="24" rx="5" fill="url(#grad-brand)"/>
+        <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="translate(4,4) scale(0.4)">
+          <circle cx="24" cy="12" r="6"/>
+          <circle cx="24" cy="12" r="10"/>
+        </g>
+      </symbol>
+
+      <symbol id="card-certificate" viewBox="0 0 24 24">
+        <rect x="0" y="0" width="24" height="24" rx="5" fill="url(#grad-brand)"/>
+        <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="translate(2,2) scale(0.4)">
+          <rect x="4" y="4" width="40" height="20" rx="2"/>
+          <path d="M20 30l-6 8 6-4 6 4-6-8"/>
+        </g>
+      </symbol>
+
+      <symbol id="card-dollar" viewBox="0 0 24 24">
+        <rect x="0" y="0" width="24" height="24" rx="5" fill="url(#grad-brand)"/>
+        <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="translate(4,4) scale(0.5)">
+          <path d="M12 4v20"/>
+          <circle cx="12" cy="12" r="10"/>
+        </g>
+      </symbol>
+
+      <symbol id="card-star" viewBox="0 0 24 24">
+        <rect x="0" y="0" width="24" height="24" rx="5" fill="url(#grad-brand)"/>
+        <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="translate(3,3) scale(0.4)">
+          <path d="M24 9l3.8 8.2L36 19l-7 5 2.5 8.6L24 30l-7.5 2.6L19 24l-7-5 8.2-1.8L24 9z"/>
+        </g>
+      </symbol>
+
+      <symbol id="card-family" viewBox="0 0 24 24">
+        <rect x="0" y="0" width="24" height="24" rx="5" fill="url(#grad-brand)"/>
+        <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="translate(4,4) scale(0.5)">
+          <circle cx="8" cy="8" r="3"/>
+          <circle cx="20" cy="8" r="3"/>
+          <path d="M2 24c4-6 12-8 16-8s12 2 16 8"/>
+        </g>
+      </symbol>
+
+      <symbol id="card-piggy" viewBox="0 0 24 24">
+        <rect x="0" y="0" width="24" height="24" rx="5" fill="url(#grad-brand)"/>
+        <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="translate(3,3) scale(0.5)">
+          <path d="M12 20c0-6 6-10 12-10s12 4 12 10-4 8-12 8-12-2-12-8z"/>
+          <circle cx="10" cy="12" r="1.5"/>
+        </g>
+      </symbol>
+
+      <symbol id="card-graph" viewBox="0 0 24 24">
+        <rect x="0" y="0" width="24" height="24" rx="5" fill="url(#grad-brand)"/>
+        <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="translate(2,2) scale(0.5)">
+          <path d="M4 36v-12l8-6 6 6 8-10v18"/>
+        </g>
+      </symbol>
+
+      <symbol id="card-building" viewBox="0 0 24 24">
+        <rect x="0" y="0" width="24" height="24" rx="5" fill="url(#grad-brand)"/>
+        <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="translate(3,3) scale(0.5)">
+          <rect x="16" y="12" width="24" height="22" rx="2"/>
+        </g>
+      </symbol>
+
+      <symbol id="card-shield" viewBox="0 0 24 24">
+        <rect x="0" y="0" width="24" height="24" rx="5" fill="url(#grad-brand)"/>
+        <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="translate(3,3) scale(0.5)">
+          <path d="M24 6l10 6v8c0 8-6 14-10 16-4-2-10-8-10-16V12z"/>
+        </g>
+      </symbol>
+
+      <symbol id="card-house" viewBox="0 0 24 24">
+        <rect x="0" y="0" width="24" height="24" rx="5" fill="url(#grad-brand)"/>
+        <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" transform="translate(3,3) scale(0.5)">
+          <path d="M6 26L24 10l18 16"/>
+          <rect x="10" y="26" width="28" height="14" rx="2"/>
+        </g>
+      </symbol>
+
+      <symbol id="card-award" viewBox="0 0 24 24">
+  <rect x="0" y="0" width="24" height="24" rx="5" fill="url(#grad-brand)"/>
+
+  <g
+    fill="none"
+    stroke="#fff"
+    stroke-width="1.6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    transform="translate(3,3) scale(0.5)"
+  >
+    <!-- 奖章圆 -->
+    <circle cx="24" cy="18" r="10"/>
+
+    <!-- 星形 -->
+    <path d="M24 10l2.5 5 5.5.8-4 4 .9 5.4-4.9-2.6-4.9 2.6.9-5.4-4-4 5.5-.8z"/>
+
+    <!-- 丝带 -->
+    <path d="M18 28l-4 10 6-4 4 4-2-10"/>
+    <path d="M30 28l4 10-6-4-4 4 2-10"/>
+  </g>
+</symbol>
+
+
+      
+
+      <!-- generic small UI icons for tools/cta -->
+      <symbol id="icon-register" viewBox="0 0 24 24">
+        <rect x="0" y="0" width="24" height="24" rx="5" fill="#fff"/>
+        <g fill="none" stroke="#4B89FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 4v8"/>
+          <path d="M6 20c2-4 6-6 12-6"/>
+        </g>
+      </symbol>
+
+      <symbol id="icon-unlock" viewBox="0 0 24 24">
+        <rect x="0" y="0" width="24" height="24" rx="5" fill="#fff"/>
+        <g fill="none" stroke="#6E4BFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 12h12v8H6z"/>
+          <path d="M9 12V8a3 3 0 0 1 6 0"/>
+        </g>
+      </symbol>
+
+<!-- small icon: club registration -->
+<symbol id="icon-club" viewBox="0 0 24 24">
+  <rect x="0.3" y="0.3" width="23.4" height="23.4" rx="5" fill="url(#grad-brand)"/>
+  <g stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M7.5 14.5c1.5-2 3-3 4.5-3s3 1 4.5 3"/>
+    <circle cx="12" cy="8.8" r="2.8"/>
+  </g>
+</symbol>
+
+<!-- small icon: quick unlock / education center -->
+<symbol id="icon-unlock" viewBox="0 0 24 24">
+  <rect x="0.3" y="0.3" width="23.4" height="23.4" rx="5" fill="url(#grad-brand)"/>
+  <g stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M8 11h8v6H8z"/>
+    <path d="M10 11V9a2 2 0 0 1 4 0"/>
+  </g>
+</symbol>
+
+<!-- small icon: service application -->
+<symbol id="icon-apply" viewBox="0 0 24 24">
+  <rect x="0.3" y="0.3" width="23.4" height="23.4" rx="5" fill="url(#grad-brand)"/>
+  <g stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M7 8h10v10H7z"/>
+    <path d="M9 12h6"/>
+    <path d="M9 15h3.8"/>
+  </g>
+</symbol>
+
+
+      <!-- more symbols can be added later if needed -->
+    </defs>
+  </svg>
+
+ 
+<!-- NAV -->
+
+<nav id="topNav" class="nav--transparent">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <div class="brand">
+      <a href="/index.html#home" class="brand">
+        <img src="/assets/img/superedu-logo.png" alt="Edunova" class="logo-img" />
+        <span class="brand-text">Edunova</span>
+      </a>
+    </div>
+
+    <!-- =========================
+         Desktop Menu
+    ========================== -->
+    <div class="menu" id="menu">
+
+      <!-- Home -->
+      <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+      <!-- About -->
+      <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Dropdown -->
+<div class="nav-item dropdown">
+
+  <span class="dropdown-toggle"
+        role="button"
+        aria-haspopup="true"
+        tabindex="0"
+        data-en="Programs ⬇︎"
+        data-zh="项目 ⬇︎"> 
+  </span> 
+
+  <div class="dropdown-menu">
+    <a href="/education.html"
+       id="navEduCenter"
+       data-en="EduCenter"
+       data-zh="教育中心">
+      EduCenter
+    </a>
+
+    <a href="/community.html"
+       id="navEduCommunity"
+       data-en="EduCommunity"
+       data-zh="教育社区">
+      EduCommunity
+    </a>
+
+    <a href="/forum.html"
+       id="navForum"
+       data-en="EduForum"
+       data-zh="教育论坛">
+      EduForum 
+    </a>
+
+    <a href="/events.html" data-en="Events" data-zh="活动"> Events</a>
+    
+  </div>
+
+</div>
+
+      <!-- Services -->
+      <a href="/index.html#services" data-en="Services" data-zh="服务">Services</a>
+
+      <!-- Membership -->
+     <a href="/membership.html" id="navMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+      <!-- Get Involved Dropdown -->
+<div class="nav-item dropdown">
+  <span class="dropdown-toggle" role="button" aria-haspopup="true" tabindex="0"
+        data-en="Get Involved ⬇︎" data-zh="参与方式 ⬇︎">
+   
+</span>
+
+  <div class="dropdown-menu">
+    <a href="/volunteer.html"
+       data-en="Volunteer"
+       data-zh="志愿者">
+      Volunteer
+    </a>
+
+    <a href="/donation.html"
+       data-en="Donation"
+       data-zh="捐赠">
+      Donation
+    </a>
+
+    <a href="/scholarship.html"
+       data-en="scholarship"
+       data-zh="奖学金">
+      scholarship
+    </a>
+
+    <a href="/index.html#resources"
+       data-en="Resources"
+       data-zh="资源">
+      Resources
+    </a>
+  </div>
+</div>
+
+      <!-- Contact -->
+      <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+      <!-- Login -->
+     <a href="/login.html" id="desktopAuth" data-en="Login" data-zh="登录">Login</a>
+
+      <!-- Slide underline -->
+      <span class="nav-underline"></span>
+    </div>
+
+    <!-- Right side -->
+    <div class="nav-right">
+      <button id="langToggle" class="lang-toggle" aria-label="Language toggle">
+        中文
+      </button>
+
+      <button id="hamburger" class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile slide menu -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <!-- Home -->
+    <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+    <!-- About -->
+    <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Programs" data-zh="项目">Programs</summary>
+      <a href="/education.html" id="mobileEduCenter" data-en="EduCenter" data-zh="教育中心">EduCenter</a>
+      <a href="/community.html" id="mobileEduCommunity" data-en="EduCommunity" data-zh="教育社区">EduCommunity</a>
+      <a href="/forum.html" id="mobileForum" data-en="EduForum" data-zh="教育论坛">EduForum</a>
+      <a href="/events.html" data-en="Events" data-zh="活动">Events</a>
+    </details>
+
+    <!-- Service -->
+    <a href="/index.html#services" data-en="Service" data-zh="服务">Service</a>
+
+    <!-- Membership -->
+    <a href="/membership.html" id="mobileMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+    <!-- Get Involved Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Get Involved" data-zh="参与方式">Get Involved</summary>
+      <a href="/volunteer.html" data-en="Volunteer" data-zh="志愿者">Volunteer</a>
+      <a href="/donation.html" data-en="Donation" data-zh="捐赠">Donation</a>
+      <a href="/scholarship.html"
+       data-en="scholarship"
+       data-zh="奖学金">
+      scholarship
+    </a>
+      <a href="/index.html#resources" data-en="Resources" data-zh="资源">Resources</a>
+    </details>
+
+    <!-- Contact -->
+    <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+    <!-- Login -->
+    <a href="/login.html" id="mobileAuth" data-en="Login" data-zh="登录">Login</a>
+
+    <!-- Mobile action buttons -->
+    <div class="mobile-actions">
+      <button class="btn btn-ghost" id="mobileRegister" data-en="Register/Join" data-zh="注册/加入">
+        Register / Join
+      </button>
+      <button class="btn" id="mobileUnlock" data-en="Unlock Education" data-zh="解锁教育">
+        Unlock Education
+      </button>
+    </div>
+  </div>
+</nav>
+
+
+
+  <!-- HERO -->
+  <header id="home" class="hero">
+    <div class="hero-left">
+      <h1 class="hero-title" data-en="Smarter Educational Financial Planning for Every Family" data-zh="为每个家庭提供更智慧的教育及资金规划">
+        Smarter Education Planning for Every Family
+      </h1>
+      <p class="hero-desc" data-en="FAFSA, college funding, and personalized education tools — built to help families succeed."
+         data-zh="从 FAFSA 到大学资金规划，我们为家庭提供个性化、可执行的教育与资助方案。">
+        FAFSA, college funding, and personalized education tools — built to help families succeed.
+      </p>
+
+      <div class="hero-ctas">
+        <!-- these scroll to sections on the same page -->
+        <button class="btn btn-primary hero-cta" id="ctaRegister" data-en="Interest/Join list" data-zh="表达意向/加入名单">
+          <!-- inline small icon -->
+          <svg class="icon icon-inline" width="16" height="16" aria-hidden="true"><use href="#icon-register"></use></svg>
+          <span>Register / Join</span>
+        </button>
+
+        <button class="btn btn-outline hero-cta" id="ctaUnlock" data-en="Quick Unlock → Education" data-zh="快速解锁 → 教育">
+          <svg class="icon icon-inline" width="16" height="16" aria-hidden="true"><use href="#icon-unlock"></use></svg>
+          <span>Quick Unlock → Education</span>
+        </button>
+
+        <a class="btn btn-link hero-cta" href="/apply.html" id="ctaApply" target="_self" data-en="Apply for Services" data-zh="申请服务">
+          Apply for Services
+        </a>
+      </div>
+
+      <div class="hero-subitems">
+        <a href="https://lsfinova.com/zoom" target="_blank" rel="noopener" class="sub-link" data-en="Free Zoom lecture" data-zh="免费公益讲座">Free Zoom lecture</a>
+        <a href="https://us02web.zoom.us/meeting/register/OTK5r59URLODa2eWFv5b0A" target="_blank" rel="noopener" class="sub-link" data-en="Quick Register for Webinar" data-zh="快速注册讲座">Quick Register for Webinar</a>
+      </div>
+    </div>
+
+    <div class="hero-right" aria-hidden>
+
+<div class="hero-right" aria-hidden>
+  <div class="hero-graphic hero-photo">
+    <img src="assets/img/myphoto.webp" alt="My Photo">
+  </div>
+</div>
+     </div>
+  </header>
+
+  <!-- content after this point (sections) will be output in Part 5-B -->
+
+
+  <!-- ====== SERVICES (with big centered icon above title, small icons left of each h3) ====== -->
+  <style>
+    /* Local overrides for spacing and icon layout (can be moved to main.css) */
+    .section { margin: 30px auto; padding: 24px 20px; } /* reduce vertical spacing */
+    .section .card.wide { padding: 18px; }
+    .section-title-wrapper { text-align:center; margin-bottom:12px; }
+    .section-title-icon { width:64px; height:64px; margin:0 auto 10px; display:block; }
+    .section-title { font-size:26px; margin:2px 0 6px; }
+    .section-sub { margin-bottom:18px; }
+
+    /* Service card small icon + title */
+    .service-card { display:flex; gap:12px; align-items:flex-start; padding:14px; }
+    .service-card .card-icon { width:40px; height:40px; flex:0 0 40px; margin-top:6px; }
+    .service-card h3 { margin:0; font-size:16px; display:flex; align-items:center; gap:10px; font-weight:700; color:#5A47E0; }
+    .service-card .desc { margin:8px 0 14px; color:var(--muted); font-size:14px; line-height:1.45; }
+    .service-card .apply-cta { margin-top:auto; }
+
+    /* smaller text for service card link */
+    .apply-cta { font-size:13px; padding:8px 10px; }
+
+    /* tools section icons */
+    .tools-wrap { gap:16px; }
+    .card.registration-card h3,
+    .card.unlock-card h3,
+    .card.apply-card h3 { display:flex; align-items:center; gap:10px; }
+    .card .card-small-icon { width:20px;height:20px;flex:0 0 20px; }
+
+    /* section-level icon style (line icon sits on top of rounded block) */
+    .svg-icon-block { width:64px; height:64px; display:inline-block; vertical-align:middle; }
+    .svg-icon-block use { /* nothing */ }
+
+    /* responsive: reduce sizes on small screens */
+    @media (max-width:720px){
+      .section-title-icon { width:52px; height:52px; }
+      .service-card .card-icon { width:36px; height:36px; flex:0 0 36px; }
+      .service-card h3 { font-size:15px; }
+    }
+
+
+    .form-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn {
+  min-width: 180px;
+  height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  transition: all .25s ease;
+}
+
+/* 主按钮 Hover */
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* Community 次按钮 */
+.btn-secondary {
+  background: #f2f4f6;
+  color: #2c9c47;
+  border: 1px solid #dcdcdc;
+}
+
+.btn-secondary:hover {
+  background: #e9f6ef;
+  border-color: #2c9c47;
+}
+
+  </style>
+
+  <main>
+         <!-- SERVICES: Core Categories + Sub Services -->
+<section id="services" class="section section--services">
+  <div class="section-inner">
+
+    <!-- Section Title -->
+    <div class="section-title-wrapper">
+      <svg class="section-title-icon" viewBox="0 0 48 48" aria-hidden="true">
+        <use href="#bg-rounded"></use>
+        <use href="#line-book"></use>
+      </svg>
+      <h2 class="section-title" data-en="Our Services" data-zh="我们的服务">Our Services</h2>
+      <p class="section-sub"
+         data-en="Our work focuses on four education-centered pillars."
+         data-zh="我们的工作围绕四个以教育为核心的支持方向展开。">
+        Our work focuses on four education-centered pillars.
+      </p>
+    </div>
+
+
+    <!-- ================= Core Category 1 ================= -->
+    <article class="core-card" onclick="location.href='/apply.html'">
+      <header class="core-card-header">
+        <h3 data-en="🎓 Education Affordability & Funding Support"
+            data-zh="🎓 教育可负担性与资助支持">
+          🎓 Education Affordability & Funding Support
+        </h3>
+        <p data-en="Helping families access financial aid, scholarships, and sustainable education funding pathways."
+           data-zh="帮助家庭系统性理解并获取助学金、奖学金与长期教育资金支持，使优质教育在经济上可实现。">
+          Helping families access financial aid, scholarships, and sustainable education funding pathways.
+        </p>
+      </header>
+
+      <div class="sub-services-grid">
+
+         <article class="service-card" onclick="location.href='/apply.html'">
+          <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#card-dollar"></use></svg>
+          <div class="service-content">
+            <h3 data-en="Financial Aid (FAFSA / CSS) — One-on-One" data-zh="助学金（FAFSA/CSS）一对一">1. Financial Aid (FAFSA / CSS) — One-on-One</h3>
+            <p class="desc" data-en="Detailed FAFSA & CSS walkthroughs, grant/loan strategies, and institutional aid support." data-zh="详细 FAFSA 与 CSS 操作指导，助学金与贷款策略，院校个案支持。">Detailed FAFSA & CSS walkthroughs, grant/loan strategies, and institutional aid support.</p>
+             </div>
+        </article>
+
+        <article class="service-card" onclick="location.href='/apply.html'">
+          <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#card-star"></use></svg>
+          <div class="service-content">
+            <h3 data-en="Scholarship Application Support" data-zh="奖学金申请支持">2. Scholarship Application Support</h3>
+            <p class="desc" data-en="Merit & need-based scholarship search, essay strategy and application management for HS and college." data-zh="成绩型与需求型奖学金研究、文书策略与申请管理，覆盖高中与大学的奖学金。">Merit & need-based scholarship search, essay strategy and application management for HS and college.</p>
+             </div>
+        </article>
+
+        <article class="service-card" onclick="location.href='/apply.html'">
+          <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#card-piggy"></use></svg>
+          <div class="service-content">
+            <h3 data-en="Education Savings & Tax (ESA / 529)" data-zh="教育储蓄与税务（ESA/529）">Education Savings & Tax (ESA / 529)</h3>
+            <p class="desc" data-en="Account selection, tax-efficient structures, and cross-jurisdiction considerations for education savings." data-zh="教育储蓄账户选择、税务优化结构与跨司法区考量，提供实施性建议。">Account selection, tax-efficient structures, and cross-jurisdiction considerations for education savings.</p>
+            </div>
+        </article>
+
+        <article class="service-card" onclick="location.href='/apply.html'">
+          <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#card-graph"></use></svg>
+          <div class="service-content">
+            <h3 data-en="College Fund Design & Financial Strategy" data-zh="大学基金设计与财务策略">College Fund Design & Financial Strategy</h3>
+            <p class="desc" data-en="Design long-term college funding strategies, investment allocation, and risk planning aligned to family goals." data-zh="定制长期大学资助方案、投资配置与风险管理，使之契合家庭目标。">Design long-term college funding strategies, investment allocation, and risk planning aligned to family goals.</p>
+            </div>
+        </article>
+       
+      </div>
+    </article>
+
+    <!-- ================= Core Category 2 ================= -->
+    <article class="core-card" onclick="location.href='/apply.html'">
+      <header class="core-card-header">
+        <h3 data-en="🤝 Volunteer & Social Impact Programs"
+            data-zh="🤝 公益项目与志愿者计划">
+          🤝 Volunteer & Social Impact Programs
+        </h3>
+        <p data-en="Volunteerism and social impact initiatives that foster responsibility and leadership."
+           data-zh="通过志愿服务与公益项目，鼓励学生参与社会、服务他人并获得成长。">
+          Volunteerism and social impact initiatives that foster responsibility and leadership.
+        </p>
+      </header>
+
+      <div class="sub-services-grid">
+      <article class="service-card" onclick="location.href='/apply.html'">
+          <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#card-award"></use></svg>
+          <div class="service-content">
+            <h3 data-en="Edunova Distinguished Volunteer" data-zh="Volunteer志愿者公益事业">Edunova Distinguished Volunteer</h3>
+            <p class="desc" data-en="Provide Zoom Webinar and online courses for students in Coding and English as Teachers and Tutors" data-zh="做为老师，提供学生免费的高质量计算机编程，英文等的讲座与课程。">5. Zoom Webinar and online courses for students in Coding and English</p>
+            </div>
+      </article>
+
+      <article class="service-card" onclick="location.href='/apply.html'">
+          <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#card-house"></use></svg>
+          <div class="service-content">
+            <h3 data-en="Student Housing & Nearby Real Estate Services" data-zh="大学周边房产/住宿与投资服务">Student Housing & Nearby Real Estate Services</h3>
+            <p class="desc" data-en="Advisory & execution for student housing and nearby property investment to ensure quality living and optimal returns." data-zh="提供学生就读期间的优质居住方案与周边房产投资顾问及执行，兼顾居住质量与投资回报。">Advisory & execution for student housing and nearby property investment to ensure quality living and optimal returns.</p>
+            </div>
+        </article>
+
+      </div>
+    </article>
+
+    <!-- ================= Core Category 3 ================= -->
+    <article class="core-card" onclick="location.href='/apply.html'">
+      <header class="core-card-header">
+        <h3 data-en="🏠 Education-Centered Family & Community Support"
+            data-zh="🏠 以教育为核心的家庭与社会支持">
+          🌱 Education-Centered Family & Community Support
+        </h3>
+        <p data-en="Education-centered guidance for families and communities to plan and sustain long-term missions."
+           data-zh="围绕教育目标，协助家庭与社会力量进行长期规划与制度化支持。">
+          Education-centered guidance for families and communities to plan and sustain long-term missions.
+        </p>
+      </header>
+
+      <div class="sub-services-grid">
+
+        <article class="service-card" onclick="location.href='/apply.html'">
+          <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#card-book"></use></svg>
+          <div class="service-content">
+            <h3 data-en="U.S. Education — Comparative Analysis" data-zh="美国教育的优势与比较">U.S. Education — Comparative Analysis</h3>
+            <p class="desc" data-en="Macro analysis of US K12 & higher education vs. mainland China; system differences and outcomes." data-zh="美国 K12 与高等教育与中国大陆教育体系的宏观比较分析，侧重于系统差异与结果。">Macro analysis of US K12 & higher education vs. mainland China; system differences and outcomes.</p>
+            </div>
+        </article>
+
+         <article class="service-card" onclick="location.href='/apply.html'">
+          <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#card-family"></use></svg>
+          <div class="service-content">
+            <h3 data-en="Family & Long-term Education Planning" data-zh="家庭与长期教育规划">Family & Long-term Education Planning</h3>
+            <p class="desc" data-en="Holistic K12 → college planning to maximize outcomes across siblings and family situations." data-zh="从 K12 到大学的一体化规划，兼顾兄弟姐妹与家庭情境，最大化助学金与结果。">Holistic K12 → college planning to maximize outcomes across siblings and family situations.</p>
+            </div>
+        </article>
+
+        <article class="service-card" onclick="location.href='/apply.html'">
+          <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#card-building"></use></svg>
+          <div class="service-content">
+            <h3 data-en="Family Foundation / 501(c)(3) Setup" data-zh="设立家族基金会 / 501(c)(3)">Family Foundation / 501(c)(3) Setup</h3>
+            <p class="desc" data-en="Establish compliant charitable entities: governance, filing, tax rules and operational considerations." data-zh="设立合规慈善实体：治理架构、申报流程、税法与运营注意事项的一站式咨询。">Establish compliant charitable entities: governance, filing, tax rules and operational considerations.</p>
+            </div>
+        </article>
+
+         <article class="service-card" onclick="location.href='/apply.html'">
+          <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#card-shield"></use></svg>
+          <div class="service-content">
+            <h3 data-en="Education + Wealth & Trust Planning" data-zh="教育与财富 / 信托规划">Education + Wealth & Trust Planning</h3>
+            <p class="desc" data-en="Trust design and intergenerational planning that coordinates education goals with wealth preservation strategies." data-zh="信托设计與代际财务规划，协调教育目标与财富传承策略。">Trust design and intergenerational planning that coordinates education goals with wealth preservation strategies.</p>
+            </div>
+        </article>
+
+       </div>
+    </article>
+
+    <!-- ================= Core Category 4 ================= -->
+    <article class="core-card" onclick="location.href='/apply.html'">
+      <header class="core-card-header">
+        <h3 data-en="📘 Academic & College Readiness Support (Through Partners)"
+            data-zh="📘 课程与升学支持（合作机构提供）">
+          📘 Academic & College Readiness Support (Through Partners)
+        </h3>
+        <p data-en="Academic planning and college readiness support provided through partner organizations."
+           data-zh="通过合作机构，为学生提供课程规划与升学认知支持。">
+          Academic planning and college readiness support provided through partner organizations.
+        </p>
+      </header>
+
+      <div class="sub-services-grid">
+        <article class="service-card" onclick="location.href='/apply.html'">
+          <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#card-target"></use></svg>
+          <div class="service-content">
+            <h3 data-en="College Application Overview" data-zh="美国大学申请总体情况">College Application Overview</h3>
+            <p class="desc" data-en="Overview of mainstream universities, application process, curricula, platforms and tuition; consulting & resources." data-zh="主流大学简介、申请流程、课程平台与学费信息；提供咨询与资源支持。">Overview of mainstream universities, application process, curricula, platforms and tuition; consulting & resources.</p>
+                  </div>
+        </article>
+
+        <article class="service-card" onclick="location.href='/apply.html'">
+          <svg class="card-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#card-certificate"></use></svg>
+          <div class="service-content">
+            <h3 data-en="Pre-College Profile (AP / Summer)" data-zh="升学档案构建（AP/暑期）">Pre-College Profile (AP / Summer)</h3>
+            <p class="desc" data-en="Course selection, AP planning, summer programs and extracurricular strategy to strengthen profile." data-zh="课程选择、AP 规划、暑期项目与课外活动策略，提升升学竞争力。">Course selection, AP planning, summer programs and extracurricular strategy to strengthen profile.</p>
+                 </div>
+        </article>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+    
+<!-- TOOLS (Register / Unlock / Apply) -->
+<section class="section tools-section" id="tools">
+  <div class="section-inner">
+
+    <div class="section-title-wrapper">
+      <svg class="section-title-icon" viewBox="0 0 48 48" aria-hidden="true">
+        <use href="#bg-rounded"></use>
+        <use href="#line-target"></use>
+      </svg>
+      <h2 class="section-title" data-en="Tools & Quick Actions" data-zh="工具与快速操作">
+        Tools & Quick Actions
+      </h2>
+      <p class="section-sub"
+         data-en="Register, unlock content, or apply for one-on-one services."
+         data-zh="注册、快速解锁或提交一对一服务申请。">
+        Register, unlock content, or apply for one-on-one services.
+      </p>
+    </div>
+
+    <div class="tools-wrap">
+
+      <!-- ① Registration -->
+      <div class="card tool-card registration-card" id="registrationCard">
+      
+        <h3>
+          <svg class="sub-icon" viewBox="0 0 24 24">
+            <use href="#icon-club"></use>
+          </svg>
+          <span data-en="Express Interest/Join List" data-zh="加入俱乐部名单">
+            俱乐部注册
+          </span>
+        </h3>
+
+        <p class="muted"
+           data-en="Receive many free services and access to a wealth of high-value information."
+           data-zh="可免费得到大部分服务与高价值大量信息资料">
+            receive many free services and access to a wealth of high-value information.
+        </p>
+        <p class="muted"
+           data-en="Granted access to EduCommunity and EduCenter; access was lost after changing devices."
+           data-zh="获得进入EduCommunity与EduCenter权限；更换设备权限丢失">
+          Sign up with name & email — referral optional.
+        </p>
+
+        <form id="registerForm" novalidate autocomplete="off">
+          <label for="r-first" data-en="First name" data-zh="名">First name</label>
+          <input id="r-first" name="firstName" type="text" required placeholder="e.g. John / 例如：小明" />
+
+          <label for="r-last" data-en="Last name" data-zh="姓">Last name</label>
+          <input id="r-last" name="lastName" type="text" required placeholder="e.g. Smith / 例如：张" />
+
+          <label for="r-email" data-en="Email" data-zh="邮箱">Email</label>
+          <input
+  id="r-email"
+  type="email"
+  inputmode="email"
+  autocomplete="email"
+  required
+  placeholder="Email / 邮箱"
+/>
+<div id="rEmailStatus" class="field-hint"></div>
+
+
+          <label for="r-ref" data-en="Referral code (optional)" data-zh="推荐码（可选）">
+            Referral code (optional)
+          </label>
+          <input id="r-ref" name="ref" type="text" placeholder="Referral code / 推荐码" />
+
+          <div class="form-actions">
+            
+            <button type="submit" class="btn btn-primary join-btn">
+              <svg class="card-small-icon" viewBox="0 0 24 24">
+                   <use href="#icon-register"></use>
+               </svg>
+                   <span class="btn-label"
+                    data-en="Join the Club"
+                     data-zh="加入俱乐部">
+                    Join the Club
+                   </span>
+            </button>
+
+            <div id="regStatus" class="form-status"></div>
+          </div>
+        </form>
+      </div>
+
+      <script>
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("registerForm");
+  if (!form) return;
+
+  // 防重复绑定（你未来合并脚本时不会重复触发）
+  if (form.dataset.bound === "1") return;
+  form.dataset.bound = "1";
+
+  const submitBtn = form.querySelector("button[type='submit']");
+  const regStatus = document.getElementById("regStatus"); // 仍保留，避免你页面结构依赖它
+  const emailHint = document.getElementById("rEmailStatus");
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const lang = () => (localStorage.getItem("superedu-lang") === "zh" ? "zh" : "en");
+
+  function t(en, zh) {
+    return lang() === "zh" ? zh : en;
+  }
+
+  /* ========= 工具函数：按钮切换为 EduCenter ========= */
+  function setButtonToEduCenter() {
+    if (!submitBtn) return;
+
+    submitBtn.type = "button";
+    submitBtn.classList.add("btn-enter-edu");
+
+    const icon  = submitBtn.querySelector("use");
+    const label = submitBtn.querySelector(".btn-label");
+
+    if (icon) icon.setAttribute("href", "#icon-edu");
+
+    if (label) {
+      label.setAttribute("data-en", "Enter EduCenter");
+      label.setAttribute("data-zh", "进入教育中心");
+      label.textContent = "Enter EduCenter";
+    } else {
+      // 如果按钮没有 .btn-label，直接改按钮文案
+      submitBtn.textContent = t("Enter EduCenter", "进入教育中心");
+    }
+
+    submitBtn.onclick = () => {
+      window.location.href = "/education.html";
+    };
+
+    // 通知语言系统刷新
+    if (window.refreshLang) window.refreshLang();
+    if (typeof window.applyLanguage === "function") window.applyLanguage();
+  }
+
+  /* ========= 页面加载：已有权限 ========= */
+  const role =
+    localStorage.getItem("snovaRole") ||
+    sessionStorage.getItem("snovaRole") ||
+    "visitor";
+
+  if (role === "lead" || role === "member") {
+    setButtonToEduCenter();
+  }
+
+  /* ========= Email 实时校验提示 ========= */
+  const emailInput = document.getElementById("r-email");
+
+  function setEmailHint(msg, ok) {
+    if (!emailHint) return;
+    emailHint.textContent = msg || "";
+    emailHint.style.color = ok ? "#15803d" : "#dc2626";
+  }
+
+  function validateEmailRealtime() {
+    if (!emailInput) return true;
+
+    const v = (emailInput.value || "").trim();
+
+    if (!v) {
+      setEmailHint("", true);
+      return false;
+    }
+
+    if (!emailPattern.test(v)) {
+      setEmailHint(
+        t("❌ Invalid email format", "❌ 邮箱格式不正确"),
+        false
+      );
+      return false;
+    }
+
+    setEmailHint(
+      t("✓ Email looks good", "✓ 邮箱格式正确"),
+      true
+    );
+    return true;
+  }
+
+  emailInput?.addEventListener("input", validateEmailRealtime);
+
+  /* ========= 表单提交（加入名单） ========= */
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (regStatus) regStatus.textContent = ""; // 保留但不再依赖它
+
+    const first = (document.getElementById("r-first")?.value || "").trim();
+    const last  = (document.getElementById("r-last")?.value || "").trim();
+    const email = (document.getElementById("r-email")?.value || "").trim();
+
+    // ① 必填校验
+    if (!first || !last || !email) {
+      window.showToast?.({ key: "required", type: "error" });
+      return;
+    }
+
+    // ② Email 校验
+    if (!emailPattern.test(email)) {
+      // 同时点亮实时提示
+      setEmailHint(t("❌ Invalid email format", "❌ 邮箱格式不正确"), false);
+      window.showToast?.({ key: "email_invalid", type: "error" });
+      return;
+    }
+
+    // ✅ 加入名单成功 → 升级为 lead
+    localStorage.setItem("snovaRole", "lead");
+
+    window.showToast?.({
+      en: "Successfully joined! You can now enter EduCenter.",
+      zh: "加入成功！现在可以进入教育中心。",
+      type: "success",
+      duration: 3800
+    });
+
+    // ✅ 复用原按钮 → 进入 EduCenter
+    setButtonToEduCenter();
+  });
+});
+</script>
+
+       <!-- ② Quick Unlock -->
+<div class="card tool-card unlock-card" id="unlockCard">
+
+  <h3>
+    <svg class="sub-icon" viewBox="0 0 24 24">
+      <use href="#icon-unlock"></use>
+    </svg>
+    <span data-en="Quick Unlock — Education Center"
+          data-zh="快速解锁 — 进入教育中心">
+      快速解锁 — 进入教育中心
+    </span>
+  </h3>
+
+  <p class="muted"
+     data-en="Submit name & email to unlock the Education Center and get a free consultation opportunity."
+     data-zh="提交姓名与邮箱以解锁教育中心获取信息资料，并获得免费咨询机会。">
+    Submit name & email to unlock the Education Center and get a free consultation opportunity.
+  </p>
+
+  <p class="muted"
+           data-en="Granted access to EduCenter; access was lost after changing devices."
+           data-zh="获得进入EduCenter权限；更换设备权限丢失">
+          Sign up with name & email.
+  </p>
+
+  <p class="muted"
+           data-en="Access to EduForum is available only to registered Members, who will permanently retain full administrative-level permissions."
+           data-zh="只有注册成为Member才能获得进入EduForum；并永久拥有所有最高权限">
+  </p>
+
+  <div class="quick-unlock-vertical">
+    <input id="u-first" placeholder="First name / 名" />
+    <input id="u-last" placeholder="Last name / 姓" />
+    <input
+  id="u-email"
+  type="email"
+  inputmode="email"
+  autocomplete="email"
+  required
+  placeholder="Email / 邮箱"
+/>
+<div id="uEmailStatus" class="field-hint"></div>
+
+
+    <div class="form-actions" style="margin-top:10px;">
+      <button id="unlockBtn" class="btn"
+              data-en="Unlock Content" data-zh="解锁内容">
+        Unlock Content
+      </button>
+
+      <button id="enterEduBtn" class="btn btn-outline"
+              style="display:none"
+              data-en="Enter EduCenter" data-zh="进入教育中心">
+        Enter EduCenter
+      </button>
+    </div>
+
+    <div id="unlockStatus" class="form-status"></div>
+  </div>
+</div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const unlockBtn = document.getElementById("unlockBtn");
+  const enterBtn  = document.getElementById("enterEduBtn");
+
+  const firstEl   = document.getElementById("u-first");
+  const lastEl    = document.getElementById("u-last");
+  const emailEl   = document.getElementById("u-email");
+
+  const emailHint = document.getElementById("uEmailStatus"); // 你新加的 div
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  if (!unlockBtn || !enterBtn || !firstEl || !lastEl || !emailEl) return;
+
+  // 防止重复绑定（非常关键：避免两段脚本一起跑）
+  if (unlockBtn.dataset.bound === "1") return;
+  unlockBtn.dataset.bound = "1";
+
+  function lang() {
+    return (localStorage.getItem("superedu-lang") || "en") === "zh" ? "zh" : "en";
+  }
+
+  function t(en, zh) {
+    return lang() === "zh" ? zh : en;
+  }
+
+  // ✅ Email 实时提示（双语）
+  if (emailHint) {
+    emailEl.addEventListener("input", () => {
+      const v = emailEl.value.trim();
+      if (!v) {
+        emailHint.textContent = "";
+        emailHint.style.color = "";
+        return;
+      }
+      if (!emailPattern.test(v)) {
+        emailHint.textContent = t("❌ Invalid email format", "❌ 邮箱格式不正确");
+        emailHint.style.color = "#dc2626";
+      } else {
+        emailHint.textContent = "";
+        emailHint.style.color = "";
+      }
+    });
+  }
+
+  // ✅ 页面加载：如果已解锁（quick/lead/member 或 token 存在）
+  const role =
+    localStorage.getItem("snovaRole") ||
+    sessionStorage.getItem("snovaRole") ||
+    "visitor";
+
+  const token = JSON.parse(localStorage.getItem("edu_unlocked_token") || "null");
+  const unlocked = ["quick", "lead", "member"].includes(role) || (token && token.email);
+
+  if (unlocked) {
+    unlockBtn.style.display = "none";
+    enterBtn.style.display  = "inline-flex";
+  }
+
+  // ✅ Unlock（Toast）
+  unlockBtn.addEventListener("click", async () => {
+    const firstVal = firstEl.value.trim();
+    const lastVal  = lastEl.value.trim();
+    const emailVal = emailEl.value.trim();
+
+    if (!firstVal || !lastVal || !emailVal) {
+      window.showToast?.({ key: "required", type: "error" });
+      return;
+    }
+
+    if (!emailPattern.test(emailVal)) {
+      window.showToast?.({ key: "email_invalid", type: "error" });
+      return;
+    }
+
+    // 提交中
+    window.showToast?.({ key: "submitting", type: "info", duration: 1600 });
+
+    try {
+      const payload = {
+        firstName: firstVal,
+        lastName: lastVal,
+        email: emailVal,
+        source: "quick_unlock",
+        created_at: new Date().toISOString()
+      };
+
+      const res = await fetch("/api/unlock", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        const msg = data.error || data.message;
+        if (msg) {
+          window.showToast?.({ en: msg, zh: msg, type: "error", duration: 5200 });
+        } else {
+          window.showToast?.({ key: "failed_try_again", type: "error" });
+        }
+        return;
+      }
+
+      // 成功 -> 写入 token + role
+      localStorage.setItem("snovaRole", "quick");
+      localStorage.setItem("edu_unlocked_token", JSON.stringify({ email: emailVal, ts: Date.now() }));
+
+      window.showToast?.({
+        en: "Unlocked! You may enter the Education Center.",
+        zh: "解锁成功！现在可以进入教育中心。",
+        type: "success",
+        duration: 3600
+      });
+
+      // 切换按钮（不挤布局）
+      unlockBtn.style.display = "none";
+      enterBtn.style.display  = "inline-flex";
+
+      if (typeof window.refreshLang === "function") window.refreshLang();
+
+    } catch (err) {
+      console.error(err);
+      window.showToast?.({ key: "failed_try_again", type: "error" });
+    }
+  });
+
+  // ✅ Enter EduCenter（Toast，无 alert）
+  enterBtn.addEventListener("click", () => {
+    const token = JSON.parse(localStorage.getItem("edu_unlocked_token") || "null");
+    if (!token) {
+      window.showToast?.({
+        en: "Please unlock access first.",
+        zh: "请先解锁教育中心。",
+        type: "warning",
+        duration: 4200
+      });
+      return;
+    }
+    window.location.href = "/education.html";
+  });
+});
+</script>
+
+
+
+      <!-- ③ Apply — clickable service-style card -->
+      <div class="card tool-card apply-card clickable"
+           onclick="location.href='/apply.html'">
+
+        <h3>
+          <svg class="sub-icon" viewBox="0 0 24 24">
+            <use href="#icon-apply"></use>
+          </svg>
+          <span data-en="Service Application" data-zh="服务申请">
+            服务申请
+          </span>
+        </h3>
+
+        <p class="muted"
+           data-en="Request one-on-one guidance tailored to your needs."
+           data-zh="提交申请，获得为您定制的一对一服务。">
+          Request one-on-one guidance tailored to your needs.
+        </p>
+
+        <p class="muted"
+           data-en="Click any service to read the detailed page and apply."
+           data-zh="点击任意服务查看详细信息并提交申请。">
+          
+        </p>
+
+        <p class="muted"
+           data-en="The majority of services are provided free of charge. A small number of services incur a nominal fee, solely to cover associated costs."
+           data-zh="大部分的服务是免费的，一小部分的服务只是收取少量（很低，只是Cover成本）。">
+          
+        </p>
+
+         <p class="muted"
+           data-en="The above statement does not apply to services involving third-party providers or the purchase of third-party products."
+           data-zh="如果涉及第三方的服务或者购买第三方的产品，不适于以上说明。">
+          
+        </p>
+        
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+    <!-- ABOUT -->
+    <section class="section about-section" id="about">
+      <div class="section-inner">
+      <div class="section-title-wrapper">
+        <svg class="section-title-icon" viewBox="0 0 48 48" aria-hidden="true">
+          <use href="#bg-rounded"></use>
+          <use href="#line-family"></use>
+        </svg>
+        <h2 data-en="About Edunova" data-zh="关于 超能教育">About Edunova Education</h2>
+        <p class="section-sub" data-en="Edunova provides guidance for Chinese families worldwide on Education Accounts, Financial Aid & College Fund Planning." data-zh="为全球华人家庭提供教育账户、奖助学金与大学基金规划。"></p>
+      </div>
+
+      <div class="card wide">
+        <p class="muted" data-en="Helping families achieve integrated education and financial planning by strategically using U.S. education accounts and tax laws to maximize financial aid opportunities, establish structured college funding plans, and align education funding with Family Foundations and Trusts for long-term, sustainable asset growth." data-zh="超能教育帮助家庭进行全面教育与财务规划，在合理运用美国教育账户及税法的基础上，最大化奖助学金机会， 系统建立教育基金计划，并结合 Family Foundation 与 Trust，实现教育投入与家庭资产的长期、稳健增值。"></p>
+        <p class="muted" data-en="As a nonprofit initiative, we provide free, long-term Computer Coding courses (with hands-on practice) and English language programs (including live conversations with native speakers) for students around the world—especially students in the United States and Chinese-speaking students from China. Our mission is to make high-quality education accessible to every family, regardless of background or location." data-zh="作为一个非营利性机构，我们为世界各地的学生提供免费的长期计算机编程课程（包含实践操作）和英语语言课程（包括与母语人士进行实时对话），尤其关注美国学生和来自中国的中文使用者。我们的使命是让每个家庭都能获得高质量的教育，无论其背景或地理位置如何。"></p>
+        <p class="muted" data-en="Edunova Foundation is independently operated by high school students under adult supervision. The students take responsibility for all tasks that can be completed by students, except for services that must legally or administratively be handled by adults.
+High school students are fully responsible for all volunteer-related activities, including the organization and delivery of various free public-benefit educational programs.
+Under adult supervision, the students also play a leading role in managing donations and scholarship programs." data-zh="Edunova Foundation是由成人监督下的High School学生独立运作，承担学生可以完成的全部工作，除了必须由成人完成的服务；High School Students全权负责Volunteers相关的所有活动，包括各种公益免费课程！在成人监督下也主要负责Donations与Scholarship."></p>
+
+        <p class="muted" data-en="Eddy Song is the founder of Edunova and Roseville Computer Club, and the CEO and CTO of the Edunova Foundation. He is dedicated to supporting students around the world in the fields of languages—especially English—and computer science, with a particular focus on programming. " data-zh="个人背景：Eddy Song, Edunova的创始人，Roseville Computer Club 的创始人，Edunova Foundation 的CEO and CTO, 致力于在语言，尤其是英语，还有计算机领域，尤其是编程方面，帮助全球学生。"></p>
+<p class="muted" data-en="Leon Song is the founder of LS Finova and Edunova, as well as Workshop Tech,  and the VP and CFO of the Edunova Foundation. dedicated to helping individuals and families achieve clarity, stability, and long-term growth in education and finance." data-zh="个人背景：Leon Song, LS Finova、Edunova 以及 Workshop Tech 的创始人，Edunova Foundation 的VP and CFO,致力于帮助个人与家庭在教育与财富规划中实现清晰认知、长期稳定与可持续增长。"></p>
+<p class="muted" data-en="Holding a Ph.D. from Harbin Institute of Technology and postdoctoral training at Tsinghua University, I apply advanced data science and analytical expertise to financial planning and strategic solutions." data-zh="Leon拥有哈尔滨工业大学博士学位，并在清华大学完成博士后研究，将先进的数据分析与系统性思维应用于教育规划、财富管理及战略解决方案中。"></p>
+<p class="muted" data-en="leading the development of an AI-driven fintech platform designed to expand accessible, network-based financial and educational services across the United States and globally." data-zh="目前，正主导开发一个 AI 驱动的金融科技平台，旨在于美国及全球范围内，构建更加普惠、可扩展、以网络为核心的教育与金融服务体系。"></p>
+
+<p class="muted" data-en="Edunova — Smart Education. Lasting Wealth." data-zh="Edunova —— 智慧教育，恒久财富。"></p>
+
+      </div>
+    </div>
+    </section>
+
+    <!-- WEBINAR -->
+    <section class="section webinar-section" id="webinar">
+<div class="section-inner">
+      <div class="section-title-wrapper">
+      <svg class="section-title-icon" viewBox="0 0 48 48" aria-hidden="true">
+          <use href="#bg-rounded"></use>
+          <use href="#line-certificate"></use>
+        </svg>
+        <h2 data-en="Upcoming Webinar" data-zh="近期讲座">Upcoming Webinar</h2>
+        <p class="section-sub" data-en="Join our live webinar for FAFSA essentials and college funding strategies. Seats limited — register to reserve." data-zh="参加我们的 FAFSA 实务与大学资助策略讲座。名额有限，请注册保留席位。">Join our live webinar for FAFSA essentials and college funding strategies. Seats limited — register to reserve.</p>
+      </div>
+
+      <div class="card wide">
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://lsfinova.com/zoom" target="_blank" data-en="Join Webinar (Main Page)" data-zh="加入讲座（主页面）">Join Webinar (Main Page)</a>
+          <a class="btn btn-outline" href="https://us02web.zoom.us/meeting/register/OTK5r59URLODa2eWFv5b0A" target="_blank" data-en="Quick Register for Webinar" data-zh="快速注册讲座">Quick Register for Webinar</a>
+        </div>
+      </div>
+  </div>
+    </section>
+
+    <!-- QUICK RESOURCES -->
+    <section class="section resources-section" id="resources">
+    <div class="section-inner">
+      <div class="section-title-wrapper">
+        <svg class="section-title-icon" viewBox="0 0 48 48" aria-hidden="true">
+          <use href="#bg-rounded"></use>
+          <use href="#line-graph"></use>
+        </svg>
+        <h2 data-en="Quick Resources" data-zh="重要链接">Quick Resources</h2>
+        <p class="section-sub" data-en="Practical links for FAFSA, CSS Profile, college rankings and our Aid Calculator." data-zh="FAFSA、CSS Profile、大学排名与我们的助学金计算器等实用链接。">Practical links for FAFSA, CSS Profile, college rankings and our Aid Calculator.</p>
+      </div>
+
+      <div class="card wide">
+        <div class="resources-grid">
+          <a class="resource-pill resource-emphasis" href="http://lsfinova.com/aid" target="_blank" data-en="LSFinova Aid Calculator" data-zh="LSFinova 助学金计算器">LSFinova Aid Calculator</a>
+
+          <a class="resource-pill" href="https://studentaid.gov" target="_blank" data-en="FAFSA — studentaid.gov" data-zh="FAFSA — studentaid.gov">FAFSA — studentaid.gov</a>
+          <a class="resource-pill resource-emphasis" href="https://cssprofile.collegeboard.org/" target="_blank" data-en="CSS Profile" data-zh="CSS Profile">CSS Profile</a>
+          <a class="resource-pill" href="https://www.usnews.com/best-colleges/rankings/national-universities" target="_blank" data-en="US News — College Rankings" data-zh="US News — 大学排名">US News — College Rankings</a>
+          <a class="resource-pill resource-emphasis" href="https://www.solutionsbysss.com/parents//" target="_blank" data-en="PFS Parents Financial services" data-zh="PFS 助学金系统">PFS Parents Financial services</a>
+          <a class="resource-pill" href="https://www.solutionsbysss.com/" target="_blank" data-en="School & Students services" data-zh="学校与学生服务">School & Students services</a>
+        </div>
+      </div>
+</div>
+    </section>
+
+     <!-- CONTACT -->
+<section class="section contact-section" id="contact">
+  <div class="section-inner">
+    <div class="section-title-wrapper">
+      <svg class="section-title-icon" viewBox="0 0 48 48" aria-hidden="true">
+        <use href="#bg-rounded"></use>
+        <use href="#line-building"></use>
+      </svg>
+      <h2 data-en="Have a question or need a consultation?" data-zh="有问题或需要咨询吗？">
+        Have a question or need a consultation?
+      </h2>
+      <p class="section-sub" data-en="Please scan the QR code on WeChat or fill in the form below, we will get back to you shortly!"
+         data-zh="请扫描微信二维码或填写下方表格，我们会尽快与您联系。">
+        Please scan the QR code on WeChat or fill in the form below, we will get back to you shortly!
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- WeChat QR Code Card -->
+      <div class="contact-card wechat-card">
+        <img src="assets/img/wechat-qr.jpeg" alt="WeChat QR Code" class="wechat-qr" />
+        <p class="muted" data-en="Scan to add on WeChat" data-zh="扫描添加微信">Scan to add on WeChat</p>
+        <p class="muted"><strong>Wechat 微信 ID:</strong> Leon_Song_PhD</p>
+        <p class="muted"><strong>Email:</strong> team@lsfinova.com</p>
+        <p class="muted" data-en="Feel free to reach out anytime for consultation!" data-zh="欢迎随时联系我们咨询！">
+          Feel free to reach out anytime for consultation!
+        </p>
+      </div>
+
+     
+<!-- Consultation Form Card -->
+<div class="contact-card form-card">
+
+  <h3 class="contact-form-title"
+      data-en="Book a Consultation or Send a Message"
+      data-zh="预约咨询或发送信息">
+    Book a Consultation or Send a Message
+  </h3>
+
+  <div class="contact-form-wrapper">
+
+<form id="consultForm" novalidate autocomplete="off">
+
+
+      <input
+  id="c-first"
+  type="text"
+  required
+  placeholder="First name"
+  data-en="First name"
+  data-zh="名字"
+/>
+
+<input
+  id="c-last"
+  type="text"
+  required
+  placeholder="Last name"
+  data-en="Last name"
+  data-zh="姓氏"
+/>
+
+<input
+  id="c-email"
+  type="email"
+  required
+  placeholder="Email address"
+  data-en="Email address"
+  data-zh="电子邮箱"
+/>
+
+<div id="cEmailStatus" class="field-hint"></div>
+
+<input
+  id="c-phone"
+  type="tel"
+  placeholder="Phone number (optional)"
+  data-en="Phone number (optional)"
+  data-zh="电话号码（可选）"
+/>
+
+<input
+  id="c-grad"
+  type="text"
+  placeholder="High school graduation year (optional)"
+  data-en="High school graduation year (optional)"
+  data-zh="高中毕业年份（可选）"
+/>
+
+
+<textarea id="c-message" rows="4" placeholder="Tell us a bit about your situation, goals, or questions (optional)" data-en="Tell us a bit about your situation, goals, or questions (optional)" data-zh="请简单介绍您的情况、目标或疑问（可选）"></textarea>
+
+      
+      <button
+        type="submit"
+        class="btn btn-primary"
+        data-en="Send"
+        data-zh="发送">
+        Send
+      </button>
+
+      <div id="consultStatus" class="form-status"></div>
+
+    </form>
+  </div>
+</div>
+
+  </div>
+ </div>
+</section>
+
+  </main>
+
+  <!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+
+    <!-- Column 1 -->
+    <div class="footer-col">
+      <h4>Edunova</h4>
+      <a href="/apply.html" target="_blank"
+         data-en="Apply for Services"
+         data-zh="申请服务">
+        申请服务
+      </a>
+      <a href="/membership.html"
+         data-en="Membership"
+         data-zh="会员中心">
+        会员中心
+      </a>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="footer-col">
+      <h4 data-en="Education & Fund" data-zh="教育与基金">
+        教育与基金
+      </h4>
+      <a href="#resources"
+         data-en="Resources"
+         data-zh="学习资源">
+        学习资源
+      </a>
+      <a href="https://www.lsfinova.com/aid" target="_blank"
+         data-en="Aid Calculator"
+         data-zh="教育资助计算器">
+        教育资助计算器
+      </a>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="footer-col">
+      <h4 data-en="Contact" data-zh="联系我们">
+        联系我们
+      </h4>
+      <div class="muted"
+           data-en="Phone: 1-916-793-0676 (Text)"
+           data-zh="电话 / 短信：1-916-793-0676">
+        电话 / 短信：1-916-793-0676
+      </div>
+      <div class="muted"
+           data-en="WeChat: Leon_Song_PhD"
+           data-zh="微信：Leon_Song_PhD">
+        微信：Leon_Song_PhD
+      </div>
+    </div>
+
+    <!-- Column 4 -->
+    <div class="footer-col">
+      <h4 data-en="Legal" data-zh="法律信息">
+        法律信息
+      </h4>
+      <a href="/privacy.html"
+         data-en="Privacy Policy"
+         data-zh="隐私政策">
+        隐私政策
+      </a>
+      <a href="/terms.html"
+         data-en="Terms of Service"
+         data-zh="服务条款">
+        服务条款
+      </a>
+    </div>
+
+  </div>
+
+  <div class="footer-copy"
+       data-en="© 2025 Edunova Foundation. All rights reserved."
+       data-zh="© 2025 Edunova Foundation 版权所有">
+    © 2025 Edunova — LSFinova 版权所有
+  </div>
+</footer>
+
+<!-- scripts (lang + menu + inline behaviors) -->
+  <script src="/assets/js/lang.js"></script>
+  <script src="/assets/js/menu.js"></script>
+    
+  <script>
+
+        // Inline behaviors for register/unlock forms and anchors (kept from original)
+    function scrollToEl(id){ const el = document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth', block:'center'}); }
+
+    // CTA buttons -> scroll to appropriate section
+    document.getElementById('ctaRegister')?.addEventListener('click', ()=> scrollToEl('registrationCard'));
+    document.getElementById('ctaUnlock')?.addEventListener('click', ()=> scrollToEl('unlockCard'));
+
+    // mobile menu actions (buttons in mobile menu)
+    document.getElementById('mobileRegister')?.addEventListener('click', ()=> { document.getElementById('hamburger')?.click(); scrollToEl('registrationCard'); });
+    document.getElementById('mobileUnlock')?.addEventListener('click', ()=> { document.getElementById('hamburger')?.click(); scrollToEl('unlockCard'); });
+
+ 
+
+    // small accessibility improvement: add keyboard activation on service cards
+    document.querySelectorAll('.service-card').forEach(card=>{
+      card.setAttribute('tabindex','0');
+      card.addEventListener('keydown', (e)=> { if(e.key==='Enter') card.click(); });
+    });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("consultForm");
+  if (!form) return;
+
+  // 防止重复绑定
+  if (form.dataset.bound === "1") return;
+  form.dataset.bound = "1";
+
+  const lang = () => (localStorage.getItem("superedu-lang") === "zh" ? "zh" : "en");
+  const t = (en, zh) => (lang() === "zh" ? zh : en);
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  const emailInput = document.getElementById("c-email");
+  const emailHint  = document.getElementById("cEmailStatus");
+
+  // 可选：提交按钮（loading/防连点）
+  const submitBtn =
+    form.querySelector("button[type='submit'], input[type='submit']");
+
+  function setSubmitting(isSubmitting) {
+    if (!submitBtn) return;
+    submitBtn.disabled = isSubmitting;
+    submitBtn.dataset.busy = isSubmitting ? "1" : "0";
+  }
+
+  /* =========================
+     Email 实时校验提示
+  ========================= */
+  function clearEmailHint() {
+    if (!emailHint) return;
+    emailHint.textContent = "";
+    emailHint.dataset.state = "";
+  }
+
+  function setEmailHintError(msg) {
+    if (!emailHint) return;
+    emailHint.textContent = msg;
+    emailHint.dataset.state = "error";
+  }
+
+  emailInput?.addEventListener("input", () => {
+    const v = (emailInput.value || "").trim();
+
+    if (!v) {
+      clearEmailHint();
+      return;
+    }
+
+    if (!emailPattern.test(v)) {
+      setEmailHintError(t("❌ Invalid email format", "❌ 邮箱格式不正确"));
+    } else {
+      clearEmailHint();
+    }
+  });
+
+  /* =========================
+     Submit
+  ========================= */
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const firstName = (document.getElementById("c-first")?.value || "").trim();
+    const lastName  = (document.getElementById("c-last")?.value || "").trim();
+    const email     = (document.getElementById("c-email")?.value || "").trim();
+    const phone     = (document.getElementById("c-phone")?.value || "").trim();
+    const gradYear  = (document.getElementById("c-grad")?.value || "").trim();
+    const message   = (document.getElementById("c-message")?.value || "").trim();
+
+    // 必填
+    if (!firstName || !lastName || !email) {
+      window.showToast?.({
+        type: "error",
+        en: "Please fill all required fields.",
+        zh: "请填写所有必填项。"
+      });
+      return;
+    }
+
+    // Email
+    if (!emailPattern.test(email)) {
+      setEmailHintError(t("❌ Invalid email format", "❌ 邮箱格式不正确"));
+      window.showToast?.({ key: "email_invalid", type: "error" });
+      return;
+    }
+
+    setSubmitting(true);
+    window.showToast?.({ key: "submitting", type: "info", duration: 1600 });
+
+    try {
+      const res = await fetch("/api/consultation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          phone,
+          gradYear,
+          message,
+          source: "homepage"
+        })
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        const msg = data.message || data.error || "";
+        if (msg) {
+          window.showToast?.({ en: msg, zh: msg, type: "error" });
+        } else {
+          window.showToast?.({ key: "failed_try_again", type: "error" });
+        }
+        return;
+      }
+
+      window.showToast?.({
+        type: "success",
+        en: "Thank you! We will contact you shortly.",
+        zh: "提交成功！我们将尽快与您联系。",
+        duration: 3800
+      });
+
+      form.reset();
+      clearEmailHint();
+
+      const msgEl = document.getElementById("c-message");
+      if (msgEl) msgEl.value = "";
+
+    } catch (err) {
+      console.error("Consult submit error:", err);
+      window.showToast?.({ key: "failed_try_again", type: "error" });
+    } finally {
+      setSubmitting(false);
+    }
+  });
+});
+
+
+</script>
+
+
+</body>
+</html>

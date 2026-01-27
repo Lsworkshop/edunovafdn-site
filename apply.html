@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Apply for Services — Edunova</title>
+
+<!-- icons (same as index.html) -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/android-chrome-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/icons/android-chrome-512.png">
+<link rel="icon" href="/assets/icons/favicon.ico">
+
+<style>
+  :root {
+    --brand-gold:#D8B04C;
+    --brand-green:#2C9C47;
+    --bg:#FAF5E9;
+    --text:#333;
+  }
+
+  body {
+    margin:0;
+    font-family:Inter,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .header {
+    display:flex;
+    justify-content:center;
+    padding:22px 0 10px;
+  }
+
+  .header img {
+    width:110px;
+    height:auto;
+  }
+
+  .container {
+    max-width:820px;
+    margin:20px auto;
+    padding:16px;
+  }
+
+  .card {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #fbf7ef 55%,
+    #f3ebdd 100%
+  );
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 14px 36px rgba(0,0,0,0.12);
+  border: 1px solid rgba(160,140,110,0.25);
+  }
+
+  h1 {
+    margin:0 0 10px;
+    color:var(--brand-green);
+  }
+
+  label {
+    display:block;
+    margin-top:12px;
+    font-size:14px;
+    font-weight:600;
+  }
+
+  input, textarea {
+    width:100%;
+    padding:10px;
+    border-radius:8px;
+    border:1px solid #e8e8e8;
+    margin-top:6px;
+    font-size:15px;
+  }
+
+  .btn {
+    background:var(--brand-green);
+    color:#fff;
+    padding:12px 14px;
+    border-radius:10px;
+    border:none;
+    margin-top:14px;
+    cursor:pointer;
+    font-weight:700;
+    font-size:15px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .btn.btn-ghost {
+    background:transparent;
+    color:var(--brand-green);
+    border:2px solid rgba(44,156,71,0.12);
+  }
+
+  .small {
+    font-size:13px;
+    color:#7a7a7a;
+    margin-top:8px;
+  }
+
+  /* ====== PERFECT TWO-COLUMN CHECKBOX GRID ====== */
+  .services-checkbox-grid {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    column-gap:24px;
+    row-gap:12px;
+    margin-top:10px;
+  }
+
+  .services-checkbox-grid label {
+    display:flex;
+    gap:8px;
+    align-items:center;
+    font-size:14px;
+    line-height:1.3;
+    cursor:pointer;
+  }
+
+  .services-checkbox-grid input[type="checkbox"] {
+    width:18px;
+    height:18px;
+  }
+
+  /* small responsive tweak */
+  @media (max-width:720px){
+    .services-checkbox-grid { grid-template-columns:1fr; }
+  }
+
+  /* ===== Service Options (Apply Page) ===== */
+
+.services-checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 14px 0 24px;
+}
+
+@media (max-width: 768px) {
+  .services-checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.service-option-card {
+  display: block;
+  cursor: pointer;
+}
+
+.service-option-card input {
+  display: none;
+}
+
+/* Card body */
+.service-option-body {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px 18px;
+  border: 2px solid #e5e7eb;
+  transition: all .25s ease;
+}
+
+/* Hover */
+.service-option-card:hover .service-option-body {
+  border-color: #3b82f6;
+  box-shadow: 0 10px 28px rgba(59,130,246,0.18);
+  transform: translateY(-2px);
+}
+
+/* Checked */
+.service-option-card input:checked + .service-option-body {
+  border-color: #2563eb;
+  background: linear-gradient(180deg,#ffffff,#f4f8ff);
+  box-shadow: 0 12px 32px rgba(37,99,235,0.22);
+}
+
+/* Title */
+.service-option-title {
+  font-weight: 600;
+  font-size: 1.02rem;
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+.service-order {
+  font-weight: 700;
+  margin-right: 6px;
+  color: #2563eb;
+}
+
+/* Sub list */
+.service-sub-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 0.88rem;
+  color: #4b5563;
+  line-height: 1.45;
+}
+
+.service-sub-list li {
+  margin: 2px 0;
+}
+
+</style>
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<script src="/assets/js/toast.js" defer></script>
+<script src="/assets/js/menu.js" defer></script>
+<script src="/assets/js/lang.js" defer></script>
+<script src="/assets/js/access.js" defer></script>
+
+
+</head>
+
+<body class="page-apply">
+
+<!-- NAV -->
+
+<nav id="topNav" class="nav--transparent">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <div class="brand">
+      <a href="/index.html#home" class="brand">
+        <img src="/assets/img/superedu-logo.png" alt="Edunova" class="logo-img" />
+        <span class="brand-text">Edunova</span>
+      </a>
+    </div>
+
+    <!-- =========================
+         Desktop Menu
+    ========================== -->
+    <div class="menu" id="menu">
+
+      <!-- Home -->
+      <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+      <!-- About -->
+      <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Dropdown -->
+<div class="nav-item dropdown">
+
+  <span class="dropdown-toggle"
+        role="button"
+        aria-haspopup="true"
+        tabindex="0"
+        data-en="Programs ⬇︎"
+        data-zh="项目 ⬇︎"> 
+  </span> 
+
+  <div class="dropdown-menu">
+    <a href="/education.html"
+       id="navEduCenter"
+       data-en="EduCenter"
+       data-zh="教育中心">
+      EduCenter
+    </a>
+
+    <a href="/community.html"
+       id="navEduCommunity"
+       data-en="EduCommunity"
+       data-zh="教育社区">
+      EduCommunity
+    </a>
+
+    <a href="/forum.html"
+       id="navForum"
+       data-en="EduForum"
+       data-zh="教育论坛">
+      EduForum 
+    </a>
+
+    <a href="/events.html" data-en="Events" data-zh="活动"> Events</a>
+    
+  </div>
+
+</div>
+
+      <!-- Services -->
+      <a href="/index.html#services" data-en="Services" data-zh="服务">Services</a>
+
+      <!-- Membership -->
+     <a href="/membership.html" id="navMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+      <!-- Get Involved Dropdown -->
+<div class="nav-item dropdown">
+  <span class="dropdown-toggle" role="button" aria-haspopup="true" tabindex="0"
+        data-en="Get Involved ⬇︎" data-zh="参与方式 ⬇︎">
+   
+</span>
+
+  <div class="dropdown-menu">
+    <a href="/volunteer.html"
+       data-en="Volunteer"
+       data-zh="志愿者">
+      Volunteer
+    </a>
+
+    <a href="/donation.html"
+       data-en="Donation"
+       data-zh="捐赠">
+      Donation
+    </a>
+
+    <a href="/scholarship.html"
+       data-en="scholarship"
+       data-zh="奖学金">
+      scholarship
+    </a>
+
+    <a href="/index.html#resources"
+       data-en="Resources"
+       data-zh="资源">
+      Resources
+    </a>
+  </div>
+</div>
+
+      <!-- Contact -->
+      <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+      <!-- Login -->
+     <a href="/login.html" id="desktopAuth" data-en="Login" data-zh="登录">Login</a>
+
+      <!-- Slide underline -->
+      <span class="nav-underline"></span>
+    </div>
+
+    <!-- Right side -->
+    <div class="nav-right">
+      <button id="langToggle" class="lang-toggle" aria-label="Language toggle">
+        中文
+      </button>
+
+      <button id="hamburger" class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile slide menu -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <!-- Home -->
+    <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+    <!-- About -->
+    <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Programs" data-zh="项目">Programs</summary>
+      <a href="/education.html" id="mobileEduCenter" data-en="EduCenter" data-zh="教育中心">EduCenter</a>
+      <a href="/community.html" id="mobileEduCommunity" data-en="EduCommunity" data-zh="教育社区">EduCommunity</a>
+      <a href="/forum.html" id="mobileForum" data-en="EduForum" data-zh="教育论坛">EduForum</a>
+      <a href="/events.html" data-en="Events" data-zh="活动">Events</a>
+    </details>
+
+    <!-- Service -->
+    <a href="/index.html#services" data-en="Service" data-zh="服务">Service</a>
+
+    <!-- Membership -->
+    <a href="/membership.html" id="mobileMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+    <!-- Get Involved Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Get Involved" data-zh="参与方式">Get Involved</summary>
+      <a href="/volunteer.html" data-en="Volunteer" data-zh="志愿者">Volunteer</a>
+      <a href="/donation.html" data-en="Donation" data-zh="捐赠">Donation</a>
+      <a href="/scholarship.html"
+       data-en="scholarship"
+       data-zh="奖学金">
+      scholarship
+    </a>
+      <a href="/index.html#resources" data-en="Resources" data-zh="资源">Resources</a>
+    </details>
+
+    <!-- Contact -->
+    <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+    <!-- Login -->
+    <a href="/login.html" id="mobileAuth" data-en="Login" data-zh="登录">Login</a>
+
+    <!-- Mobile action buttons -->
+    <div class="mobile-actions">
+      <button class="btn btn-ghost" id="mobileRegister" data-en="Register/Join" data-zh="注册/加入">
+        Register / Join
+      </button>
+      <button class="btn" id="mobileUnlock" data-en="Unlock Education" data-zh="解锁教育">
+        Unlock Education
+      </button>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container">
+  <div class="card">
+
+    <h1 data-en="Service Application" data-zh="服务申请">Service Application</h1>
+    <p class="small" data-en="Please provide your details and select the services you are interested in."
+       data-zh="请输入您的信息并选择您感兴趣的服务。">
+       Please provide your details and select the services you are interested in.
+    </p>
+
+    <form id="applyForm" novalidate>
+
+      <label for="firstName" data-en="First name" data-zh="名">First name</label>
+      <input id="firstName" name="firstName" required />
+
+      <label for="lastName" data-en="Last name" data-zh="姓">Last name</label>
+      <input id="lastName" name="lastName" required />
+
+      <label for="email" data-en="Email" data-zh="邮箱">Email</label>
+      <input id="email" name="email" type="email" required />
+      <div id="emailStatus" class="field-hint"></div>
+
+      <label for="phone" data-en="Phone (optional)" data-zh="电话（可选）">Phone (optional)</label>
+      <input id="phone" name="phone" />
+
+      <label for="country" data-en="Country / Region" data-zh="国家 / 地区">Country / Region</label>
+      <input id="country" name="country" />
+
+      <label data-en="Select service(s) of interest" data-zh="选择感兴趣的服务">Select service(s) of interest</label>
+      <div class="services-checkbox-grid" id="servicesList"></div>
+
+      <label for="notes" data-en="Additional notes (optional)" data-zh="附加说明（可选）">Additional notes (optional)</label>
+      <textarea id="notes" name="notes" rows="4"></textarea>
+
+      <div style="display:flex;gap:10px;align-items:center">
+        <button type="submit" class="btn" id="submitBtn"
+                data-en="Submit Application" data-zh="提交申请">Submit Application</button>
+        <div id="formStatus" class="small"></div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<script>
+/* ===============================
+   Service Labels List (4 Core Categories)
+================================ */
+
+const serviceItems = [
+  {
+    id: 's1',
+    order: '1',
+    en: '🎓 Education Affordability & Funding Support',
+    zh: '🎓 教育可负担性与资助支持',
+    subs_en: [
+      'Financial Aid (FAFSA / CSS)',
+      'Scholarships & Grants',
+      'Education Savings & Funding Strategy'
+    ],
+    subs_zh: [
+      '助学金（FAFSA / CSS）',
+      '奖学金与资助项目',
+      '教育储蓄与资金规划'
+    ]
+  },
+  {
+    id: 's2',
+    order: '2',
+    en: '🤝 Volunteer & Social Impact Programs & Support',
+    zh: '🤝 志愿服务与社会公益项目',
+    subs_en: [
+      'Edunova Volunteer Programs',
+      'Webinar & courses for students',
+      'Community & Social Impact Initiatives'
+    ],
+    subs_zh: [
+      'Edunova 志愿者项目',
+      '计算机讲座与课程',
+      '社区与社会影响力项目'
+    ]
+  },
+  {
+    id: 's3',
+    order: '3',
+    en: '🏠 Education-Centered Family & Community Support',
+    zh: '🏠 教育为本家庭与社区支持',
+    subs_en: [
+      'Family Education Planning',
+      'Education Foundation NPO 501C(3)',
+      'EduWealth Trust Coordination',
+    ],
+    subs_zh: [
+      '家庭教育整体规划',
+      '教育基金会 公益组织501C(3)',
+      '教育财富 信托',
+    ]
+  },
+  {
+    id: 's4',
+    order: '4',
+    en: '📘 Academic & College Readiness Support',
+    zh: '📘 学术课程与大学升学支持',
+    subs_en: [
+      'U.S. Education System Overview',
+      'College Application Strategy',
+      'Pre-College Profile (AP / Summer)'
+    ],
+    subs_zh: [
+      '美国教育体系与比较',
+      '大学申请策略',
+      '大学前背景打造（AP / 夏校）'
+    ]
+  }
+];
+
+let lang = localStorage.getItem('superedu-lang') || 'en';
+
+/* ===============================
+   Helpers
+================================ */
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function t(en, zh){
+  return (lang === 'zh') ? zh : en;
+}
+
+function toast(msg, type="info", opts){
+  if (typeof window.showToast === "function") {
+    window.showToast(msg, type, opts);
+  } else {
+    // fallback (should rarely happen)
+    alert(msg);
+  }
+}
+
+/* ===============================
+   Render Service Checkboxes
+================================ */
+function renderServices(){
+  const wrap = document.getElementById('servicesList');
+  if(!wrap) return;
+
+  wrap.innerHTML = '';
+  serviceItems.forEach(s=>{
+    const title = lang === 'en' ? s.en : s.zh;
+    const subs  = lang === 'en' ? s.subs_en : s.subs_zh;
+
+    wrap.innerHTML += `
+      <label class="service-option-card">
+        <input type="checkbox" name="services" value="${s.id}">
+        <div class="service-option-body">
+          <div class="service-option-title">
+            <span class="service-order">${s.order}.</span>
+            ${title}
+          </div>
+          <ul class="service-sub-list">
+            ${subs.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        </div>
+      </label>
+    `;
+  });
+}
+
+/* ===============================
+   Email Live Hint (Realtime, Bilingual)
+================================ */
+function updateEmailHint(){
+  const emailInput  = document.getElementById('email');
+  const emailStatus = document.getElementById('emailStatus'); // 需要你页面里有这个元素（推荐）
+  if(!emailInput) return;
+
+  const val = emailInput.value.trim();
+
+  if(!emailStatus){
+    // 如果你还没放 <div id="emailStatus">，也不报错
+    return;
+  }
+
+  // 清空
+  if(!val){
+    emailStatus.textContent = '';
+    emailStatus.className = 'field-hint';
+    return;
+  }
+
+  // 错误
+  if(!emailPattern.test(val)){
+    emailStatus.textContent = t('❌ Please enter a valid email address.', '❌ 请输入正确的邮箱地址。');
+    emailStatus.className = 'field-hint error';
+    return;
+  }
+
+  // 正确
+  emailStatus.textContent = t('✅ Email looks good.', '✅ 邮箱格式正确。');
+  emailStatus.className = 'field-hint success';
+}
+
+/* ===============================
+   Language Switching
+================================ */
+function setLang(l){
+  lang = l;
+  localStorage.setItem('superedu-lang', l);
+
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') return;
+    el.innerText = (l === 'en') ? el.dataset.en : el.dataset.zh;
+  });
+
+  const submitBtn = document.getElementById('submitBtn');
+  if(submitBtn){
+    submitBtn.innerText = (l === 'en')
+      ? submitBtn.dataset.en
+      : submitBtn.dataset.zh;
+  }
+
+  renderServices();
+
+  const langBtn = document.getElementById('langToggle');
+  if(langBtn){
+    langBtn.innerText = (l === 'en') ? '中文' : 'EN';
+  }
+
+  // ⭐ 语言切换后，Email 提示也要同步刷新
+  updateEmailHint();
+}
+
+/* ===============================
+   Init on Load
+================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  setLang(lang);
+
+  const langBtn = document.getElementById('langToggle');
+  if(langBtn){
+    langBtn.addEventListener('click', () => {
+      setLang(lang === 'en' ? 'zh' : 'en');
+    });
+  }
+
+  // ⭐ Email realtime validation
+  const emailInput = document.getElementById('email');
+  if(emailInput){
+    emailInput.addEventListener('input', updateEmailHint);
+    emailInput.addEventListener('blur', updateEmailHint);
+  }
+});
+
+/* ===============================
+   Submit Form (Keep other logic unchanged)
+================================ */
+document.getElementById('applyForm').addEventListener('submit', async e =>{
+  e.preventDefault();
+
+  const email = document.getElementById('email').value.trim();
+  if(!emailPattern.test(email)){
+    toast(
+      t('Please enter a valid email address.', '请输入有效的邮箱地址。'),
+      "error"
+    );
+    // 同时刷新一次 email hint（如果有）
+    updateEmailHint();
+    return;
+  }
+
+  const status = document.getElementById('formStatus');
+  if(status) status.innerText = lang === 'en' ? 'Submitting...' : '提交中...';
+
+  const services = [...document.querySelectorAll('input[name="services"]:checked')]
+    .map(i => i.value);
+
+  // 保存用户选择的服务，供 thank-you 页面使用（保持原逻辑）
+  localStorage.setItem('selectedServices', JSON.stringify(services));
+
+  const payload = {
+    firstName: document.getElementById('firstName').value.trim(),
+    lastName: document.getElementById('lastName').value.trim(),
+    email,
+    phone: document.getElementById('phone').value.trim(),
+    country: document.getElementById('country').value.trim(),
+    services, // e.g. ['s1','s3']
+    notes: document.getElementById('notes').value.trim(),
+    lang,
+    source: 'apply_form',
+    created_at: new Date().toISOString()
+  };
+
+  try{
+    const res = await fetch('/api/apply', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    });
+
+    if(res.ok){
+      // store selected services for thank-you page (保持原逻辑)
+      sessionStorage.setItem('selectedServices', JSON.stringify(services));
+      window.location.href = '/thank-you.html';
+    } else {
+      if(status) status.innerText = lang === 'en' ? 'Submission failed' : '提交失败';
+      toast(
+        t('Submission failed. Please try again.', '提交失败，请稍后重试。'),
+        "error"
+      );
+    }
+  } catch(err){
+    console.error(err);
+    if(status) status.innerText = lang === 'en' ? 'Submission failed' : '提交失败';
+    toast(
+      t('Submission failed. Please try again.', '提交失败，请稍后重试。'),
+      "error"
+    );
+  }
+});
+</script>
+
+
+<script src="/assets/js/auth-nav.js" defer></script>
+<!-- Footer (reuse your site footer if you have one) -->
+   <!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+
+    <!-- Column 1 -->
+    <div class="footer-col">
+      <h4>Edunova</h4>
+      <a href="/apply.html" target="_blank"
+         data-en="Apply for Services"
+         data-zh="申请服务">
+        申请服务
+      </a>
+      <a href="/membership.html"
+         data-en="Membership"
+         data-zh="会员中心">
+        会员中心
+      </a>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="footer-col">
+      <h4 data-en="Education & Fund" data-zh="教育与基金">
+        教育与基金
+      </h4>
+      <a href="/home#resources"
+         data-en="Resources"
+         data-zh="学习资源">
+        学习资源
+      </a>
+      <a href="https://www.lsfinova.com/aid" target="_blank"
+         data-en="Aid Calculator"
+         data-zh="教育资助计算器">
+        教育资助计算器
+      </a>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="footer-col">
+      <h4 data-en="Contact" data-zh="联系我们">
+        联系我们
+      </h4>
+      <div class="muted"
+           data-en="Phone: 1-916-793-0676 (Text)"
+           data-zh="电话 / 短信：1-916-793-0676">
+        电话 / 短信：1-916-793-0676
+      </div>
+      <div class="muted"
+           data-en="WeChat: Leon_Song_PhD"
+           data-zh="微信：Leon_Song_PhD">
+        微信：Leon_Song_PhD
+      </div>
+    </div>
+
+    <!-- Column 4 -->
+    <div class="footer-col">
+      <h4 data-en="Legal" data-zh="法律信息">
+        法律信息
+      </h4>
+      <a href="/privacy.html"
+         data-en="Privacy Policy"
+         data-zh="隐私政策">
+        隐私政策
+      </a>
+      <a href="/terms.html"
+         data-en="Terms of Service"
+         data-zh="服务条款">
+        服务条款
+      </a>
+    </div>
+
+  </div>
+
+  <div class="footer-copy"
+       data-en="© 2025 Edunova Foundation. All rights reserved."
+       data-zh="© 2025 Edunova Foundation 版权所有">
+    © 2025 Edunova — LSFinova 版权所有
+  </div>
+</footer>
+</body>
+</html>

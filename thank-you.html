@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thank You — SuperEdu</title>
+
+<!-- icons -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16.png">
+<link rel="icon" href="/assets/icons/favicon.ico">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<script src="/assets/js/menu.js" defer></script>
+<script src="/assets/js/lang.js" defer></script>
+<script src="/assets/js/auth-nav.js" defer></script>
+<script src="/assets/js/access.js" defer></script>
+
+<style>
+ 
+ body{
+    margin:0;
+    font-family: Inter, Arial, sans-serif;
+    background:#FAF5E9;
+    color:#333;
+  }
+
+  .wrap{
+    max-width:900px;
+    margin:0 auto;
+    padding:16px;
+    text-align:center;
+  }
+
+  .card{
+    background:#fff;
+    padding:36px 28px;
+    border-radius:14px;
+    box-shadow:0 8px 24px rgba(0,0,0,0.06);
+    border:1px solid rgba(0,0,0,0.04);
+  }
+
+  h1{
+    margin-top:0;
+    color:#2C9C47;
+    font-size:26px;
+  }
+
+  p{
+    color:#666;
+    font-size:16px;
+    margin:14px 0 24px;
+  }
+
+  .btn{
+    display:inline-block;
+    padding:10px 18px;
+    background:#2C9C47;
+    color:#fff;
+    border-radius:8px;
+    text-decoration:none;
+    font-weight:600;
+  }
+
+  .btn:hover{
+    background:#23853c;
+  }
+
+  .selected-services {
+  margin-top: 28px;
+  text-align: left;
+}
+
+.selected-services h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.selected-services ul {
+  padding-left: 18px;
+  margin-bottom: 12px;
+}
+
+.selected-services > ul > li {
+  margin-bottom: 10px;
+}
+
+.selected-services strong {
+  color: #111;
+}
+
+.small-note {
+  font-size: 14px;
+  color: #666;
+  margin-top: 12px;
+}
+
+.card{
+  background: linear-gradient(
+    180deg,
+    #FFFDF8 0%,
+    #FAF5E9 100%
+  );
+  padding:36px 28px;
+  border-radius:16px;
+
+  /* 立体感 */
+  box-shadow:
+    0 12px 28px rgba(9, 30, 66, 0.08),
+    0 4px 10px rgba(9, 30, 66, 0.04);
+
+  border:1px solid rgba(110, 75, 255, 0.08);
+}
+body{
+  background: linear-gradient(
+    180deg,
+    #F9F4E8 0%,
+    #F3EEDF 100%
+  );
+}
+.card h1{
+  color:#2C9C47;
+  letter-spacing:-0.01em;
+}
+.card p{
+  color:#555;
+}
+
+.selected-services ul ul {
+  margin-top: 6px;
+  padding-left: 18px;
+  color: #555;
+  font-size: 14px;
+}
+
+
+</style>
+</head>
+
+ <body class="page-thankyou">
+
+<!-- NAV -->
+
+<nav id="topNav" class="nav--transparent">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <div class="brand">
+      <a href="/index.html#home" class="brand">
+        <img src="/assets/img/superedu-logo.png" alt="Edunova" class="logo-img" />
+        <span class="brand-text">Edunova</span>
+      </a>
+    </div>
+
+    <!-- =========================
+         Desktop Menu
+    ========================== -->
+    <div class="menu" id="menu">
+
+      <!-- Home -->
+      <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+      <!-- About -->
+      <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Dropdown -->
+<div class="nav-item dropdown">
+
+  <span class="dropdown-toggle"
+        role="button"
+        aria-haspopup="true"
+        tabindex="0"
+        data-en="Programs ⬇︎"
+        data-zh="项目 ⬇︎"> 
+  </span> 
+
+  <div class="dropdown-menu">
+    <a href="/education.html"
+       id="navEduCenter"
+       data-en="EduCenter"
+       data-zh="教育中心">
+      EduCenter
+    </a>
+
+    <a href="/community.html"
+       id="navEduCommunity"
+       data-en="EduCommunity"
+       data-zh="教育社区">
+      EduCommunity
+    </a>
+
+    <a href="/forum.html"
+       id="navForum"
+       data-en="EduForum"
+       data-zh="教育论坛">
+      EduForum 
+    </a>
+
+    <a href="/events.html" data-en="Events" data-zh="活动"> Events</a>
+    
+  </div>
+
+</div>
+
+      <!-- Services -->
+      <a href="/index.html#services" data-en="Services" data-zh="服务">Services</a>
+
+      <!-- Membership -->
+     <a href="/membership.html" id="navMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+      <!-- Get Involved Dropdown -->
+<div class="nav-item dropdown">
+  <span class="dropdown-toggle" role="button" aria-haspopup="true" tabindex="0"
+        data-en="Get Involved ⬇︎" data-zh="参与方式 ⬇︎">
+   
+</span>
+
+  <div class="dropdown-menu">
+    <a href="/volunteer.html"
+       data-en="Volunteer"
+       data-zh="志愿者">
+      Volunteer
+    </a>
+
+    <a href="/donation.html"
+       data-en="Donation"
+       data-zh="捐赠">
+      Donation
+    </a>
+    <a href="/scholarship.html"
+       data-en="scholarship"
+       data-zh="奖学金">
+      scholarship
+    </a>
+
+    <a href="/index.html#resources"
+       data-en="Resources"
+       data-zh="资源">
+      Resources
+    </a>
+  </div>
+</div>
+
+      <!-- Contact -->
+      <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+      <!-- Login -->
+     <a href="/login.html" id="desktopAuth" data-en="Login" data-zh="登录">Login</a>
+
+      <!-- Slide underline -->
+      <span class="nav-underline"></span>
+    </div>
+
+    <!-- Right side -->
+    <div class="nav-right">
+      <button id="langToggle" class="lang-toggle" aria-label="Language toggle">
+        中文
+      </button>
+
+      <button id="hamburger" class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile slide menu -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <!-- Home -->
+    <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+    <!-- About -->
+    <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Programs" data-zh="项目">Programs</summary>
+      <a href="/education.html" id="mobileEduCenter" data-en="EduCenter" data-zh="教育中心">EduCenter</a>
+      <a href="/community.html" id="mobileEduCommunity" data-en="EduCommunity" data-zh="教育社区">EduCommunity</a>
+      <a href="/forum.html" id="mobileForum" data-en="EduForum" data-zh="教育论坛">EduForum</a>
+      <a href="/events.html" data-en="Events" data-zh="活动">Events</a>
+    </details>
+
+    <!-- Service -->
+    <a href="/index.html#services" data-en="Service" data-zh="服务">Service</a>
+
+    <!-- Membership -->
+    <a href="/membership.html" id="mobileMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+    <!-- Get Involved Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Get Involved" data-zh="参与方式">Get Involved</summary>
+      <a href="/volunteer.html" data-en="Volunteer" data-zh="志愿者">Volunteer</a>
+      <a href="/donation.html" data-en="Donation" data-zh="捐赠">Donation</a>
+      <a href="/scholarship.html"
+       data-en="scholarship"
+       data-zh="奖学金">
+      scholarship
+    </a>
+      <a href="/index.html#resources" data-en="Resources" data-zh="资源">Resources</a>
+    </details>
+
+    <!-- Contact -->
+    <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+    <!-- Login -->
+    <a href="/login.html" id="mobileAuth" data-en="Login" data-zh="登录">Login</a>
+
+    <!-- Mobile action buttons -->
+    <div class="mobile-actions">
+      <button class="btn btn-ghost" id="mobileRegister" data-en="Register/Join" data-zh="注册/加入">
+        Register / Join
+      </button>
+      <button class="btn" id="mobileUnlock" data-en="Unlock Education" data-zh="解锁教育">
+        Unlock Education
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <div class="wrap">
+    <div class="card">
+      <h1 data-en="Thank you — Application received"
+          data-zh="感谢，您的申请已收到">
+        Thank you — Application received
+      </h1>
+
+
+     <div id="selectedServicesBox" class="selected-services" style="display:none">
+  <h3 data-en="You have applied for:" data-zh="您本次申请的服务包括：">
+    You have applied for:
+  </h3>
+  <ul id="selectedServicesList"></ul>
+
+  <p class="small-note"
+     data-en="If you have any additional questions or needs, feel free to reach out to us."
+     data-zh="如您还有其他需求或想进一步咨询，欢迎随时与我们联系。">
+    If you have any additional questions or needs, feel free to reach out to us.
+  </p>
+</div>
+
+
+     <p class="small-note"
+     data-en="If you have any additional questions or needs, feel free to reach out to us."
+     data-zh="如您还有其他需求或想进一步咨询，欢迎随时与我们联系。">
+    If you have any additional questions or needs, feel free to reach out to us.
+  </p>
+</div>
+
+     
+    </div>
+  </div>
+</main>
+
+<script>
+/* =====================================
+   Thank You Page – Selected Services
+   Final Version (EN / 中文)
+===================================== */
+
+/* ---------- Global Language ---------- */
+let lang = localStorage.getItem('superedu-lang') || 'en';
+
+/* ---------- Service Map ---------- */
+const serviceMap = {
+  s1: {
+    en: {
+      title: '🎓 Education Affordability & Funding Support',
+      subs: [
+        'Financial Aid (FAFSA / CSS)',
+        'Scholarships & Grants',
+        'Education Savings & Funding Strategy'
+      ]
+    },
+    zh: {
+      title: '🎓 教育可负担性与资助支持',
+      subs: [
+        '助学金（FAFSA / CSS）',
+        '奖学金与资助项目',
+        '教育储蓄与资金规划'
+      ]
+    }
+  },
+
+  s2: {
+    en: {
+      title: '🤝 Volunteer & Social Impact Programs',
+      subs: [
+        'Edunova Volunteer Programs',
+        'Webinars & Courses for Students',
+        'Community & Social Impact Initiatives'
+      ]
+    },
+    zh: {
+      title: '🤝 志愿服务与社会公益项目',
+      subs: [
+        'Edunova 志愿者项目',
+        '学生讲座与课程',
+        '社区与社会影响力项目'
+      ]
+    }
+  },
+
+  s3: {
+    en: {
+      title: '🏠 Education-Centered Family & Community Support',
+      subs: [
+        'Family Education Planning',
+        'Education Foundation / 501(c)(3)',
+        'Education & Trust Coordination'
+      ]
+    },
+    zh: {
+      title: '🏠 以教育为核心的家庭与社区支持',
+      subs: [
+        '家庭教育整体规划',
+        '教育基金会 / 501(c)(3)',
+        '教育与信托协调规划'
+      ]
+    }
+  },
+
+  s4: {
+    en: {
+      title: '📘 Academic & College Readiness Support',
+      subs: [
+        'U.S. Education System Overview',
+        'College Application Strategy',
+        'Pre-College Profile (AP / Summer)'
+      ]
+    },
+    zh: {
+      title: '📘 学术与大学升学支持',
+      subs: [
+        '美国教育体系与比较',
+        '大学申请策略',
+        '大学前背景打造（AP / 夏校）'
+      ]
+    }
+  }
+};
+
+/* ---------- Render Selected Services ---------- */
+function renderSelectedServices() {
+  const selected = JSON.parse(
+    localStorage.getItem('selectedServices') || '[]'
+  );
+
+  const box = document.getElementById('selectedServicesBox');
+  const list = document.getElementById('selectedServicesList');
+
+  if (!box || !list || !selected.length) {
+    if (box) box.style.display = 'none';
+    return;
+  }
+
+  box.style.display = 'block';
+  list.innerHTML = '';
+
+  selected.forEach(id => {
+    const svc = serviceMap[id];
+    if (!svc) return;
+
+    const data = svc[lang];
+
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <strong>${data.title}</strong>
+      <ul>
+        ${data.subs.map(s => `<li>${s}</li>`).join('')}
+      </ul>
+    `;
+    list.appendChild(li);
+  });
+}
+
+/* ---------- Language Switching ---------- */
+function setLang(l) {
+  lang = l;
+  localStorage.setItem('superedu-lang', l);
+
+  // Switch static text
+  document.querySelectorAll('[data-en]').forEach(el => {
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') return;
+    el.innerText = (l === 'en') ? el.dataset.en : el.dataset.zh;
+  });
+
+  // Update language button
+  const langBtn = document.getElementById('langToggle');
+  if (langBtn) {
+    langBtn.innerText = (l === 'en') ? '中文' : 'EN';
+  }
+
+  // ⭐ KEY: re-render dynamic services
+  renderSelectedServices();
+}
+
+/* ---------- Init ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  renderSelectedServices();
+
+  const langBtn = document.getElementById('langToggle');
+  if (langBtn) {
+    langBtn.addEventListener('click', () => {
+      const next = (lang === 'en') ? 'zh' : 'en';
+      setLang(next);
+    });
+  }
+});
+
+window.addEventListener('beforeunload', () => {
+  localStorage.removeItem('selectedServices');
+});
+
+</script>
+<!-- Footer (reuse your site footer if you have one) -->
+   <!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+
+    <!-- Column 1 -->
+    <div class="footer-col">
+      <h4>Edunova</h4>
+      <a href="/apply.html" target="_blank"
+         data-en="Apply for Services"
+         data-zh="申请服务">
+        申请服务
+      </a>
+      <a href="/membership.html"
+         data-en="Membership"
+         data-zh="会员中心">
+        会员中心
+      </a>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="footer-col">
+      <h4 data-en="Education & Fund" data-zh="教育与基金">
+        教育与基金
+      </h4>
+      <a href="/home#resources"
+         data-en="Resources"
+         data-zh="学习资源">
+        学习资源
+      </a>
+      <a href="https://www.lsfinova.com/aid" target="_blank"
+         data-en="Aid Calculator"
+         data-zh="教育资助计算器">
+        教育资助计算器
+      </a>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="footer-col">
+      <h4 data-en="Contact" data-zh="联系我们">
+        联系我们
+      </h4>
+      <div class="muted"
+           data-en="Phone: 1-916-793-0676 (Text)"
+           data-zh="电话 / 短信：1-916-793-0676">
+        电话 / 短信：1-916-793-0676
+      </div>
+      <div class="muted"
+           data-en="WeChat: Leon_Song_PhD"
+           data-zh="微信：Leon_Song_PhD">
+        微信：Leon_Song_PhD
+      </div>
+    </div>
+
+    <!-- Column 4 -->
+    <div class="footer-col">
+      <h4 data-en="Legal" data-zh="法律信息">
+        法律信息
+      </h4>
+      <a href="/privacy.html"
+         data-en="Privacy Policy"
+         data-zh="隐私政策">
+        隐私政策
+      </a>
+      <a href="/terms.html"
+         data-en="Terms of Service"
+         data-zh="服务条款">
+        服务条款
+      </a>
+    </div>
+
+  </div>
+
+  <div class="footer-copy"
+       data-en="© 2025 Edunova Foundation. All rights reserved."
+       data-zh="© 2025 Edunova Foundation 版权所有">
+    © 2025 Edunova — LSFinova 版权所有
+  </div>
+</footer>
+</body>
+</html>

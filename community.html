@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>EduCommunity — SuperEdu</title>
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<script src="/assets/js/menu.js" defer></script>
+<script src="/assets/js/lang.js" defer></script>
+<script src="/assets/js/access.js" defer></script>
+
+<style>
+body {
+  margin: 0;
+  padding-top: 96px;
+  background: #f7f8fa;
+  font-family: Inter, system-ui, Arial;
+  color: #333;
+}
+
+.community-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+.community-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.community-header h1 {
+  margin: 0;
+  font-size: 26px;
+  color: #1e7033;
+}
+
+.community-header p {
+  margin-top: 8px;
+  color: #666;
+  font-size: 15px;
+}
+
+.community-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 18px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.community-card h3 {
+  margin-top: 0;
+  color: #2c9c47;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.badge {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #e9f6ef;
+  color: #2c9c47;
+}
+
+.community-list {
+  padding-left: 18px;
+  margin: 10px 0 0;
+}
+
+.community-list li {
+  margin-bottom: 8px;
+}
+
+.muted {
+  color: #777;
+  font-size: 14px;
+}
+
+.upgrade-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.upgrade-box a {
+  white-space: nowrap;
+}
+</style>
+</head>
+
+<body class="page-community" data-page="lead-required">
+
+<!-- NAV -->
+
+<nav id="topNav" class="nav--transparent">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <div class="brand">
+      <a href="/index.html#home" class="brand">
+        <img src="/assets/img/superedu-logo.png" alt="Edunova" class="logo-img" />
+        <span class="brand-text">Edunova</span>
+      </a>
+    </div>
+
+    <!-- =========================
+         Desktop Menu
+    ========================== -->
+    <div class="menu" id="menu">
+
+      <!-- Home -->
+      <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+      <!-- About -->
+      <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Dropdown -->
+<div class="nav-item dropdown">
+
+  <span class="dropdown-toggle"
+        role="button"
+        aria-haspopup="true"
+        tabindex="0"
+        data-en="Programs ⬇︎"
+        data-zh="项目 ⬇︎"> 
+  </span> 
+
+  <div class="dropdown-menu">
+    <a href="/education.html"
+       id="navEduCenter"
+       data-en="EduCenter"
+       data-zh="教育中心">
+      EduCenter
+    </a>
+
+    <a href="/community.html"
+       id="navEduCommunity"
+       data-en="EduCommunity"
+       data-zh="教育社区">
+      EduCommunity
+    </a>
+
+    <a href="/forum.html"
+       id="navForum"
+       data-en="EduForum"
+       data-zh="教育论坛">
+      EduForum 
+    </a>
+
+    <a href="/events.html" data-en="Events" data-zh="活动"> Events</a>
+    
+  </div>
+
+</div>
+
+      <!-- Services -->
+      <a href="/index.html#services" data-en="Services" data-zh="服务">Services</a>
+
+      <!-- Membership -->
+     <a href="/membership.html" id="navMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+      <!-- Get Involved Dropdown -->
+<div class="nav-item dropdown">
+  <span class="dropdown-toggle" role="button" aria-haspopup="true" tabindex="0"
+        data-en="Get Involved ⬇︎" data-zh="参与方式 ⬇︎">
+   
+</span>
+
+  <div class="dropdown-menu">
+    <a href="/volunteer.html"
+       data-en="Volunteer"
+       data-zh="志愿者">
+      Volunteer
+    </a>
+
+    <a href="/donation.html"
+       data-en="Donation"
+       data-zh="捐赠">
+      Donation
+    </a>
+    <a href="/scholarship.html"
+       data-en="scholarship"
+       data-zh="奖学金">
+      scholarship
+    </a>
+
+    <a href="/index.html#resources"
+       data-en="Resources"
+       data-zh="资源">
+      Resources
+    </a>
+  </div>
+</div>
+
+      <!-- Contact -->
+      <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+      <!-- Login -->
+     <a href="/login.html" id="desktopAuth" data-en="Login" data-zh="登录">Login</a>
+
+      <!-- Slide underline -->
+      <span class="nav-underline"></span>
+    </div>
+
+    <!-- Right side -->
+    <div class="nav-right">
+      <button id="langToggle" class="lang-toggle" aria-label="Language toggle">
+        中文
+      </button>
+
+      <button id="hamburger" class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile slide menu -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <!-- Home -->
+    <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+    <!-- About -->
+    <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Programs" data-zh="项目">Programs</summary>
+      <a href="/education.html" id="mobileEduCenter" data-en="EduCenter" data-zh="教育中心">EduCenter</a>
+      <a href="/community.html" id="mobileEduCommunity" data-en="EduCommunity" data-zh="教育社区">EduCommunity</a>
+      <a href="/forum.html" id="mobileForum" data-en="EduForum" data-zh="教育论坛">EduForum</a>
+      <a href="/events.html" data-en="Events" data-zh="活动">Events</a>
+    </details>
+
+    <!-- Service -->
+    <a href="/index.html#services" data-en="Service" data-zh="服务">Service</a>
+
+    <!-- Membership -->
+    <a href="/membership.html" id="mobileMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+    <!-- Get Involved Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Get Involved" data-zh="参与方式">Get Involved</summary>
+      <a href="/volunteer.html" data-en="Volunteer" data-zh="志愿者">Volunteer</a>
+      <a href="/donation.html" data-en="Donation" data-zh="捐赠">Donation</a>
+      <a href="/scholarship.html"
+       data-en="scholarship"
+       data-zh="奖学金">
+      scholarship
+    </a>
+      <a href="/index.html#resources" data-en="Resources" data-zh="资源">Resources</a>
+    </details>
+
+    <!-- Contact -->
+    <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+    <!-- Login -->
+    <a href="/login.html" id="mobileAuth" data-en="Login" data-zh="登录">Login</a>
+
+    <!-- Mobile action buttons -->
+    <div class="mobile-actions">
+      <button class="btn btn-ghost" id="mobileRegister" data-en="Register/Join" data-zh="注册/加入">
+        Register / Join
+      </button>
+      <button class="btn" id="mobileUnlock" data-en="Unlock Education" data-zh="解锁教育">
+        Unlock Education
+      </button>
+    </div>
+  </div>
+</nav>
+
+
+<main class="community-container">
+
+  <!-- Header -->
+  <div class="community-header">
+    <h1 data-en="EduCommunity" data-zh="教育社区">EduCommunity</h1>
+    <p
+      data-en="A curated knowledge & discussion space for U.S. education planning."
+      data-zh="为美式教育规划家庭与学生打造的精选知识与交流空间。">
+      A curated knowledge & discussion space for U.S. education planning.
+    </p>
+  </div>
+
+  <!-- Intro -->
+  <div class="community-card">
+    <h3>
+      <span data-en="Welcome" data-zh="欢迎来到社区">Welcome</span>
+      <span class="badge" data-en="Read Only" data-zh="只读访问">Read Only</span>
+    </h3>
+    <p
+      data-en="EduCommunity is designed for families and students who have joined our interest list. You can freely read expert insights, case discussions, and important updates."
+      data-zh="EduCommunity 面向已加入俱乐部名单的家庭与学生开放。您可以自由阅读专家观点、案例解析与重要更新内容。">
+      EduCommunity is designed for families and students who have joined our interest list.
+    </p>
+    <p class="muted"
+      data-en="Posting, commenting, and Q&A are available to Members only."
+      data-zh="发帖、评论与专家问答仅对会员开放。">
+      Posting, commenting, and Q&A are available to Members only.
+    </p>
+  </div>
+
+  <!-- Topics -->
+  <div class="community-card">
+    <h3 data-en="Popular Topics" data-zh="热门话题">Popular Topics</h3>
+    <ul class="community-list">
+      <li data-en="When should families start planning for U.S. college admissions?"
+          data-zh="家庭应该从什么时候开始规划美国大学申请？">
+        When should families start planning for U.S. college admissions?
+      </li>
+      <li data-en="AP vs IB — how do U.S. universities really view them?"
+          data-zh="AP 与 IB：美国大学究竟如何看待？">
+        AP vs IB — how do U.S. universities really view them?
+      </li>
+      <li data-en="Recent FAFSA & CSS Profile changes explained"
+          data-zh="最新 FAFSA 与 CSS Profile 改动解析">
+        Recent FAFSA & CSS Profile changes explained
+      </li>
+    </ul>
+  </div>
+
+  <!-- Expert -->
+  <div class="community-card">
+    <h3 data-en="Expert Insights" data-zh="专家精选">Expert Insights</h3>
+    <p
+      data-en="Our advisors regularly share insights on admissions trends, financial aid strategies, and real case studies from U.S. schools."
+      data-zh="我们的顾问团队会定期分享美国大学录取趋势、助学金策略以及真实案例分析。">
+      Our advisors regularly share insights on admissions trends, financial aid strategies.
+    </p>
+  </div>
+
+  <!-- Upgrade -->
+  <div class="community-card">
+    <h3 data-en="Become a Member" data-zh="升级为会员">Become a Member</h3>
+    <div class="upgrade-box">
+      <p class="muted"
+         data-en="Members can participate in discussions, ask questions, and access advanced content."
+         data-zh="会员可参与讨论、向专家提问，并解锁进阶内容。">
+        Members can participate in discussions, ask questions, and access advanced content.
+      </p>
+      <a href="/dashboard.html"
+         class="btn btn-primary"
+         data-en="View Membership"
+         data-zh="查看会员权益">
+        View Membership
+      </a>
+    </div>
+  </div>
+
+</main>
+<script src="/assets/js/auth-nav.js" defer></script>
+<!-- Footer (reuse your site footer if you have one) -->
+   <!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+
+    <!-- Column 1 -->
+    <div class="footer-col">
+      <h4>Edunova</h4>
+      <a href="/apply.html" target="_blank"
+         data-en="Apply for Services"
+         data-zh="申请服务">
+        申请服务
+      </a>
+      <a href="/membership.html"
+         data-en="Membership"
+         data-zh="会员中心">
+        会员中心
+      </a>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="footer-col">
+      <h4 data-en="Education & Fund" data-zh="教育与基金">
+        教育与基金
+      </h4>
+      <a href="/home#resources"
+         data-en="Resources"
+         data-zh="学习资源">
+        学习资源
+      </a>
+      <a href="https://www.lsfinova.com/aid" target="_blank"
+         data-en="Aid Calculator"
+         data-zh="教育资助计算器">
+        教育资助计算器
+      </a>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="footer-col">
+      <h4 data-en="Contact" data-zh="联系我们">
+        联系我们
+      </h4>
+      <div class="muted"
+           data-en="Phone: 1-916-793-0676 (Text)"
+           data-zh="电话 / 短信：1-916-793-0676">
+        电话 / 短信：1-916-793-0676
+      </div>
+      <div class="muted"
+           data-en="WeChat: Leon_Song_PhD"
+           data-zh="微信：Leon_Song_PhD">
+        微信：Leon_Song_PhD
+      </div>
+    </div>
+
+    <!-- Column 4 -->
+    <div class="footer-col">
+      <h4 data-en="Legal" data-zh="法律信息">
+        法律信息
+      </h4>
+      <a href="/privacy.html"
+         data-en="Privacy Policy"
+         data-zh="隐私政策">
+        隐私政策
+      </a>
+      <a href="/terms.html"
+         data-en="Terms of Service"
+         data-zh="服务条款">
+        服务条款
+      </a>
+    </div>
+
+  </div>
+
+  <div class="footer-copy"
+       data-en="© 2025 Edunova Foundation. All rights reserved."
+       data-zh="© 2025 Edunova Foundation 版权所有">
+    © 2025 Edunova — LSFinova 版权所有
+  </div>
+</footer>
+</body>
+</html>
