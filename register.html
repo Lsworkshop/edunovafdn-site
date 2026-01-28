@@ -806,36 +806,39 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   function checkConfirmPassword() {
-    const pw  = passwordInput.value;
-    const cpw = confirmInput.value;
+  const pw  = passwordInput.value;
+  const cpw = confirmInput.value;
 
-    if (!cpw) {
-      confirmHint.style.display = "none";
-      return;
-    }
-
-    confirmHint.style.display = "flex";
-    const match = pw === cpw;
-
-    confirmHint.classList.toggle("valid", match);
-
-    const icon = confirmHint.querySelector(".icon");
-    const text = confirmHint.querySelector(".text");
-
-    if (match) {
-      icon.textContent = "✔ ";
-      text.dataset.en = "Passwords match";
-      text.dataset.zh = "两次输入的密码一致";
-    } else {
-      icon.textContent = "❌ ";
-      text.dataset.en = "Passwords do not match";
-      text.dataset.zh = "两次输入的密码不一致";
-    }
-
-    // 如果页面有语言系统，可刷新
-    if (typeof window.refreshLang === "function") window.refreshLang();
-    if (typeof window.applyLanguage === "function") window.applyLanguage();
+  if (!cpw) {
+    confirmHint.style.display = "none";
+    return;
   }
+
+  confirmHint.style.display = "flex";
+  const match = pw === cpw;
+
+  confirmHint.classList.toggle("valid", match);
+  confirmHint.classList.toggle("invalid", !match); // ✅补上，避免旧状态残留
+
+  const icon = confirmHint.querySelector(".icon");
+  const text = confirmHint.querySelector(".text");
+
+  const en = match ? "Passwords match" : "Passwords do not match";
+  const zh = match ? "两次输入的密码一致" : "两次输入的密码不一致";
+
+  icon.textContent = match ? "✔ " : "❌ ";
+
+  // ✅核心：直接写入当前显示文本
+  text.textContent = (lang() === "zh") ? zh : en;
+
+  // ✅保留 dataset 给你的语言系统用（如果它还用）
+  text.dataset.en = en;
+  text.dataset.zh = zh;
+
+  if (typeof window.refreshLang === "function") window.refreshLang();
+  if (typeof window.applyLanguage === "function") window.applyLanguage();
+}
+
 
   confirmInput.addEventListener("input", checkConfirmPassword);
 
