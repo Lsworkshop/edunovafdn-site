@@ -51,7 +51,7 @@ async function sendVerificationEmail({
   lastName
 }) {
 
-  const baseUrl = "https://edu.lsfinova.com";
+  const baseUrl = "https://edunovafdn.org";
   const verifyLink =
     `${baseUrl}/api/verify-email?token=${token}`;
 
