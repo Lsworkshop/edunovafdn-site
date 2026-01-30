@@ -1052,11 +1052,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* ======= ✅ 新增：写入 D1 后端表格（不改变现有逻辑） ======= */
     try {
+      const referralCode = (document.getElementById("r-ref")?.value || "").trim();
+
       const payload = {
         firstName: first,
         lastName: last,
         email: email,
-        referralCode: null
+        referralCode: referralCode ? referralCode : null
       };
 
       fetch("/api/register", {
@@ -1071,7 +1073,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!res.ok) {
           console.error("D1 write failed:", res.status, j);
         } else {
-          // 可选：console 记录成功
           // console.log("D1 write ok:", j);
         }
       })
@@ -1098,6 +1099,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 </script>
+
 
        <!-- ② Quick Unlock -->
 <div class="card tool-card unlock-card" id="unlockCard">
