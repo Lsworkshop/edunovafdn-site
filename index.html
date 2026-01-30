@@ -1050,6 +1050,39 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    /* ======= ✅ 新增：写入 D1 后端表格（不改变现有逻辑） ======= */
+    try {
+      const payload = {
+        firstName: first,
+        lastName: last,
+        email: email,
+        referralCode: null
+      };
+
+      fetch("/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+      .then(async (res) => {
+        // 仅用于调试，不影响原逻辑
+        let j = null;
+        try { j = await res.json(); } catch (_) {}
+        if (!res.ok) {
+          console.error("D1 write failed:", res.status, j);
+        } else {
+          // 可选：console 记录成功
+          // console.log("D1 write ok:", j);
+        }
+      })
+      .catch((err) => {
+        console.error("D1 write network error:", err);
+      });
+    } catch (err) {
+      console.error("D1 write setup error:", err);
+    }
+    /* ======= ✅ 新增结束 ======= */
+
     // ✅ 加入名单成功 → 升级为 lead
     localStorage.setItem("snovaRole", "lead");
 
