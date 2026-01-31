@@ -288,11 +288,12 @@ export async function onRequestPost({ request, env }) {
 
     await sendVerificationEmail({
   env,
-  normalizedEmail,
+  email: normalizedEmail,   // ✅ 关键修复
   token,
   firstName: first_name,
   lastName: last_name
 });
+
 
 
     return new Response(
