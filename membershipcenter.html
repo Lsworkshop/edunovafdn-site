@@ -46,8 +46,7 @@ body.welcome-page {
    Card Shared
 ========================= */
 
-.welcome-card,
-.login-card {
+.welcome-card {
   background: linear-gradient(
     135deg,
     #ffffff 0%,
@@ -122,85 +121,6 @@ body.welcome-page {
   margin-top: 2px;
 }
 
-/* =========================
-   Login Card
-========================= */
-
-.login-title {
-  text-align: center;
-  margin-bottom: 22px;
-}
-
-.login-title h1 {
-  margin: 0;
-  font-size: 28px;
-  font-weight: 400;
-  color: var(--brand-2);
-}
-
-.login-title p {
-  margin-top: 8px;
-  font-size: 15px;
-  color: #555;
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.login-form label {
-  font-size: 14px;
-  color: #444;
-}
-
-.login-form input {
-  padding: 11px 12px;
-  border-radius: 8px;
-  border: 1px solid #e1dccf;
-  font-size: 14px;
-}
-
-.login-form input:focus {
-  outline: none;
-  border-color: var(--brand-2);
-}
-
-.login-form .btn {
-  margin-top: 12px;
-  width: 100%;
-}
-
-.login-hint {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 18px;
-  color: #666;
-}
-
-/* Password eye */
-.password-wrapper {
-  position: relative;
-}
-
-.password-wrapper input {
-  width: 100%;
-  padding-right: 40px;
-}
-
-.toggle-password {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  opacity: 0.6;
-}
-
-.toggle-password:hover {
-  opacity: 1;
-}
 
 /* =========================
    Mobile
@@ -214,48 +134,103 @@ body.welcome-page {
     margin: 80px auto 120px;
   }
 
-  .welcome-card,
-  .login-card {
+  .welcome-card {
     padding: 28px;
   }
 }
 
+
+
 /* =========================
-   Login Card Hover (Desktop)
+   Card Shared
 ========================= */
 
-@media (min-width: 769px) {
-  .login-card {
-    transition:
-      transform 0.28s ease,
-      box-shadow 0.28s ease,
-      border-color 0.28s ease;
-  }
+.welcome-card2 {
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #fbf7ef 55%,
+    #f3ebdd 100%
+  );
+  border-radius: 16px;
+  border: 1px solid rgba(160,140,110,0.25);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.12);
 
-  .login-card:hover {
-    transform: translateY(-4px);
-    box-shadow:
-      0 20px 48px rgba(0,0,0,0.16),
-      0 0 0 1px rgba(176,140,80,0.35); /* 品牌亮线 */
-    border-color: rgba(176,140,80,0.6);
-  }
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
 }
 
 /* =========================
-   Login Button Hover
+   Welcome Card
 ========================= */
 
-.login-form .btn {
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    filter 0.2s ease;
+.welcome-card2 {
+  justify-content: center;          /* 内容视觉居中 */
 }
 
-.login-form .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.18);
-  filter: brightness(1.06);
+.welcome-title2 {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.welcome-title2 h1 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 500;
+  color: var(--brand-2);
+}
+
+.welcome-title2 p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #555;
+}
+
+.benefits2 {
+  margin-top: 24px;
+}
+
+.benefits2 h2 {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 14px;
+  color: #333;
+}
+
+.benefits2 ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.benefits2 li {
+  font-size: 15px;
+  color: #444;
+  padding: 8px 0;
+  display: flex;
+  gap: 10px;
+  line-height: 1.6;
+}
+
+.benefits2 li::before {
+  content: "✔";
+  color: #15803d;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 768px) {
+
+ 
+  .welcome-card2 {
+    padding: 28px;
+  }
 }
 
 </style>
