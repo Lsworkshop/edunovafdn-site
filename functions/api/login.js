@@ -28,7 +28,7 @@ function buildSessionCookie(token, maxAgeSeconds = 60 * 60 * 24 * 7) {
     `Secure`,
     `SameSite=Lax`,
     `Path=/`,
-    `Domain=edu.lsfinova.com`,  // ⚡ 指定域名
+    `Domain=edunovafdn.org`,  // ⚡ 指定域名
     `Max-Age=${maxAgeSeconds}`
   ].join("; ");
 }
