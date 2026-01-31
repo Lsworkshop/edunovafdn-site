@@ -49,6 +49,9 @@ export async function onRequestPost({ request, env }) {
       );
     }
 
+    // ✅ 仅新增：统一 email 为小写再查询（不改任何其他逻辑）
+    const normalizedEmail = String(email).trim().toLowerCase();
+
     /* ---------- Find Member ---------- */
     const member = await env.DB.prepare(`
       SELECT
@@ -59,7 +62,7 @@ export async function onRequestPost({ request, env }) {
         status
       FROM members
       WHERE email = ?
-    `).bind(email).first();
+    `).bind(normalizedEmail).first();
 
     if (!member) {
       return new Response(
