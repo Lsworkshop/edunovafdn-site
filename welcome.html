@@ -714,7 +714,56 @@ document.addEventListener("DOMContentLoaded", () => {
   })();
 
 });
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const p = new URLSearchParams(location.search);
+
+  const verified = p.get("verified"); // "1" / "0" / null
+  const expired  = p.get("expired");  // "1" / null
+
+  const lang = () => (localStorage.getItem("superedu-lang") === "zh" ? "zh" : "en");
+  const t = (en, zh) => (lang() === "zh" ? zh : en);
+
+  // 统一 toast 调用：如果没有 showToast，就退回 alert（避免“无提示”）
+  const toast = (opt) => {
+    if (typeof window.showToast === "function") window.showToast(opt);
+    else alert(lang() === "zh" ? opt.zh : opt.en);
+  };
+
+  if (expired === "1") {
+    toast({
+      type: "error",
+      en: "This verification link has expired. Please request a new verification email.",
+      zh: "验证链接已过期，请重新发送验证邮件。",
+      duration: 5200
+    });
+  } else if (verified === "1") {
+    toast({
+      type: "success",
+      en: "Email verified successfully!",
+      zh: "邮箱验证成功！",
+      duration: 3800
+    });
+  } else if (verified === "0") {
+    toast({
+      type: "error",
+      en: "Verification failed or link is invalid. Please request a new verification email.",
+      zh: "验证失败或链接无效，请重新发送验证邮件。",
+      duration: 5200
+    });
+  }
+
+  // 可选：提示后把 URL 清理一下（避免刷新重复弹）
+  if (expired === "1" || verified === "1" || verified === "0") {
+    const cleanUrl = location.pathname; // 保留 /welcome
+    history.replaceState({}, "", cleanUrl);
+  }
+});
 </script>
+
 
 <script src="/assets/js/auth-nav.js" defer></script>
 <script src="/assets/js/access.js" defer></script>
