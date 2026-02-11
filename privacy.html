@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Privacy Policy | 隐私政策</title>
+
+  <!-- icons (same as index.html) -->
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/icons/android-chrome-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/assets/icons/android-chrome-512.png">
+<link rel="icon" href="/assets/icons/favicon.ico">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<script src="/assets/js/toast.js" defer></script>
+<script src="/assets/js/menu.js" defer></script>
+<script src="/assets/js/lang.js" defer></script>
+<script src="/assets/js/access.js" defer></script>
+<script src="/assets/js/ns-links.js"></script>
+<script src="/assets/js/auth-nav.js" defer></script>
+
+
+  <style>
+    :root{
+      --page-max: 1100px;
+      /* ✅ 1) 整体下移：给主菜单预留空间（你可按实际菜单高度微调） */
+      --nav-space: 88px;
+
+      /* ✅ 2) 四个区域背景色（按你给的） */
+      --zone-a: #FFFFFF;
+      --zone-b: #E8EEFF;
+      --zone-c: #EFE4FF;
+      --zone-d: #F8F9F6;
+
+      /* ✅ 3) 卡片淡浅棕黄色渐变（尽量“柔”） */
+     
+    --card-grad: linear-gradient(135deg,
+  rgba(255, 252, 245, 0.96),
+  rgba(255, 247, 234, 0.92),
+  rgba(255, 243, 226, 0.90)
+);
+--card-border: rgba(0,0,0,0.06);
+    
+
+    }
+
+
+    
+
+    body{ margin:0; }
+
+    /* 四区容器 */
+    .zone{ width: 100%; }
+    .zone-a{ background: var(--zone-a); }
+    .zone-b{ background: var(--zone-b); }
+    .zone-c{ background: var(--zone-c); }
+    .zone-d{ background: var(--zone-d); }
+
+    .page-wrap{
+      max-width: var(--page-max);
+      margin: 0 auto;
+      padding: 28px 18px 64px;
+    }
+
+    /* ✅ 1) 整体下移：只让主内容下移，菜单保持你自己的布局 */
+    .main-offset{
+      padding-top: var(--nav-space);
+    }
+
+    .policy-hero{ padding: 10px 0 18px; }
+
+    .policy-title{
+      margin: 0;
+      font-size: clamp(26px, 3vw, 40px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .policy-subtitle{
+      margin: 10px 0 0;
+      opacity: 0.82;
+      font-size: 15px;
+      line-height: 1.55;
+      max-width: 70ch;
+    }
+
+    .meta-row{
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      opacity: 0.8;
+      font-size: 13.5px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,0.10);
+      background: rgba(255,255,255,0.55);
+      font-size: 13.5px;
+      opacity: 0.92;
+    }
+
+    /* ✅ 3) 卡片淡浅棕黄色渐变 */
+    .card{
+      margin-top: 18px;
+      border-radius: 18px;
+      padding: 18px 18px;
+      background: var(--card-grad);
+      border: 1px solid var(--card-border);
+      box-shadow: 0 18px 46px rgba(0,0,0,0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .toc{
+      display: grid;
+      gap: 10px;
+    }
+    .toc a{
+      text-decoration: none;
+      opacity: 0.92;
+    }
+    .toc a:hover{ opacity: 1; text-decoration: underline; }
+
+    .section{ margin-top: 18px; }
+    .section h2{
+      margin: 0 0 8px;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+    .section p{
+      margin: 10px 0;
+      line-height: 1.75;
+      opacity: 0.92;
+    }
+    .section ul{
+      margin: 10px 0 0;
+      padding-left: 20px;
+      line-height: 1.75;
+      opacity: 0.92;
+    }
+    .section li{ margin: 6px 0; }
+
+    .toplink{
+      margin-top: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      opacity: 0.88;
+    }
+    .toplink:hover{ opacity: 1; text-decoration: underline; }
+
+    @media (max-width: 768px){
+      :root{ --nav-space: 72px; } /* 移动端菜单一般更矮 */
+      .page-wrap{ padding: 22px 14px 56px; }
+    }
+  </style>
+</head>
+
+<body>
+ 
+  <div id="siteNav">
+    <!-- NAV -->
+
+<nav id="topNav" class="nav--transparent">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <div class="brand">
+      <a href="/index.html#home" class="brand">
+        <img src="/assets/img/superedu-logo.png" alt="Edunova" class="logo-img" />
+        <span class="brand-text">Edunova</span>
+      </a>
+    </div>
+
+    <!-- =========================
+         Desktop Menu
+    ========================== -->
+    <div class="menu" id="menu">
+
+      <!-- Home -->
+      <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+      <!-- About -->
+      <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Dropdown -->
+<div class="nav-item dropdown">
+
+  <span class="dropdown-toggle"
+        role="button"
+        aria-haspopup="true"
+        tabindex="0"
+        data-en="Programs ⬇︎"
+        data-zh="项目 ⬇︎"> 
+  </span> 
+
+  <div class="dropdown-menu">
+    <a href="education.html"
+       id="navEduCenter"
+       data-en="EduCenter"
+       data-zh="教育中心">
+      EduCenter
+    </a>
+
+    <a href="community.html"
+       id="navEduCommunity"
+       data-en="EduCommunity"
+       data-zh="教育社区">
+      EduCommunity
+    </a>
+
+    <a href="forum.html"
+       id="navForum"
+       data-en="EduForum"
+       data-zh="教育论坛">
+      EduForum 
+    </a>
+
+    <a href="events.html" data-en="Events" data-zh="活动"> Events</a>
+    
+  </div>
+
+</div>
+
+      <!-- Services -->
+      <a href="/index.html#services" data-en="Services" data-zh="服务">Services</a>
+
+      <!-- Membership -->
+     <a href="membership.html" id="navMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+      <!-- Get Involved Dropdown -->
+<div class="nav-item dropdown">
+  <span class="dropdown-toggle" role="button" aria-haspopup="true" tabindex="0"
+        data-en="Get Involved ⬇︎" data-zh="参与方式 ⬇︎">
+   
+</span>
+
+  <div class="dropdown-menu">
+    <a href="volunteer.html"
+       data-en="Volunteer"
+       data-zh="志愿者">
+      Volunteer
+    </a>
+
+    <a href="donation.html"
+       data-en="Donation"
+       data-zh="捐赠">
+      Donation
+    </a>
+
+    <a href="scholarship.html"
+       data-en="scholarship"
+       data-zh="奖学金">
+      scholarship
+    </a>
+
+    <a href="/index.html#resources"
+       data-en="Resources"
+       data-zh="资源">
+      Resources
+    </a>
+  </div>
+</div>
+
+      <!-- Contact -->
+      <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+      <!-- Login -->
+     <a href="login.html" id="desktopAuth" data-en="Login" data-zh="登录">Login</a>
+
+      <!-- Slide underline -->
+      <span class="nav-underline"></span>
+    </div>
+
+    <!-- Right side -->
+    <div class="nav-right">
+      <button id="langToggle" class="lang-toggle" aria-label="Language toggle">
+        中文
+      </button>
+
+      <button id="hamburger" class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile slide menu -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <!-- Home -->
+    <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+    <!-- About -->
+    <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Programs" data-zh="项目">Programs</summary>
+      <a href="education.html" id="mobileEduCenter" data-en="EduCenter" data-zh="教育中心">EduCenter</a>
+      <a href="community.html" id="mobileEduCommunity" data-en="EduCommunity" data-zh="教育社区">EduCommunity</a>
+      <a href="forum.html" id="mobileForum" data-en="EduForum" data-zh="教育论坛">EduForum</a>
+      <a href="events.html" data-en="Events" data-zh="活动">Events</a>
+    </details>
+
+    <!-- Service -->
+    <a href="/index.html#services" data-en="Service" data-zh="服务">Service</a>
+
+    <!-- Membership -->
+    <a href="membership.html" id="mobileMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+    <!-- Get Involved Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Get Involved" data-zh="参与方式">Get Involved</summary>
+      <a href="volunteer.html" data-en="Volunteer" data-zh="志愿者">Volunteer</a>
+      <a href="donation.html" data-en="Donation" data-zh="捐赠">Donation</a>
+      <a href="scholarship.html"
+       data-en="scholarship"
+       data-zh="奖学金">
+      scholarship
+    </a>
+      <a href="/index.html#resources" data-en="Resources" data-zh="资源">Resources</a>
+    </details>
+
+    <!-- Contact -->
+    <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+    <!-- Login -->
+    <a href="login.html" id="mobileAuth" data-en="Login" data-zh="登录">Login</a>
+
+    <!-- Mobile action buttons -->
+    <div class="mobile-actions">
+      <button class="btn btn-ghost" id="mobileRegister" data-en="Register/Join" data-zh="注册/加入">
+        Register / Join
+      </button>
+      <button class="btn" id="mobileUnlock" data-en="Unlock Education" data-zh="解锁教育">
+        Unlock Education
+      </button>
+    </div>
+  </div>
+</nav>
+  </div>
+
+  <!-- ✅ 1) 主体整体下移（给主菜单留空间） -->
+  <div class="main-offset" id="top">
+
+    <!-- ✅ 2) 四个区域：zone-a/b/c/d -->
+    <!-- zone-a：标题与简介 -->
+    <section class="zone zone-a">
+      <main class="page-wrap">
+        <header class="policy-hero">
+          <h1 class="policy-title" data-en="Privacy Policy" data-zh="隐私政策">Privacy Policy</h1>
+          <p class="policy-subtitle"
+             data-en="This Privacy Policy explains how we collect, use, and protect your information when you use our website and services."
+             data-zh="本隐私政策说明当您使用我们的网站与服务时，我们如何收集、使用并保护您的信息。">
+            This Privacy Policy explains how we collect, use, and protect your information when you use our website and services.
+          </p>
+
+          <div class="meta-row">
+            <span class="pill" data-en="Effective date:" data-zh="生效日期：">Effective date:</span>
+            <span class="pill" id="effectiveDate">2026-02-08</span>
+            <span class="pill" data-en="Contact: team@edunovafdn.org" data-zh="联系邮箱：team@edunovafdn.org">Contact: team@edunovafdn.org</span>
+          </div>
+        </header>
+      </main>
+    </section>
+
+    <!-- zone-b：目录 -->
+    <section class="zone zone-b">
+      <main class="page-wrap">
+        <section class="card">
+          <div class="section" style="margin-top:0;">
+            <h2 data-en="Contents" data-zh="目录">Contents</h2>
+            <div class="toc">
+              <a href="#info-we-collect" data-en="1. Information We Collect" data-zh="1. 我们收集的信息">1. Information We Collect</a>
+              <a href="#how-we-use" data-en="2. How We Use Information" data-zh="2. 信息的使用方式">2. How We Use Information</a>
+              <a href="#cookies" data-en="3. Cookies & Similar Technologies" data-zh="3. Cookie 与类似技术">3. Cookies & Similar Technologies</a>
+              <a href="#sharing" data-en="4. Sharing & Disclosure" data-zh="4. 信息共享与披露">4. Sharing & Disclosure</a>
+              <a href="#security" data-en="5. Data Security" data-zh="5. 数据安全">5. Data Security</a>
+              <a href="#retention" data-en="6. Data Retention" data-zh="6. 数据保留期限">6. Data Retention</a>
+              <a href="#your-rights" data-en="7. Your Rights & Choices" data-zh="7. 您的权利与选择">7. Your Rights & Choices</a>
+              <a href="#children" data-en="8. Children’s Privacy" data-zh="8. 儿童隐私">8. Children’s Privacy</a>
+              <a href="#changes" data-en="9. Changes to This Policy" data-zh="9. 政策更新">9. Changes to This Policy</a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </section>
+
+    <!-- zone-c：主体条款（主要内容） -->
+    <section class="zone zone-c">
+      <main class="page-wrap">
+
+        <section class="card section" id="info-we-collect">
+          <h2 data-en="1. Information We Collect" data-zh="1. 我们收集的信息">1. Information We Collect</h2>
+          <p data-en="We collect information you provide directly, such as your name, email address, and any details you submit through forms."
+             data-zh="我们会收集您主动提供的信息，例如姓名、邮箱地址，以及您通过表单提交的内容。">
+            We collect information you provide directly, such as your name, email address, and any details you submit through forms.
+          </p>
+          <p data-en="We may also collect basic technical information when you access the site, such as browser type, device information, and approximate location (e.g., country/region), mainly for security and analytics."
+             data-zh="当您访问网站时，我们也可能收集基础技术信息，例如浏览器类型、设备信息、粗略位置（国家/地区级别），主要用于安全与统计分析。">
+            We may also collect basic technical information when you access the site, such as browser type, device information, and approximate location (e.g., country/region), mainly for security and analytics.
+          </p>
+          <ul>
+            <li data-en="Account data (if you create an account): email, password hash, verification status."
+                data-zh="账户数据（如您创建账户）：邮箱、密码哈希、验证状态。">
+              Account data (if you create an account): email, password hash, verification status.
+            </li>
+            <li data-en="Form submissions: any information you enter into registration or contact forms."
+                data-zh="表单提交：您在注册/联系表单中填写的信息。">
+              Form submissions: any information you enter into registration or contact forms.
+            </li>
+          </ul>
+        </section>
+
+        <section class="card section" id="how-we-use">
+          <h2 data-en="2. How We Use Information" data-zh="2. 信息的使用方式">2. How We Use Information</h2>
+          <ul>
+            <li data-en="To provide and improve our services, including responding to requests and delivering content."
+                data-zh="用于提供与改进服务，包括响应请求与交付内容。">
+              To provide and improve our services, including responding to requests and delivering content.
+            </li>
+            <li data-en="To maintain account security (e.g., email verification, session management)."
+                data-zh="用于账户安全（如邮箱验证、会话管理）。">
+              To maintain account security (e.g., email verification, session management).
+            </li>
+            <li data-en="To send service-related emails (verification, updates, important notices)."
+                data-zh="发送与服务相关的邮件（验证、更新、重要通知）。">
+              To send service-related emails (verification, updates, important notices).
+            </li>
+          </ul>
+        </section>
+
+        <section class="card section" id="cookies">
+          <h2 data-en="3. Cookies & Similar Technologies" data-zh="3. Cookie 与类似技术">3. Cookies & Similar Technologies</h2>
+          <p data-en="We may use cookies or similar technologies to keep you signed in, remember preferences (such as language), and improve site performance."
+             data-zh="我们可能使用 Cookie 或类似技术用于保持登录状态、记住偏好（如语言）、提升网站性能。">
+            We may use cookies or similar technologies to keep you signed in, remember preferences (such as language), and improve site performance.
+          </p>
+          <p data-en="You can control cookies through your browser settings. Disabling cookies may affect certain features (e.g., login)."
+             data-zh="您可以通过浏览器设置管理 Cookie。禁用 Cookie 可能影响部分功能（如登录）。">
+            You can control cookies through your browser settings. Disabling cookies may affect certain features (e.g., login).
+          </p>
+        </section>
+
+        <section class="card section" id="sharing">
+          <h2 data-en="4. Sharing & Disclosure" data-zh="4. 信息共享与披露">4. Sharing & Disclosure</h2>
+          <p data-en="We do not sell your personal information. We may share limited information with service providers (e.g., email delivery) strictly to operate our services."
+             data-zh="我们不会出售您的个人信息。我们可能会与服务提供商（如邮件发送）共享有限信息，且仅用于服务运行。">
+            We do not sell your personal information. We may share limited information with service providers (e.g., email delivery) strictly to operate our services.
+          </p>
+          <p data-en="We may also disclose information when required by law, or to protect the security and integrity of our services."
+             data-zh="在法律要求或为保护服务安全与完整性时，我们也可能披露相关信息。">
+            We may also disclose information when required by law, or to protect the security and integrity of our services.
+          </p>
+        </section>
+
+        <section class="card section" id="security">
+          <h2 data-en="5. Data Security" data-zh="5. 数据安全">5. Data Security</h2>
+          <p data-en="We take reasonable measures to protect your data, including encryption in transit (HTTPS) and access controls. No method of transmission is 100% secure."
+             data-zh="我们采取合理措施保护您的数据，包括传输加密（HTTPS）与访问控制。但任何传输方式都无法保证 100% 安全。">
+            We take reasonable measures to protect your data, including encryption in transit (HTTPS) and access controls. No method of transmission is 100% secure.
+          </p>
+        </section>
+
+        <section class="card section" id="retention">
+          <h2 data-en="6. Data Retention" data-zh="6. 数据保留期限">6. Data Retention</h2>
+          <p data-en="We retain personal information only as long as necessary to provide services, comply with legal obligations, and resolve disputes."
+             data-zh="我们仅在提供服务、遵守法律义务与解决争议所必需的期限内保留个人信息。">
+            We retain personal information only as long as necessary to provide services, comply with legal obligations, and resolve disputes.
+          </p>
+        </section>
+
+        <section class="card section" id="your-rights">
+          <h2 data-en="7. Your Rights & Choices" data-zh="7. 您的权利与选择">7. Your Rights & Choices</h2>
+          <ul>
+            <li data-en="Access, update, or correct your personal information (where applicable)."
+                data-zh="访问、更新或更正您的个人信息（如适用）。">
+              Access, update, or correct your personal information (where applicable).
+            </li>
+            <li data-en="Request deletion of your account data, subject to legal or operational requirements."
+                data-zh="在法律或运营要求允许的范围内，申请删除账户数据。">
+              Request deletion of your account data, subject to legal or operational requirements.
+            </li>
+            <li data-en="Opt out of non-essential communications where available."
+                data-zh="在可用时，选择退出非必要通信。">
+              Opt out of non-essential communications where available.
+            </li>
+          </ul>
+          <p data-en="To make a request, contact us at team@edunovafdn.org."
+             data-zh="如需提出请求，请联系 team@edunovafdn.org。">
+            To make a request, contact us at team@edunovafdn.org.
+          </p>
+        </section>
+
+        <section class="card section" id="children">
+          <h2 data-en="8. Children’s Privacy" data-zh="8. 儿童隐私">8. Children’s Privacy</h2>
+          <p data-en="Our services are not directed to children under 13. If you believe a child has provided personal information, please contact us."
+             data-zh="我们的服务不面向 13 岁以下儿童。如您认为儿童提供了个人信息，请联系我们。">
+            Our services are not directed to children under 13. If you believe a child has provided personal information, please contact us.
+          </p>
+        </section>
+
+      </main>
+    </section>
+
+    <!-- zone-d：结尾与返回顶部 -->
+    <section class="zone zone-d">
+      <main class="page-wrap">
+        <section class="card section" id="changes" style="margin-top:0;">
+          <h2 data-en="9. Changes to This Policy" data-zh="9. 政策更新">9. Changes to This Policy</h2>
+          <p data-en="We may update this policy from time to time. We will post the updated version on this page and update the effective date."
+             data-zh="我们可能会不时更新本政策。更新版本将发布在本页面，并同步更新生效日期。">
+            We may update this policy from time to time. We will post the updated version on this page and update the effective date.
+          </p>
+          <a class="toplink" href="#top" data-en="↑ Back to top" data-zh="↑ 返回顶部">↑ Back to top</a>
+        </section>
+      </main>
+    </section>
+
+  </div>
+
+
+  <div id="siteFooter">
+   <!-- Footer (reuse your site footer if you have one) -->
+   <!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+
+    <!-- Column 1 -->
+    <div class="footer-col">
+      <h4>Edunova</h4>
+      <a href="apply.html" target="_blank"
+         data-en="Apply for Services"
+         data-zh="申请服务">
+        申请服务
+      </a>
+      <a href="membership.html"
+         data-en="Membership"
+         data-zh="会员中心">
+        会员中心
+      </a>
+    </div>
+
+    <!-- Column 2 -->
+    <div class="footer-col">
+      <h4 data-en="Education & Fund" data-zh="教育与基金">
+        教育与基金
+      </h4>
+      <a href="/home#resources"
+         data-en="Resources"
+         data-zh="学习资源">
+        学习资源
+      </a>
+      <a href="https://www.lsfinova.com/aid" target="_blank"
+         data-en="Aid Calculator"
+         data-zh="教育资助计算器">
+        教育资助计算器
+      </a>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="footer-col">
+      <h4 data-en="Contact" data-zh="联系我们">
+        联系我们
+      </h4>
+      <div class="muted"
+           data-en="Phone: 1-916-793-0676 (Text)"
+           data-zh="电话 / 短信：1-916-793-0676">
+        电话 / 短信：1-916-793-0676
+      </div>
+      <div class="muted"
+           data-en="WeChat: Leon_Song_PhD"
+           data-zh="微信：Leon_Song_PhD">
+        微信：Leon_Song_PhD
+      </div>
+    </div>
+
+    <!-- Column 4 -->
+    <div class="footer-col">
+      <h4 data-en="Legal" data-zh="法律信息">
+        法律信息
+      </h4>
+      <a href="privacy.html"
+         data-en="Privacy Policy"
+         data-zh="隐私政策">
+        隐私政策
+      </a>
+      <a href="terms.html"
+         data-en="Terms of Service"
+         data-zh="服务条款">
+        服务条款
+      </a>
+    </div>
+
+  </div>
+
+  <div class="footer-copy"
+       data-en="© 2025 Edunova Foundation. All rights reserved."
+       data-zh="© 2025 Edunova Foundation 版权所有">
+    © 2025 Edunova — LSFinova 版权所有
+  </div>
+</footer>
+  </div>
+
+  <script>
+    // 与你现有语言系统兼容：如果页面已有 applyLanguage/refreshLang，会自动调用
+    (function () {
+      const lang = localStorage.getItem("superedu-lang") === "zh" ? "zh" : "en";
+      document.documentElement.lang = lang;
+
+      if (typeof window.applyLanguage === "function") {
+        window.applyLanguage();
+        return;
+      }
+
+      const nodes = document.querySelectorAll("[data-en][data-zh]");
+      nodes.forEach(el => {
+        el.textContent = (lang === "zh") ? el.getAttribute("data-zh") : el.getAttribute("data-en");
+      });
+    })();
+  </script>
+</body>
+</html>
