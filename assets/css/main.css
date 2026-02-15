@@ -1711,3 +1711,15 @@ body.register-page .register-card {
 .field-hint.success{
   color: #15803d;
 }
+
+/* 统一降低中文字体视觉重量 */
+html:lang(zh) h1,
+html:lang(zh) h2,
+html:lang(zh) h3,
+html:lang(zh) h4,
+html:lang(zh) p,
+html:lang(zh) li,
+html:lang(zh) span,
+html:lang(zh) a {
+  font-weight: 400;
+}
