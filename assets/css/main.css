@@ -117,7 +117,7 @@ section .section-inner {
   padding: 0 20px;   /* 内容左右内边距 */
 }
 
-.section-title{font-size:30px;font-weight:800;color:var(--#5A47E0);text-align:center;margin:0}
+.section-title{font-size:30px;font-weight:560;color:var(#5A47E0);text-align:center;margin:0}
 .section-sub{text-align:center;color:var(--muted);margin-top:8px;margin-bottom:28px}
 
 /* services grid */
@@ -1713,12 +1713,3 @@ body.register-page .register-card {
 }
 
 
-/* 只调整正文区块标题，不动菜单 */
-.section-title{
-  font-weight: 600;   /* 先给英文也稍微柔一点（原来可能 700/800） */
-}
-
-/* 中文模式下更细一点（500 通常最舒服） */
-body.is-zh .section-title{
-  font-weight: 500;
-}
