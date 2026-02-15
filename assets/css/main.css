@@ -1713,12 +1713,12 @@ body.register-page .register-card {
 }
 
 
-html[lang^="zh"] {
-  font-family:
-    "PingFang SC",
-    "Noto Sans SC",
-    "Source Han Sans SC",
-    "Microsoft YaHei UI",
-    "Microsoft YaHei",
-    system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+/* 只调整正文区块标题，不动菜单 */
+.section-title{
+  font-weight: 600;   /* 先给英文也稍微柔一点（原来可能 700/800） */
+}
+
+/* 中文模式下更细一点（500 通常最舒服） */
+body.is-zh .section-title{
+  font-weight: 500;
 }
