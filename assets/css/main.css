@@ -1713,14 +1713,26 @@ body.register-page .register-card {
 }
 
 
-.policy-title{
-  font-weight: 600;   /* 英文 */
-}
+/* 强制中文使用更优雅字体 */
+body.is-zh,
+body.is-zh h1,
+body.is-zh h2,
+body.is-zh h3,
+body.is-zh h4,
+body.is-zh p,
+body.is-zh span,
+body.is-zh li {
 
-body.is-zh .policy-title{
-  font-weight: 500;   /* 中文更轻 */
-}
+  font-family:
+    "PingFang SC",
+    "Noto Sans SC",
+    "Source Han Sans SC",
+    "Microsoft YaHei UI",
+    sans-serif;
 
-.policy-subtitle{
   font-weight: 400;
+}
+body.is-zh .section-title,
+body.is-zh .policy-title {
+  font-weight: 500;
 }
