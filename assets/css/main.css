@@ -1712,8 +1712,3 @@ body.register-page .register-card {
   color: #15803d;
 }
 
-body.is-zh{
-  font-family: "Noto Sans SC", sans-serif;
-}
-body.is-zh .policy-title{ font-weight: 500; }
-body.is-zh .section-title{ font-weight: 500; }
