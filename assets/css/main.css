@@ -1712,27 +1712,8 @@ body.register-page .register-card {
   color: #15803d;
 }
 
-
-/* 强制中文使用更优雅字体 */
-body.is-zh,
-body.is-zh h1,
-body.is-zh h2,
-body.is-zh h3,
-body.is-zh h4,
-body.is-zh p,
-body.is-zh span,
-body.is-zh li {
-
-  font-family:
-    "PingFang SC",
-    "Noto Sans SC",
-    "Source Han Sans SC",
-    "Microsoft YaHei UI",
-    sans-serif;
-
-  font-weight: 400;
+body.is-zh{
+  font-family: "Noto Sans SC", sans-serif;
 }
-body.is-zh .section-title,
-body.is-zh .policy-title {
-  font-weight: 500;
-}
+body.is-zh .policy-title{ font-weight: 500; }
+body.is-zh .section-title{ font-weight: 500; }
