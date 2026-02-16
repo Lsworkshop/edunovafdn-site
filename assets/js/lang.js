@@ -5,7 +5,7 @@
     const isEN = lang === "en";
 
     // ① 切换全站 data-en/data-zh 元素（菜单 & 通用）
-    document.querySelectorAll("[data-en]").forEach(el => {
+    document.querySelectorAll("[data-en][data-zh]").forEach(el => {
       // 对 input/textarea placeholder 特殊处理
       if ((el.tagName === "INPUT" || el.tagName === "TEXTAREA") && el.hasAttribute("placeholder")) {
         el.placeholder = isEN ? el.dataset.en : el.dataset.zh;
