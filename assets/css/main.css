@@ -1713,3 +1713,14 @@ body.register-page .register-card {
 }
 
 
+.policy-title{
+  font-weight: 600;   /* 英文 */
+}
+
+body.is-zh .policy-title{
+  font-weight: 500;   /* 中文更轻 */
+}
+
+.policy-subtitle{
+  font-weight: 400;
+}
