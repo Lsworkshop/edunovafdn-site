@@ -44,10 +44,10 @@ nav#topNav.nav--solid{background:rgba(255,255,255,0.96);border-bottom:1px solid 
 nav .nav-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
 .brand{display:flex;align-items:center;gap:12px}
 .logo-img{height:36px;width:auto;border-radius:8px;padding:4px;background:#fff}
-.brand-text{font-weight:700;color:var(--brand-2);font-size:18px;line-height:1;transform:translateY(-2px)} /* lift text a bit to align with logo */
+.brand-text{font-weight:560;color:var(--brand-2);font-size:18px;line-height:1;transform:translateY(-2px)} /* lift text a bit to align with logo */
 
 .menu{display:flex;gap:8px;align-items:center}
-.menu a{padding:6px 12px;border-radius:8px;font-weight:600;color:#222;transition:all .15s}
+.menu a{padding:6px 12px;border-radius:8px;font-weight:580;color:#222;transition:all .15s}
 .menu a:hover{color:var(--brand-1);transform:translateY(-1px)}
 .nav-right{display:flex;align-items:center;gap:12px}
 .lang-toggle{padding:8px 12px;border-radius:10px;border:1px solid rgba(0,0,0,0.08);background:#fff;cursor:pointer}
@@ -68,15 +68,15 @@ nav .nav-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:cent
 /* HERO */
 .hero{max-width:var(--maxw);margin:0 auto;padding:140px 20px 80px;display:grid;grid-template-columns:1fr 460px;gap:36px;align-items:center}
 .hero-left{}
-.hero-title{font-size:44px;line-height:1.08;margin:0 0 12px;font-weight:800}
+.hero-title{font-size:44px;line-height:1.08;margin:0 0 12px;font-weight:560}
 .hero-desc{color:var(--muted);margin:0 0 18px;font-size:16px;max-width:640px}
 .hero-ctas{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.btn{cursor:pointer;border-radius:12px;padding:12px 18px;font-weight:700;transition:all .15s;display:inline-block}
+.btn{cursor:pointer;border-radius:12px;padding:12px 18px;font-weight:580;transition:all .15s;display:inline-block}
 .btn-primary{background:var(--grad);color:#fff;border:0;box-shadow:0 8px 28px rgba(75,137,255,0.14)}
 .btn-outline{background:transparent;border:2px solid var(--brand-1);color:var(--brand-1)}
-.btn-link{background:transparent;border:0;color:var(--brand-2);font-weight:700}
+.btn-link{background:transparent;border:0;color:var(--brand-2);font-weight:580}
 .hero-subitems{margin-top:14px;display:flex;gap:12px;flex-wrap:wrap}
-.sub-link{color:var(--muted);font-weight:600}
+.sub-link{color:var(--muted);font-weight:550}
 
 /* hero graphic */
 
@@ -191,7 +191,7 @@ section .section-inner {
 
 /* resources */
 .resources-grid{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
-.resource-pill{padding:10px 14px;border-radius:10px;background:linear-gradient(180deg,#fff,#FAF5E9);border:1px solid rgba(0,0,0,0.04);color:var(--brand-2);font-weight:700}
+.resource-pill{padding:10px 14px;border-radius:10px;background:linear-gradient(180deg,#fff,#FAF5E9);border:1px solid rgba(0,0,0,0.04);color:var(--brand-2);font-weight:560}
 
 /* footer */
 footer{background:#0f1724;color:#cbd5e1;padding:40px 20px;margin-top:40px}
@@ -498,7 +498,7 @@ section .section-inner {
 .hero-title {
   font-family: 'Noto Sans SC', sans-serif;
   font-size: 42px;
-  font-weight: 700;
+  font-weight: 560;
   letter-spacing: 1.1px;
   line-height: 1.32;
   text-align: center;
@@ -939,7 +939,7 @@ body.page-thankyou{
 
 .contact-form-title {
   font-size: 20px;
-  font-weight: 700;
+  font-weight: 560;
   margin-bottom: 16px;
   color: var(--brand-2); /* 与卡片标题颜色一致 */
 }
