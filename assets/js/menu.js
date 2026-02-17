@@ -171,80 +171,62 @@ window.addEventListener('load', () => {
   });
 });
 
-
-
 async function syncAuthNav() {
   const desktopAuth = document.getElementById("navAuth");
-  const mobileAuth  = document.getElementById("mobileAuth");
+  const mobileAuth = document.getElementById("mobileAuth");
 
-  // 兼容 /membership.html 和 membership.html（你现在 ns 架构下很有用）
-  const desktopMembership = document.querySelector('a[href="/membership.html"], a[href="membership.html"]');
-  const mobileMembership  = document.querySelector('#mobileMenu a[href="/membership.html"], #mobileMenu a[href="membership.html"]');
-
-  const lang = localStorage.getItem("superedu-lang") || "en";
+  // 可选：Membership 改 Dashboard
+  const desktopMembership = document.querySelector('a[href="/membership.html"]');
+  const mobileMembership  = document.querySelector('#mobileMenu a[href="/membership.html"]');
 
   try {
     const res = await fetch("/api/me", { credentials: "include" });
-
-    // 防止不是 JSON 导致 throw
-    let data = null;
-    try { data = await res.json(); } catch (_) {}
+    const data = await res.json();
 
     const loggedIn = res.ok && data && data.success;
 
     if (loggedIn) {
-      // Login -> Logout（只写 dataset，不写 textContent）
+      // Login -> Logout
       if (desktopAuth) {
         desktopAuth.href = "/logout.html";
+        desktopAuth.textContent = (localStorage.getItem("superedu-lang") === "zh") ? "退出" : "Logout";
         desktopAuth.dataset.en = "Logout";
         desktopAuth.dataset.zh = "退出";
       }
       if (mobileAuth) {
         mobileAuth.href = "/logout.html";
+        mobileAuth.textContent = (localStorage.getItem("superedu-lang") === "zh") ? "退出" : "Logout";
         mobileAuth.dataset.en = "Logout";
         mobileAuth.dataset.zh = "退出";
       }
 
-      // Membership -> Dashboard
+      // Membership -> Dashboard（如果你决定）
       if (desktopMembership) {
         desktopMembership.href = "/dashboard.html";
+        desktopMembership.textContent = (localStorage.getItem("superedu-lang") === "zh") ? "会员主页" : "Dashboard";
         desktopMembership.dataset.en = "Dashboard";
         desktopMembership.dataset.zh = "会员主页";
       }
       if (mobileMembership) {
         mobileMembership.href = "/dashboard.html";
+        mobileMembership.textContent = (localStorage.getItem("superedu-lang") === "zh") ? "会员主页" : "Dashboard";
         mobileMembership.dataset.en = "Dashboard";
         mobileMembership.dataset.zh = "会员主页";
       }
-    } else {
-      // 未登录：确保 Login 的中英文数据存在（防止被别的脚本覆盖）
-      if (desktopAuth) {
-        desktopAuth.href = "/login.html";
-        desktopAuth.dataset.en = "Login";
-        desktopAuth.dataset.zh = "登录";
-      }
-      if (mobileAuth) {
-        mobileAuth.href = "/login.html";
-        mobileAuth.dataset.en = "Login";
-        mobileAuth.dataset.zh = "登录";
-      }
 
-      // （可选）未登录时如果要把 Dashboard 改回 Membership，也在这里写 dataset
-      // if (desktopMembership) { desktopMembership.href="/membership.html"; desktopMembership.dataset.en="Membership"; desktopMembership.dataset.zh="会员中心"; }
-      // if (mobileMembership)  { mobileMembership.href="/membership.html";  mobileMembership.dataset.en="Membership"; mobileMembership.dataset.zh="会员中心"; }
+    } else {
+      // 未登录：保持 Login
+      // （可按需把 Dashboard/会员改回 Membership）
     }
 
-    // ✅ 菜单最终显示由 lang.js 决定
-    window.applyLanguage?.(lang);
+    window.applyLanguage?.(localStorage.getItem("superedu-lang") || "en");
 
   } catch (e) {
-    // ✅ 网络失败也做一次兜底渲染
-    window.applyLanguage?.(lang);
+    // 网络/解析异常：不改变导航
   }
 }
 
 document.addEventListener("DOMContentLoaded", syncAuthNav);
-
 
 /* =========================================================
    Touch Dropdown Support (iPad / touch devices)
