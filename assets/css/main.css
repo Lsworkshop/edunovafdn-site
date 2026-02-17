@@ -1325,7 +1325,7 @@ body.register-page .register-card {
 /* Hover 时强调标题（不位移） */
 .core-card:hover .core-card-header h3 {
   color:#6E4BFF;
-  font-weight: 600;
+  font-weight: 550;
   letter-spacing: 0.2px;
 }
 
