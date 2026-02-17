@@ -371,7 +371,7 @@ section h2.section-title {
 
 /* ICON sizing + spacing for section and card icons */
 .section-title-wrapper { text-align:center; margin-bottom:12px; position:relative; }
-.section-title-icon { width:68px; height:68px; display:block; margin:0 auto 10px; }
+.section-title-icon { font-weight: 500; width:68px; height:68px; display:block; margin:0 auto 10px; }
 .section-title-wrapper h2 { margin-top: 6px; font-size:28px; }
 
 /* card icon (left of title) - keep compact and vertically centered */
@@ -474,6 +474,7 @@ section .section-inner {
 .registration-card h3 .sub-icon,
 .unlock-card h3 .sub-icon,
 .apply-card h3 .sub-icon {
+  font-weight: 400;
   width: 38px;     /* 你可以设为 16px / 18px / 20px */
   height: 38px;
   flex: 0 0 38px;
