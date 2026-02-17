@@ -371,8 +371,8 @@ section h2.section-title {
 
 /* ICON sizing + spacing for section and card icons */
 .section-title-wrapper { text-align:center; margin-bottom:12px; position:relative; }
-.section-title-icon { font-weight: 500; width:68px; height:68px; display:block; margin:0 auto 10px; }
-.section-title-wrapper h2 { margin-top: 6px; font-size:28px; }
+.section-title-icon { width:68px; height:68px; display:block; margin:0 auto 10px; }
+.section-title-wrapper h2 { margin-top: 6px; font-size:28px; font-weight: 500; }
 
 /* card icon (left of title) - keep compact and vertically centered */
 .service-card { display:flex; gap:12px; align-items:flex-start; padding:16px; }
