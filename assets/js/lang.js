@@ -1,26 +1,31 @@
-// lang.js — stable i18n + keep language + no double-click
+// lang.js — FINAL STABLE (persist + one-click toggle + auto re-apply after nav updates)
 (function () {
-  // 防止同一页面重复加载 lang.js 导致绑定两次事件
   if (window.__SUPEREDU_LANG_INIT__) return;
   window.__SUPEREDU_LANG_INIT__ = true;
 
   const STORAGE_KEY = "superedu-lang";
   const VALID = new Set(["en", "zh"]);
 
-  function getSavedLang() {
+  function getLang() {
     const v = localStorage.getItem(STORAGE_KEY);
     return VALID.has(v) ? v : "en";
   }
 
+  function setLang(v) {
+    const lang = VALID.has(v) ? v : "en";
+    localStorage.setItem(STORAGE_KEY, lang);
+    return lang;
+  }
+
   function applyLanguage(lang) {
-    const L = VALID.has(lang) ? lang : "en";
+    const L = VALID.has(lang) ? lang : getLang();
     const isEN = L === "en";
 
-    // 同步 html lang + body class（给你的中文字体 CSS 用）
+    // 同步 html lang + body class（供你的中文字体 CSS 使用）
     document.documentElement.lang = isEN ? "en" : "zh";
     if (document.body) document.body.classList.toggle("is-zh", !isEN);
 
-    // ① 切换全站 data-en/data-zh 元素
+    // ① 切换 data-en/data-zh
     document.querySelectorAll("[data-en][data-zh]").forEach((el) => {
       if (
         (el.tagName === "INPUT" || el.tagName === "TEXTAREA") &&
@@ -32,7 +37,7 @@
       }
     });
 
-    // ② 切换 id 结尾 -en / -zh（Education 专用）
+    // ② 切换 -en/-zh 内容块
     document.querySelectorAll("[id$='-en']").forEach((el) => {
       el.style.display = isEN ? "block" : "none";
     });
@@ -40,43 +45,69 @@
       el.style.display = isEN ? "none" : "block";
     });
 
-    // ③ 同步语言按钮文字（显示“切换到另一种语言”）
-    const toggleBtn = document.getElementById("langToggle");
-    if (toggleBtn) toggleBtn.textContent = isEN ? "中文" : "EN";
+    // ③ 同步按钮文字
+    const btn = document.getElementById("langToggle");
+    if (btn) btn.textContent = isEN ? "中文" : "EN";
   }
 
-  // ✅ 暴露给 menu.js / 其他脚本调用
+  // 暴露给 menu.js 等使用
   window.applyLanguage = applyLanguage;
 
-  // —— 初始化：DOM 就绪后再做一次（避免菜单/组件后插入时漏翻译）
-  document.addEventListener("DOMContentLoaded", () => {
-    const saved = getSavedLang();
-    applyLanguage(saved);
+  // --- 初始化（不依赖脚本顺序）
+  function initApply() {
+    applyLanguage(getLang());
+  }
 
-    // ④ 清空 textarea，保证 placeholder 正常显示
-    document.querySelectorAll("textarea").forEach((t) => (t.value = ""));
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initApply);
+  } else {
+    initApply();
+  }
 
-    // ✅ 用事件委托绑定语言切换（不怕按钮被重渲染/替换）
-    document.addEventListener("click", (e) => {
+  // --- 一次点击必生效：捕获阶段拦截 langToggle 点击
+  document.addEventListener(
+    "click",
+    (e) => {
       const btn = e.target && e.target.closest && e.target.closest("#langToggle");
       if (!btn) return;
 
-      const current = getSavedLang();
-      const next = current === "en" ? "zh" : "en";
-      localStorage.setItem(STORAGE_KEY, next);
+      // 关键：避免被 mobile menu / dropdown 等 click 逻辑抢走
+      e.preventDefault();
+      e.stopPropagation();
+      e.stopImmediatePropagation();
 
-      // 立刻切换
+      const next = getLang() === "en" ? "zh" : "en";
+      setLang(next);
       applyLanguage(next);
+    },
+    true // ✅ capture
+  );
 
-      // ✅ 兜底：有些页面/脚本会在你点击后异步改菜单文字
-      // 让它们改完后我们再把语言渲染回去，避免“要点两次”
-      setTimeout(() => applyLanguage(next), 0);
-      setTimeout(() => applyLanguage(next), 120);
+  // --- 兜底：如果 nav/menu 被后续脚本重绘，自动重新应用语言（解决“要点两次”）
+  function watchAndReapply(selector) {
+    const root = document.querySelector(selector);
+    if (!root) return null;
+
+    let raf = 0;
+    const obs = new MutationObserver(() => {
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => applyLanguage(getLang()));
     });
-  });
+    obs.observe(root, { childList: true, subtree: true, characterData: true });
+    return obs;
+  }
 
-  // 某些浏览器从 bfcache 返回页面时，DOMContentLoaded 不再触发：这里兜底一次
-  window.addEventListener("pageshow", () => {
-    applyLanguage(getSavedLang());
-  });
+  // 重点盯住菜单区域（按你项目常见 id）
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", () => {
+      watchAndReapply("#topNav");
+      watchAndReapply("#mobileMenu");
+    });
+  } else {
+    watchAndReapply("#topNav");
+    watchAndReapply("#mobileMenu");
+  }
+
+  // bfcache 返回也保持语言
+  window.addEventListener("pageshow", () => applyLanguage(getLang()));
 })();
