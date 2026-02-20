@@ -615,7 +615,8 @@ nav#topNav.nav--solid {
 
   /* Tools CTA spacing — ensure the two webinar buttons are not touching */
   .cta-row { display:flex; gap:12px; flex-direction:column; align-items:stretch; }
-  .cta-row .btn { margin-bottom: 8px; }
+  .cta-row .btn { margin-bottom: 12px; }
+  .cta-row.btn { width:100%; }
 
   /* Hero CTA spacing */
   .hero-ctas { gap: 10px; flex-direction:column; align-items:stretch; }
