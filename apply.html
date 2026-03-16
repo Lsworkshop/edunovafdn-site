@@ -212,8 +212,8 @@
 </style>
 
 <link rel="stylesheet" href="/assets/css/main.css">
-<script src="/assets/js/lang.js" defer></script>
 <script src="/assets/js/menu.js" defer></script>
+<script src="/assets/js/lang.js" defer></script>
 <script src="/assets/js/access.js" defer></script>
 
 
@@ -650,25 +650,6 @@ localStorage.setItem(
     console.error(err);
     status.innerText = lang === 'en' ? 'Submission failed' : '提交失败';
   }
-});
-
-
-document.addEventListener('DOMContentLoaded', () => {
-
-  renderServices();
-
-  const langBtn = document.getElementById('langToggle');
-
-  if(langBtn){
-    langBtn.addEventListener('click', () => {
-
-      setTimeout(() => {
-        renderServices();
-      }, 100);
-
-    });
-  }
-
 });
 </script>
 <script src="/assets/js/auth-nav.js" defer></script>
