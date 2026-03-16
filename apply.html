@@ -654,8 +654,22 @@ localStorage.setItem(
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  renderServices();   // ⭐ 初始化服务列表
-  setLang(lang);      // ⭐ 初始化语言
+  renderServices();
+
+  const langBtn = document.getElementById('langToggle');
+
+  if(langBtn){
+    langBtn.addEventListener('click', () => {
+
+      setTimeout(() => {
+
+        lang = localStorage.getItem('superedu-lang') || 'en';
+        renderServices();
+
+      }, 50);
+
+    });
+  }
 
 });
 </script>
