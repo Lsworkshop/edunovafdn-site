@@ -212,9 +212,9 @@
 </style>
 
 <link rel="stylesheet" href="/assets/css/main.css">
-<script src="/assets/js/toast.js" defer></script>
-<script src="/assets/js/menu.js" defer></script>
 <script src="/assets/js/lang.js" defer></script>
+<script src="/assets/js/menu.js" defer></script>
+<script src="/assets/js/toast.js" defer></script>
 <script src="/assets/js/access.js" defer></script>
 
 
@@ -449,6 +449,7 @@
 /* ===============================
    Service Labels List (4 Core Categories)
 ================================ */
+let lang = localStorage.getItem('superedu-lang') || 'en';
 
 const serviceItems = [
   {
@@ -517,7 +518,6 @@ const serviceItems = [
   }
 ];
 
-let lang = localStorage.getItem('superedu-lang') || 'en';
 
 /* ===============================
    Helpers
