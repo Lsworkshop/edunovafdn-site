@@ -68,7 +68,7 @@
     display:block;
     margin-top:12px;
     font-size:14px;
-    font-weight:500;
+    font-weight:600;
   }
 
   input, textarea {
@@ -88,7 +88,7 @@
     border:none;
     margin-top:14px;
     cursor:pointer;
-    font-weight:500;
+    font-weight:700;
     font-size:15px;
     display:inline-flex;
     align-items:center;
@@ -184,14 +184,14 @@
 
 /* Title */
 .service-option-title {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1.02rem;
   margin-bottom: 8px;
   color: #111827;
 }
 
 .service-order {
-  font-weight: 500;
+  font-weight: 700;
   margin-right: 6px;
   color: #2563eb;
 }
@@ -212,9 +212,8 @@
 </style>
 
 <link rel="stylesheet" href="/assets/css/main.css">
-<script src="/assets/js/lang.js" defer></script>
 <script src="/assets/js/menu.js" defer></script>
-<script src="/assets/js/toast.js" defer></script>
+<script src="/assets/js/lang.js" defer></script>
 <script src="/assets/js/access.js" defer></script>
 
 
@@ -411,7 +410,7 @@
        Please provide your details and select the services you are interested in.
     </p>
 
-    <form id="applyForm" novalidate>
+    <form id="applyForm">
 
       <label for="firstName" data-en="First name" data-zh="名">First name</label>
       <input id="firstName" name="firstName" required />
@@ -421,7 +420,6 @@
 
       <label for="email" data-en="Email" data-zh="邮箱">Email</label>
       <input id="email" name="email" type="email" required />
-      <div id="emailStatus" class="field-hint"></div>
 
       <label for="phone" data-en="Phone (optional)" data-zh="电话（可选）">Phone (optional)</label>
       <input id="phone" name="phone" />
@@ -490,7 +488,7 @@ const serviceItems = [
     zh: '🏠 教育为本家庭与社区支持',
     subs_en: [
       'Family Education Planning',
-      'Education Foundation NPO 501C(3)',
+      'Education Foundation NPO 501C(3)', 
       'EduWealth Trust Coordination',
     ],
     subs_zh: [
@@ -517,25 +515,8 @@ const serviceItems = [
   }
 ];
 
+
 let lang = localStorage.getItem('superedu-lang') || 'en';
-
-/* ===============================
-   Helpers
-================================ */
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function t(en, zh){
-  return (lang === 'zh') ? zh : en;
-}
-
-function toast(msg, type="info", opts){
-  if (typeof window.showToast === "function") {
-    window.showToast(msg, type, opts);
-  } else {
-    // fallback (should rarely happen)
-    alert(msg);
-  }
-}
 
 /* ===============================
    Render Service Checkboxes
@@ -566,39 +547,6 @@ function renderServices(){
   });
 }
 
-/* ===============================
-   Email Live Hint (Realtime, Bilingual)
-================================ */
-function updateEmailHint(){
-  const emailInput  = document.getElementById('email');
-  const emailStatus = document.getElementById('emailStatus'); // 需要你页面里有这个元素（推荐）
-  if(!emailInput) return;
-
-  const val = emailInput.value.trim();
-
-  if(!emailStatus){
-    // 如果你还没放 <div id="emailStatus">，也不报错
-    return;
-  }
-
-  // 清空
-  if(!val){
-    emailStatus.textContent = '';
-    emailStatus.className = 'field-hint';
-    return;
-  }
-
-  // 错误
-  if(!emailPattern.test(val)){
-    emailStatus.textContent = t('❌ Please enter a valid email address.', '❌ 请输入正确的邮箱地址。');
-    emailStatus.className = 'field-hint error';
-    return;
-  }
-
-  // 正确
-  emailStatus.textContent = t('✅ Email looks good.', '✅ 邮箱格式正确。');
-  emailStatus.className = 'field-hint success';
-}
 
 /* ===============================
    Language Switching
@@ -625,9 +573,6 @@ function setLang(l){
   if(langBtn){
     langBtn.innerText = (l === 'en') ? '中文' : 'EN';
   }
-
-  // ⭐ 语言切换后，Email 提示也要同步刷新
-  updateEmailHint();
 }
 
 /* ===============================
@@ -642,40 +587,35 @@ document.addEventListener('DOMContentLoaded', () => {
       setLang(lang === 'en' ? 'zh' : 'en');
     });
   }
-
-  // ⭐ Email realtime validation
-  const emailInput = document.getElementById('email');
-  if(emailInput){
-    emailInput.addEventListener('input', updateEmailHint);
-    emailInput.addEventListener('blur', updateEmailHint);
-  }
 });
 
 /* ===============================
-   Submit Form (Keep other logic unchanged)
+   Submit Form
 ================================ */
 document.getElementById('applyForm').addEventListener('submit', async e =>{
   e.preventDefault();
 
   const email = document.getElementById('email').value.trim();
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if(!emailPattern.test(email)){
-    toast(
-      t('Please enter a valid email address.', '请输入有效的邮箱地址。'),
-      "error"
-    );
-    // 同时刷新一次 email hint（如果有）
-    updateEmailHint();
+    alert(lang === 'zh'
+      ? '请输入有效的邮箱地址'
+      : 'Please enter a valid email address');
     return;
   }
 
   const status = document.getElementById('formStatus');
-  if(status) status.innerText = lang === 'en' ? 'Submitting...' : '提交中...';
+  status.innerText = lang === 'en' ? 'Submitting...' : '提交中...';
 
   const services = [...document.querySelectorAll('input[name="services"]:checked')]
     .map(i => i.value);
 
-  // 保存用户选择的服务，供 thank-you 页面使用（保持原逻辑）
-  localStorage.setItem('selectedServices', JSON.stringify(services));
+  // 保存用户选择的服务，供 thank-you 页面使用
+localStorage.setItem(
+  'selectedServices',
+  JSON.stringify(services)
+);
+
 
   const payload = {
     firstName: document.getElementById('firstName').value.trim(),
@@ -698,28 +638,20 @@ document.getElementById('applyForm').addEventListener('submit', async e =>{
     });
 
     if(res.ok){
-      // store selected services for thank-you page (保持原逻辑)
-      sessionStorage.setItem('selectedServices', JSON.stringify(services));
-      window.location.href = '/thank-you.html';
-    } else {
-      if(status) status.innerText = lang === 'en' ? 'Submission failed' : '提交失败';
-      toast(
-        t('Submission failed. Please try again.', '提交失败，请稍后重试。'),
-        "error"
-      );
+  // store selected services for thank-you page
+  sessionStorage.setItem('selectedServices', JSON.stringify(services));
+  window.location.href = '/thank-you.html';
+}
+
+    else {
+      status.innerText = lang === 'en' ? 'Submission failed' : '提交失败';
     }
   } catch(err){
     console.error(err);
-    if(status) status.innerText = lang === 'en' ? 'Submission failed' : '提交失败';
-    toast(
-      t('Submission failed. Please try again.', '提交失败，请稍后重试。'),
-      "error"
-    );
+    status.innerText = lang === 'en' ? 'Submission failed' : '提交失败';
   }
 });
 </script>
-
-
 <script src="/assets/js/auth-nav.js" defer></script>
 <!-- Footer (reuse your site footer if you have one) -->
    <!-- FOOTER -->
