@@ -47,12 +47,7 @@
 
     // ③ 同步按钮文字
     const btn = document.getElementById("langToggle");
-    if (btn) btn.textContent = isEN ? "中文" : "EN";
-
-    // ④ 如果页面有服务列表，重新渲染（apply page）
-if (typeof renderServices === "function") {
-  renderServices();
-}
+    if (btn) btn.textContent = isEN ? "中文" : "EN";   
   }
 
   // 暴露给 menu.js 等使用
