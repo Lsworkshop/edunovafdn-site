@@ -93,7 +93,7 @@
       if (raf) cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => applyLanguage(getLang()));
     });
-    obs.observe(root, { childList: true, subtree: true, characterData: true });
+    obs.observe(root, { childList: true, subtree: true });
     return obs;
   }
 

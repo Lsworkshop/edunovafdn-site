@@ -522,13 +522,18 @@ let lang = localStorage.getItem('superedu-lang') || 'en';
    Render Service Checkboxes
 ================================ */
 function renderServices(){
+
   const wrap = document.getElementById('servicesList');
   if(!wrap) return;
 
+  const currentLang = localStorage.getItem('superedu-lang') || 'en';
+
   wrap.innerHTML = '';
+
   serviceItems.forEach(s=>{
-    const title = lang === 'en' ? s.en : s.zh;
-    const subs  = lang === 'en' ? s.subs_en : s.subs_zh;
+
+    const title = currentLang === 'en' ? s.en : s.zh;
+    const subs  = currentLang === 'en' ? s.subs_en : s.subs_zh;
 
     wrap.innerHTML += `
       <label class="service-option-card">
