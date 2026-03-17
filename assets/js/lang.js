@@ -79,6 +79,7 @@
       const next = getLang() === "en" ? "zh" : "en";
       setLang(next);
       applyLanguage(next);
+      document.dispatchEvent(new Event("superedu-language-change"));
     },
     true // ✅ capture
   );
