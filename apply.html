@@ -445,9 +445,8 @@
 
 <script>
 /* ===============================
-   Service Labels List (4 Core Categories)
+   Service Data
 ================================ */
-
 const serviceItems = [
   {
     id: 's1',
@@ -477,7 +476,7 @@ const serviceItems = [
     ],
     subs_zh: [
       'Edunova 志愿者项目',
-      '计算机讲座与课程',
+      '讲座与课程',
       '社区与社会影响力项目'
     ]
   },
@@ -488,118 +487,136 @@ const serviceItems = [
     zh: '🏠 教育为本家庭与社区支持',
     subs_en: [
       'Family Education Planning',
-      'Education Foundation NPO 501C(3)', 
-      'EduWealth Trust Coordination',
+      'Education Foundation NPO 501C(3)',
+      'EduWealth Trust Coordination'
     ],
     subs_zh: [
-      '家庭教育整体规划',
-      '教育基金会 公益组织501C(3)',
-      '教育财富 信托',
+      '家庭教育规划',
+      '公益组织 501(c)(3)',
+      '教育财富信托'
     ]
   },
   {
     id: 's4',
     order: '4',
     en: '📘 Academic & College Readiness Support',
-    zh: '📘 学术课程与大学升学支持',
+    zh: '📘 学术与大学升学支持',
     subs_en: [
       'U.S. Education System Overview',
       'College Application Strategy',
       'Pre-College Profile (AP / Summer)'
     ],
     subs_zh: [
-      '美国教育体系与比较',
+      '美国教育体系',
       '大学申请策略',
-      '大学前背景打造（AP / 夏校）'
+      'AP / 夏校准备'
     ]
   }
 ];
 
 /* ===============================
-   Render Service Checkboxes
+   Render Services (ONLY SOURCE OF TRUTH)
 ================================ */
-function renderServices(){
+function renderServices() {
 
   const wrap = document.getElementById('servicesList');
-  if(!wrap) return;
+  if (!wrap) return;
 
-  const currentLang = localStorage.getItem('superedu-lang') || 'en';
+  const lang = localStorage.getItem('superedu-lang') || 'en';
 
-  wrap.innerHTML = '';
+  wrap.innerHTML = serviceItems.map(s => {
 
-  serviceItems.forEach(s=>{
+    const title = (lang === 'en') ? s.en : s.zh;
+    const subs  = (lang === 'en') ? s.subs_en : s.subs_zh;
 
-    const title = currentLang === 'en' ? s.en : s.zh;
-    const subs  = currentLang === 'en' ? s.subs_en : s.subs_zh;
-
-    wrap.innerHTML += `
+    return `
       <label class="service-option-card">
         <input type="checkbox" name="services" value="${s.id}">
         <div class="service-option-body">
+
           <div class="service-option-title">
             <span class="service-order">${s.order}.</span>
             ${title}
           </div>
+
           <ul class="service-sub-list">
             ${subs.map(item => `<li>${item}</li>`).join('')}
           </ul>
+
         </div>
       </label>
     `;
-  });
+  }).join('');
 }
 
-
 /* ===============================
-   Language Switching
+   Language Switching (ONLY CONTROLLER)
 ================================ */
-function setLang(l){
-  /* =lang = l;= */
+function setLang(l) {
+
+  // 1. save state
   localStorage.setItem('superedu-lang', l);
 
-  document.querySelectorAll('[data-en]').forEach(el=>{
-    if(el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') return;
+  // 2. update static text
+  document.querySelectorAll('[data-en]').forEach(el => {
+    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') return;
     el.innerText = (l === 'en') ? el.dataset.en : el.dataset.zh;
   });
 
+  // 3. submit button
   const submitBtn = document.getElementById('submitBtn');
-  if(submitBtn){
-    submitBtn.innerText = (l === 'en')
-      ? submitBtn.dataset.en
-      : submitBtn.dataset.zh;
+  if (submitBtn) {
+    submitBtn.innerText =
+      (l === 'en') ? submitBtn.dataset.en : submitBtn.dataset.zh;
   }
 
+  // 4. dynamic list
   renderServices();
 
+  // 5. toggle button
   const langBtn = document.getElementById('langToggle');
-  if(langBtn){
+  if (langBtn) {
     langBtn.innerText = (l === 'en') ? '中文' : 'EN';
   }
 }
 
 /* ===============================
-   Init on Load
+   INIT (ONLY ONCE)
 ================================ */
 document.addEventListener('DOMContentLoaded', () => {
-  setLang(lang);
 
+  // init language (NO global lang variable)
+  setLang(localStorage.getItem('superedu-lang') || 'en');
+
+  // single event binding
   const langBtn = document.getElementById('langToggle');
-  if(langBtn){
+
+  if (langBtn) {
     langBtn.addEventListener('click', () => {
-      setLang(lang === 'en' ? 'zh' : 'en');
+
+      const current =
+        localStorage.getItem('superedu-lang') || 'en';
+
+      setLang(current === 'en' ? 'zh' : 'en');
     });
   }
+
+  // initial render safety
+  renderServices();
 });
 
 /* ===============================
    Submit Form
 ================================ */
-document.getElementById('applyForm').addEventListener('submit', async e =>{
+document.getElementById('applyForm').addEventListener('submit', async e => {
   e.preventDefault();
+
+  const lang = localStorage.getItem('superedu-lang') || 'en';
 
   const email = document.getElementById('email').value.trim();
   const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if(!emailPattern.test(email)){
+
+  if (!emailPattern.test(email)) {
     alert(lang === 'zh'
       ? '请输入有效的邮箱地址'
       : 'Please enter a valid email address');
@@ -612,12 +629,7 @@ document.getElementById('applyForm').addEventListener('submit', async e =>{
   const services = [...document.querySelectorAll('input[name="services"]:checked')]
     .map(i => i.value);
 
-  // 保存用户选择的服务，供 thank-you 页面使用
-localStorage.setItem(
-  'selectedServices',
-  JSON.stringify(services)
-);
-
+  localStorage.setItem('selectedServices', JSON.stringify(services));
 
   const payload = {
     firstName: document.getElementById('firstName').value.trim(),
@@ -625,49 +637,34 @@ localStorage.setItem(
     email,
     phone: document.getElementById('phone').value.trim(),
     country: document.getElementById('country').value.trim(),
-    services, // e.g. ['s1','s3']
+    services,
     notes: document.getElementById('notes').value.trim(),
     lang,
     source: 'apply_form',
     created_at: new Date().toISOString()
   };
 
-  try{
+  try {
     const res = await fetch('/api/apply', {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(payload)
     });
 
-    if(res.ok){
-  // store selected services for thank-you page
-  sessionStorage.setItem('selectedServices', JSON.stringify(services));
-  window.location.href = '/thank-you.html';
-}
-
-    else {
+    if (res.ok) {
+      sessionStorage.setItem('selectedServices', JSON.stringify(services));
+      window.location.href = '/thank-you.html';
+    } else {
       status.innerText = lang === 'en' ? 'Submission failed' : '提交失败';
     }
-  } catch(err){
+
+  } catch (err) {
     console.error(err);
     status.innerText = lang === 'en' ? 'Submission failed' : '提交失败';
   }
 });
 
-document.addEventListener("DOMContentLoaded", () => {
 
-  renderServices();
-
-  document.addEventListener("click", (e) => {
-    if (e.target.closest("#langToggle")) {
-      setTimeout(renderServices, 80);
-    }
-  });
-
-});
-/* ---------- Global Language 
-let lang = localStorage.getItem('superedu-lang') || 'en';
----------- */
 </script>
 
 
