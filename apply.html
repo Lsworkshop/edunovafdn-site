@@ -554,7 +554,7 @@ function renderServices(){
    Language Switching
 ================================ */
 function setLang(l){
-  lang = l;
+  /* =lang = l;= */
   localStorage.setItem('superedu-lang', l);
 
   document.querySelectorAll('[data-en]').forEach(el=>{
@@ -665,9 +665,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
-/* ---------- Global Language ---------- */
+/* ---------- Global Language 
 let lang = localStorage.getItem('superedu-lang') || 'en';
-
+---------- */
 </script>
 
 
