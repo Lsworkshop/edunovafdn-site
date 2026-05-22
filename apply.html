@@ -522,12 +522,12 @@ function renderServices() {
   const wrap = document.getElementById('servicesList');
   if (!wrap) return;
 
-  const lang = localStorage.getItem('superedu-lang') || 'en';
+  const lang = localStorage.getItem('superedu-lang'); // 只信 localStorage
 
   wrap.innerHTML = serviceItems.map(s => {
 
-    const title = (lang === 'en') ? s.en : s.zh;
-    const subs  = (lang === 'en') ? s.subs_en : s.subs_zh;
+    const title = (lang === 'zh') ? s.zh : s.en;
+    const subs  = (lang === 'zh') ? s.subs_zh : s.subs_en;
 
     return `
       <label class="service-option-card">
@@ -554,26 +554,25 @@ function renderServices() {
 ================================ */
 function setLang(l) {
 
-  // 1. save state
   localStorage.setItem('superedu-lang', l);
 
-  // 2. update static text
+  // 静态文本
   document.querySelectorAll('[data-en]').forEach(el => {
     if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') return;
     el.innerText = (l === 'en') ? el.dataset.en : el.dataset.zh;
   });
 
-  // 3. submit button
+  // submit button
   const submitBtn = document.getElementById('submitBtn');
   if (submitBtn) {
     submitBtn.innerText =
       (l === 'en') ? submitBtn.dataset.en : submitBtn.dataset.zh;
   }
 
-  // 4. dynamic list
+  // ⭐ 核心：动态列表统一刷新
   renderServices();
 
-  // 5. toggle button
+  // toggle button
   const langBtn = document.getElementById('langToggle');
   if (langBtn) {
     langBtn.innerText = (l === 'en') ? '中文' : 'EN';
@@ -585,26 +584,23 @@ function setLang(l) {
 ================================ */
 document.addEventListener('DOMContentLoaded', () => {
 
-  // init language (NO global lang variable)
+  // 初始化语言（唯一入口）
   setLang(localStorage.getItem('superedu-lang') || 'en');
 
-  // single event binding
   const langBtn = document.getElementById('langToggle');
 
   if (langBtn) {
     langBtn.addEventListener('click', () => {
 
-      const current =
-        localStorage.getItem('superedu-lang') || 'en';
+      const current = localStorage.getItem('superedu-lang') || 'en';
 
       setLang(current === 'en' ? 'zh' : 'en');
     });
   }
 
-  // initial render safety
+  // 初始渲染（保险）
   renderServices();
 });
-
 /* ===============================
    Submit Form
 ================================ */
