@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-en="Scholarships | Edunova Foundation" data-zh="奖学金 | Edunova 基金会">
+    Scholarships | Edunova Foundation
+  </title>
+
+  <!-- icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16.png">
+  <link rel="icon" href="/assets/icons/favicon.ico">
+
+  <!-- Main styles -->
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  <script src="/assets/js/menu.js" defer></script>
+  <script src="/assets/js/lang.js" defer></script>
+
+ <style>
+:root{
+  --bg1:#ffffff; --bg2:#f7fbff;
+  --text:#1e293b; --muted:#6b7280;
+  --accent:#1f6fd7; --accent2:#0a98d6;
+  --border:#e2e8f0; --btn-text:#fff;
+}
+
+/* dark mode */
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg1:#071021; --bg2:#0b1a2a;
+    --text:#e6f6ff; --muted:#9fb4c9;
+    --accent:#3aa0ff; --accent2:#61b7ff;
+    --border:#183041; --btn-text:#06121a;
+  }
+}
+
+/* base */
+#fa_calc{box-sizing:border-box;} #fa_calc *{box-sizing:inherit;}
+
+/* card */
+#fa_calc .card{ border-radius:14px;padding:18px;margin-bottom:16px;border:1px solid var(--border);background:var(--bg1);box-shadow:0 6px 18px rgba(16,24,40,0.04);transition:box-shadow .18s ease, transform .12s ease; }
+#fa_calc .card:hover{ box-shadow:0 12px 30px rgba(16,24,40,0.06); transform:translateY(-2px); }
+#fa_calc .card.bg2{ background: linear-gradient(180deg, rgba(240,249,255,0.6), rgba(232,244,255,0.6)); }
+
+/* subtle separators */
+#fa_calc .card + .card::before{ content:""; display:block; height:1px; margin:-8px 24px 12px; background: linear-gradient(90deg, rgba(16,24,40,0.04), rgba(16,24,40,0.02)); border-radius:2px; pointer-events:none; }
+
+/* header/title */
+#fa_calc h2{ text-align:center;font-size:30px;margin:6px 0;font-weight:500;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:0.2px; }
+#fa_calc .subtitle{ text-align:center;color:var(--muted);font-size:13px;margin-bottom:10px; }
+#fa_calc .top-note{ text-align:center;color:var(--muted);font-size:12.5px;margin-top:6px; }
+
+/* section header */
+#fa_calc h3{ margin:0 0 12px;font-size:16px;font-weight:500;color:var(--accent);padding-left:10px;border-left:4px solid var(--accent); }
+
+/* grid */
+#fa_calc .form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media(max-width:760px){ #fa_calc .form-grid{ grid-template-columns:1fr; } }
+
+/* labels & inputs */
+#fa_calc label{ display:block; font-weight:400; color:#111827; font-size:14px; margin-bottom:6px; }
+#fa_calc input, #fa_calc select{ width:100%; padding:12px 10px; border-radius:10px; border:1px solid var(--border); background:transparent; font-size:14px; color:#111827; }
+#fa_calc input::placeholder{ color:#9aa4b2; }
+#fa_calc input:focus, #fa_calc select:focus{ border-color:var(--accent2); outline:none; box-shadow:0 6px 18px rgba(10,152,214,0.06); }
+
+/* language btn */
+#fa_calc .lang-btn{ position:absolute; top:16px; right:12px; padding:6px 12px; font-size:13px; border-radius:20px; border:1px solid var(--border); background:#f3f4f6; color:#374151; cursor:pointer; font-weight:400; }
+@media(max-width:420px){ #fa_calc .lang-btn{ top:20px; right:12px; font-size:12px; padding:6px 10px; } }
+
+/* calc buttons */
+#fa_calc .controls{ display:flex; gap:12px; justify-content:center; margin-top:18px; flex-wrap:wrap; }
+#fa_calc .btn{ border-radius:26px; padding:12px 22px; font-weight:500; cursor:pointer; border:0; font-size:15px; box-shadow:0 6px 18px rgba(16,24,40,0.04); }
+#fa_calc .btn-primary{ background:linear-gradient(135deg,var(--accent),var(--accent2)); color:var(--btn-text); min-width:200px; display:inline-flex; align-items:center; gap:8px; justify-content:center; }
+#fa_calc .btn-ghost{ background:#eef2f7; color:var(--text); min-width:120px; }
+
+/* results styled as report */
+#fa_calc .results{ padding:22px; border-radius:14px; margin-top:16px; background:linear-gradient(180deg, rgba(240,248,255,0.95), rgba(225,240,250,0.95)); border-left:6px solid var(--accent2); box-shadow:0 8px 20px rgba(0,0,0,0.05); }
+#fa_calc .results hr{ border:0; border-top:1px solid rgba(0,0,0,0.08); margin:16px 0; }
+#fa_calc .result-item{ font-size:18px; color:#111827; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; }
+#fa_calc .result-item .label{ font-weight:400; font-size:18px; color:#111827; flex:1; min-width:0; }
+#fa_calc .result-item .value{ font-weight:600; font-size:20px; color:var(--accent2); flex-shrink:0; }
+#fa_calc .breakdown{ margin-top:10px; padding:14px; border-radius:12px; background:rgba(245,247,250,0.95); border:1px dashed var(--border); }
+
+/* tooltip button (small ? icon) */
+#fa_calc .tooltip-btn{ display:inline-block; width:20px; height:20px; border-radius:50%; text-align:center; line-height:20px; background:#eef2f3; color:#486b79; font-weight:500; cursor:pointer; font-size:12px; border:1px solid rgba(0,0,0,0.04); margin-left:6px; vertical-align:middle; }
+#fa_calc .tooltip-btn:hover{ background:#dce3e6; }
+
+/* tooltip box */
+#fa_global_tooltip{ position:absolute; z-index:999999; max-width:520px; padding:12px 14px; border-radius:10px; background:#f5f6f7; color:var(--text); box-shadow:0 10px 26px rgba(0,0,0,0.18); font-size:14px; line-height:1.5; white-space:normal; word-break:break-word; display:none; }
+
+/* small screens adjustments */
+@media(max-width:480px){
+  #fa_global_tooltip{ max-width: calc(100vw - 40px); font-size:15px; }
+  #fa_calc h2{ font-size:22px; }
+  #fa_calc input,#fa_calc select{ padding:10px; font-size:15px; }
+  #fa_calc .btn{ padding:12px 18px; font-size:15px; }
+  #fa_calc .result-item .value{ font-size:18px; }
+}
+
+/* ensure readability in bg2 cards on devices that may render inputs oddly (iOS) */
+/* This block is narrowly targeted to mobile & iOS-like environments */
+@media(max-width:760px){
+  /* force labels/inputs/selects to use theme text color and strong rendering */
+  #fa_calc .card label,
+  #fa_calc .card input,
+  #fa_calc .card select,
+  #fa_calc .card.bg2 label,
+  #fa_calc .card.bg2 input,
+  #fa_calc .card.bg2 select {
+    color: var(--text) !important;
+    -webkit-text-fill-color: var(--text) !important; /* for iOS Safari */
+    caret-color: var(--text) !important;
+    -webkit-appearance: none !important;
+  }
+  /* subtle background for inputs in dark cards to increase contrast on iPhone */
+  #fa_calc .card.bg2 input,
+  #fa_calc .card.bg2 select {
+    background: rgba(255,255,255,0.02) !important;
+    border-color: rgba(255,255,255,0.06) !important;
+  }
+  /* tooltip box: force light background with dark text on mobile so tips are always readable */
+  #fa_global_tooltip {
+    background: rgba(255,255,255,0.98) !important;
+    color: #0b1220 !important;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12) !important;
+  }
+  /* placeholder color strong on mobile */
+  #fa_calc input::placeholder { color: rgba(17,24,39,0.5) !important; }
+  /* make reset button text darker on mobile */
+  #fa_calc .btn-ghost { color:#111827 !important; font-weight:400 !important; background:#eef2f7 !important; }
+}
+
+/* iOS specific (if supported) - extra safety */
+@supports (-webkit-overflow-scrolling: touch) {
+  #fa_calc .card label,
+  #fa_calc .card input,
+  #fa_calc .card select {
+    -webkit-text-fill-color: var(--text) !important;
+  }
+}
+
+/* keep previous desktop/light-mode overrides */
+@media (prefers-color-scheme: light), (prefers-color-scheme: no-preference) {
+  #fa_calc label { color:#111827 !important; font-weight:400; }
+  #fa_calc input, #fa_calc select { color:#111827 !important; }
+  #fa_calc .result-item .label { color:#111827 !important; font-weight:500; }
+  #fa_calc .result-item .value { color:#0a66c2 !important; font-weight:600; }
+}
+  
+  /* iPhone readability fix - only for light cards (bg2) */
+@media(max-width:760px){
+  #fa_calc .card.bg2 label,
+  #fa_calc .card.bg2 input,
+  #fa_calc .card.bg2 select {
+    color:#111827 !important;
+    -webkit-text-fill-color:#111827 !important; /* iOS Safari */
+    caret-color:#111827 !important;
+    font-weight:600;
+  }
+  #fa_calc .card.bg2 input,
+  #fa_calc .card.bg2 select {
+    background:rgba(0,0,0,0.02) !important;
+    border-color:rgba(0,0,0,0.1) !important;
+  }
+  #fa_calc .card.bg2 input::placeholder {
+    color:rgba(17,24,39,0.55) !important;
+  }
+}
+ 
+  
+  /* Fix result item alignment */
+#fa_calc .result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+#fa_calc .result-item .label {
+  flex: 1;
+  text-align: left;
+  white-space: normal;   /* allow wrap */
+  word-break: break-word;
+}
+
+#fa_calc .result-item .value {
+  flex-shrink: 0;
+  text-align: right;
+  white-space: nowrap;   /* keep numbers on one line */
+}
+
+/* Mobile adjustment: stack vertically */
+@media(max-width:480px){
+  #fa_calc .result-item {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  #fa_calc .result-item .label {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 4px;
+  }
+  #fa_calc .result-item .value {
+    text-align: right;
+    width: 100%;
+  }
+}
+
+/* ===== Surface Laptop Dark Mode Contrast Fix ===== */
+@media(prefers-color-scheme:dark){
+  /* Tooltip: 保证背景亮、文字深色 */
+  #fa_global_tooltip {
+    background:#f9fafb !important;
+    color:#111827 !important;
+    box-shadow:0 6px 20px rgba(0,0,0,0.3) !important;
+  }
+
+  /* 深色功能区文字：保证高对比度 */
+  #fa_calc .card.bg2 label,
+  #fa_calc .card.bg2 input,
+  #fa_calc .card.bg2 select {
+    color:#f9fafb !important;
+    -webkit-text-fill-color:#f9fafb !important;
+    caret-color:#f9fafb !important;
+    font-weight:600 !important;
+  }
+
+  /* 输入框背景和边框：增加浅灰衬托 */
+  #fa_calc .card.bg2 input,
+  #fa_calc .card.bg2 select {
+    background:rgba(255,255,255,0.08) !important;
+    border-color:rgba(255,255,255,0.2) !important;
+  }
+
+  /* Placeholder 对比度 */
+  #fa_calc .card.bg2 input::placeholder {
+    color:rgba(249,250,251,0.65) !important;
+  }
+}
+  
+  /* ===== Surface Laptop Full Dark Mode Fix ===== */
+@media(prefers-color-scheme:dark){
+
+  /* 所有功能区文字统一高对比度 */
+  #fa_calc label,
+  #fa_calc input,
+  #fa_calc select,
+  #fa_calc h3,
+  #fa_calc h2,
+  #fa_calc .subtitle,
+  #fa_calc .top-note {
+    color:#f9fafb !important;
+    -webkit-text-fill-color:#f9fafb !important; /* iOS + Surface Safari/Edge */
+    caret-color:#f9fafb !important;
+  }
+
+  /* 输入框背景和边框：让文字脱颖而出 */
+  #fa_calc input,
+  #fa_calc select {
+    background:rgba(255,255,255,0.08) !important;
+    border-color:rgba(255,255,255,0.25) !important;
+  }
+
+  /* 输入框 placeholder 对比度增强 */
+  #fa_calc input::placeholder {
+    color:rgba(249,250,251,0.65) !important;
+  }
+
+  /* 重置按钮：强制深色背景+白字 */
+  #fa_calc .btn-ghost {
+    background:#374151 !important;
+    color:#f9fafb !important;
+    font-weight:400 !important;
+  }
+
+  /* tooltip 提示文字可读 */
+  #fa_global_tooltip {
+    background:#f9fafb !important;
+    color:#111827 !important;
+    box-shadow:0 6px 20px rgba(0,0,0,0.3) !important;
+  }
+}
+
+  /* ===== Surface Laptop Deep Dark Mode - Fix for bg2 cards & tooltip buttons ===== */
+@media(prefers-color-scheme:dark){
+
+  /* 小问号按钮在深色模式下：深色圆圈 + 白字 */
+  #fa_calc .tooltip-btn {
+    background:#374151 !important;   /* 深灰圆圈 */
+    color:#f9fafb !important;        /* 白色问号 */
+    border:1px solid rgba(255,255,255,0.3) !important;
+  }
+  #fa_calc .tooltip-btn:hover {
+    background:#4b5563 !important;
+  }
+
+  /* 浅色功能区 (bg2) 在深色模式下，改为深色卡片 */
+  #fa_calc .card.bg2 {
+    background:#111827 !important;   /* 深灰背景 */
+    border:1px solid rgba(255,255,255,0.15) !important;
+  }
+  #fa_calc .card.bg2 label,
+  #fa_calc .card.bg2 input,
+  #fa_calc .card.bg2 select {
+    color:#f9fafb !important;
+    -webkit-text-fill-color:#f9fafb !important;
+    caret-color:#f9fafb !important;
+  }
+  #fa_calc .card.bg2 input,
+  #fa_calc .card.bg2 select {
+    background:rgba(255,255,255,0.08) !important;
+    border-color:rgba(255,255,255,0.25) !important;
+  }
+  #fa_calc .card.bg2 input::placeholder {
+    color:rgba(249,250,251,0.6) !important;
+  }
+}
+
+  /* ===== Fix: Surface Laptop 深色模式 下拉菜单选项对比度 ===== */
+@media(prefers-color-scheme:dark){
+  #fa_calc select {
+    background:#1f2937 !important;   /* 深灰背景 */
+    color:#f9fafb !important;        /* 白色文字 */
+    border:1px solid rgba(255,255,255,0.25) !important;
+  }
+  #fa_calc option {
+    background:#111827 !important;   /* 深色背景 */
+    color:#f9fafb !important;        /* 白色文字 */
+  }
+  #fa_calc select:focus {
+    outline:2px solid var(--accent2) !important; /* 聚焦高亮 */
+    outline-offset:2px;
+  }
+}
+
+    /* ======================================================
+       Scholarship Page – Production (Match Volunteer/Donation)
+       Notes:
+       - 中文坚决不用黑体：使用更细、更现代的中文字体栈
+       - Zones: same palette as Events/Forum
+    ====================================================== */
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body{
+      margin:0;
+      /* ✅ English + Chinese (NO 黑体/Heiti) */
+      font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Arial,
+        /* Chinese: lighter modern, avoid 黑体 */
+        "PingFang SC",
+        "HarmonyOS Sans SC",
+        "Source Han Sans SC",
+        "Noto Sans CJK SC",
+        "Noto Sans SC",
+        "Microsoft YaHei UI",
+        sans-serif;
+      background:#F9FAF7;
+      color:#2B2B2B;
+      line-height:1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Leave space for fixed nav */
+    .top-offset{ height: 86px; }
+
+    /* ===============================
+       Zone Backgrounds (as requested)
+    ================================ */
+    .zone{ padding: 52px 0; }
+    .zone-inner{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+  
+    .zone-d { background: #E8EEFF; }
+    .zone-a { background: #EFE4FF; }
+    
+
+   /* =========================
+   HERO (Scholarship) FIX
+   解决：内容挤左侧、右侧空白
+========================= */
+
+.hero{
+  padding: 34px 0 10px;
+  background:
+    radial-gradient(900px 380px at 12% 0%, rgba(59,130,246,0.12), transparent 60%),
+    radial-gradient(900px 380px at 88% 0%, rgba(139,92,246,0.12), transparent 60%);
+}
+
+/* 关键：保证 hero-split 在容器内居中且两列都能拉伸 */
+.hero-split{
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: 42px;
+  align-items: center;
+
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 20px 26px;
+
+  /* 关键：强制占满容器宽度 */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 左侧文字列：允许内容撑开，不要自己缩小 */
+.hero-content{
+  min-width: 0;
+  justify-self: stretch;
+}
+
+/* 右侧图片列：必须拉满，避免“缩成一小块靠左” */
+.hero-media{
+  min-width: 0;
+  justify-self: stretch;
+  width: 100%;
+}
+
+/* 图片必须 100% 宽度，否则会出现右侧空白 */
+.hero-media img{
+  display: block;
+  width: 100%;
+  height: auto;
+
+  border-radius: 18px;
+  object-fit: cover;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.14);
+}
+
+/* Mobile：改为一列居中 */
+@media (max-width: 860px){
+  .hero-split{
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .hero-media{
+    order: -1; /* 如果你希望先图后文，可保留；不需要就删掉 */
+  }
+
+  .hero-media img{
+    max-height: 260px;
+    object-fit: cover;
+  }
+}
+
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      border-radius: 999px;
+      font-weight: 475;
+      padding: 12px 18px;
+      font-size: 0.98rem;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease, border-color .18s ease;
+      user-select:none;
+      cursor:pointer;
+    }
+
+    .btn-primary{
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      color:#fff;
+      box-shadow: 0 12px 26px rgba(99,102,241,0.28);
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+    .btn-primary:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 18px 36px rgba(99,102,241,0.42);
+    }
+
+    .btn-secondary{
+      background: rgba(255,255,255,0.82);
+      color:#2563eb;
+      border: 1px solid rgba(37,99,235,0.26);
+      box-shadow: 0 10px 22px rgba(20,30,60,0.08);
+    }
+    .btn-secondary:hover{
+      transform: translateY(-2px);
+      border-color: rgba(37,99,235,0.40);
+      box-shadow: 0 14px 30px rgba(20,30,60,0.12);
+    }
+
+    /* ===============================
+       Typography & section title
+    ================================ */
+    h2{
+      margin: 0 0 12px;
+      font-size: 1.85rem;
+      letter-spacing: -0.01em;
+      color:#1f2937;
+    }
+
+    .muted{
+      color:#4b5563;
+      margin: 0 0 18px;
+      max-width: 820px;
+    }
+
+    /* ===============================
+       Cards (match Volunteer/Donation style)
+    ================================ */
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .card{
+      grid-column: span 4;
+      background: linear-gradient(180deg, #FFFDF8, #F2EAD3);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow:
+        0 10px 24px rgba(0,0,0,0.08),
+        0 2px 8px rgba(0,0,0,0.04);
+      border: 1px solid rgba(20,30,60,0.07);
+      transition: transform .22s ease, box-shadow .22s ease;
+    }
+
+    .card:hover{
+      transform: translateY(-4px);
+      box-shadow:
+        0 18px 36px rgba(0,0,0,0.12),
+        0 6px 14px rgba(0,0,0,0.06);
+    }
+
+    .card .icon{
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .card h3{
+      margin: 0 0 8px;
+      font-size: 1.15rem;
+      color:#256F3A;
+      letter-spacing: -0.01em;
+    }
+
+    .card p{
+      margin: 0;
+      color:#374151;
+      font-size: 0.96rem;
+    }
+
+    /* split highlights */
+    .highlight{
+      background: rgba(255,255,255,0.65);
+      border: 1px solid rgba(20,30,60,0.08);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 10px 24px rgba(20,30,60,0.06);
+    }
+
+    .bullet{
+      margin: 14px 0 0;
+      padding-left: 18px;
+      color:#374151;
+    }
+    .bullet li{ margin: 8px 0; }
+
+    /* ===============================
+       CTA Zone (contact donate)
+    ================================ */
+    .cta{
+      text-align:center;
+      border-radius: 26px;
+      padding: 34px 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.90), rgba(255,255,255,0.70));
+      border: 1px solid rgba(20,30,60,0.08);
+      box-shadow: 0 14px 34px rgba(20,30,60,0.08);
+    }
+
+    .cta h2{ margin-bottom: 10px; }
+    .cta p{ margin: 0 auto 18px; max-width: 760px; color:#4b5563; }
+
+    .cta-actions{
+      display:flex;
+      justify-content:center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    /* ===============================
+       Responsive
+    ================================ */
+    @media (max-width: 980px){
+      .hero-split{ grid-template-columns: 1fr; text-align:center; }
+      .hero p{ margin-left:auto; margin-right:auto; }
+      .hero-actions{ justify-content:center; }
+    }
+
+    @media (max-width: 920px){
+      .card{ grid-column: span 6; }
+    }
+
+    @media (max-width: 620px){
+      .zone{ padding: 40px 0; }
+      .card{ grid-column: span 12; }
+      .btn{ width: 100%; max-width: 320px; }
+    }
+
+    /* small visual separators */
+    .divider{
+      height: 1px;
+      background: rgba(20,30,60,0.08);
+      margin: 18px 0 10px;
+    }
+
+/* Hero buttons spacing */
+.hero-actions{
+  display: flex;
+  gap: 14px;              /* 按钮间距 */
+  flex-wrap: wrap;        /* 小屏自动换行 */
+  margin-top: 16px;
+}
+
+/* 小屏居中时按钮也居中 */
+@media (max-width: 980px){
+  .hero-actions{ justify-content: center; }
+}
+
+/* =========================
+   Scholarship HERO – CENTER FIX (Hard Center)
+   解决：宽度对了但仍左偏
+========================= */
+
+/* 让 hero 成为“真正居中容器”，不吃任何祖先布局影响 */
+.page-scholarship header.hero,
+.page-scholarship .hero{
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+
+  /* ✅ 关键：用 flex 强制内部居中 */
+  display: flex !important;
+  justify-content: center !important;
+}
+
+/* hero-split 不再靠 margin auto，而是交给父级 flex 居中 */
+.page-scholarship .hero-split{
+  width: min(1100px, calc(100vw - 40px)) !important;
+  max-width: 1100px !important;
+
+  margin: 0 !important;           /* 交给父级居中 */
+  padding: 28px 20px 26px !important;
+
+  box-sizing: border-box;
+}
+
+/* 防止某些全局规则把它推走 */
+.page-scholarship .hero-split{
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  position: relative;
+}
+
+/* 按钮间距 */
+.page-scholarship .hero-actions{
+  display:flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+/* Mobile 保持正常 */
+@media (max-width: 860px){
+  .page-scholarship .hero{
+    display:block !important;   /* 手机回到原本流式 */
+  }
+  .page-scholarship .hero-split{
+    width: calc(100vw - 32px) !important;
+    margin: 0 auto !important;
+  }
+  .page-scholarship .hero-actions{
+    justify-content:center;
+  }
+}
+
+  </style>
+</head>
+
+<body class="page-scholarship">
+
+  <!-- NAV (keep your existing nav from other pages) -->
+  <html class="nav-preload"></html>
+  <!-- 你已有统一导航，这里直接复用你当前项目的 nav 代码块即可 -->
+ <!-- NAV -->
+<nav id="topNav" class="nav--transparent">
+  <div class="nav-inner">
+
+    <!-- Logo -->
+    <div class="brand">
+      <a href="/index.html#home" class="brand">
+        <img src="/assets/img/superedu-logo.png" alt="Edunova" class="logo-img" />
+        <span class="brand-text">Finova</span>
+      </a>
+    </div>
+
+    <!-- =========================
+         Desktop Menu
+    ========================== -->
+    <div class="menu" id="menu">
+
+      <!-- Home -->
+      <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+      <!-- About -->
+      <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Dropdown -->
+<div class="nav-item dropdown">
+
+  <span class="dropdown-toggle"
+        role="button"
+        aria-haspopup="true"
+        tabindex="0"
+        data-en="Programs ⬇︎"
+        data-zh="项目 ⬇︎"> 
+  </span> 
+
+  <div class="dropdown-menu">
+    <a href="/education.html"
+       id="navEduCenter"
+       data-en="FinCenter"
+       data-zh="财富中心">
+      EduCenter
+    </a>
+
+    <a href="/community.html"
+       id="navEduCommunity"
+       data-en="FinCommunity"
+       data-zh="财富社区">
+      EduCommunity
+    </a>
+
+    <a href="/forum.html"
+       id="navForum"
+       data-en="FinForum"
+       data-zh="财富论坛">
+      EduForum 
+    </a>
+
+    <a href="/plans.html" data-en="FinPlanning" data-zh="财务规划"> Events</a>
+    
+  </div>
+
+</div>
+
+      <!-- Services -->
+      <a href="/index.html#services" data-en="Services" data-zh="服务">Services</a>
+
+      <!-- Membership -->
+     <a href="/membership.html" id="navMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+      <!-- Get Involved Dropdown -->
+<div class="nav-item dropdown">
+  <span class="dropdown-toggle" role="button" aria-haspopup="true" tabindex="0"
+        data-en="Get Involved ⬇︎" data-zh="参与方式 ⬇︎">
+   
+</span>
+
+  <div class="dropdown-menu">
+    <a href="/zoom.html"
+       data-en="Zoom&Salon"
+       data-zh="讲座与沙龙">
+      Volunteer
+    </a>
+
+    <a href="/events.html"
+       data-en="Events"
+       data-zh="重要活动">
+      Donation
+    </a>
+
+    <a href="/aid.html"
+       data-en="Financial Aid"
+       data-zh="助学金计算">
+      scholarship
+    </a>
+
+    <a href="/index.html#resources"
+       data-en="Resources"
+       data-zh="资源">
+      Resources
+    </a>
+  </div>
+</div>
+
+      <!-- Contact -->
+      <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+      <!-- Login -->
+     <a href="/login.html" id="desktopAuth" data-en="Login" data-zh="登录">Login</a>
+
+      <!-- Slide underline -->
+      <span class="nav-underline"></span>
+    </div>
+
+    <!-- Right side -->
+    <div class="nav-right">
+      <button id="langToggle" class="lang-toggle" aria-label="Language toggle">
+        中文
+      </button>
+
+      <button id="hamburger" class="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile slide menu -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <!-- Home -->
+    <a href="/index.html#home" data-en="Home" data-zh="首页">Home</a>
+
+    <!-- About -->
+    <a href="/index.html#about" data-en="About" data-zh="关于我们">About</a>
+
+    <!-- Programs Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Programs" data-zh="项目">Programs</summary>
+      <a href="/education.html" id="mobileEduCenter" data-en="FinCenter" data-zh="财富中心">EduCenter</a>
+      <a href="/community.html" id="mobileEduCommunity" data-en="FinCommunity" data-zh="财富社区">EduCommunity</a>
+      <a href="/forum.html" id="mobileForum" data-en="FinForum" data-zh="财富论坛">EduForum</a>
+      <a href="/plans.html" data-en="FinPlanning" data-zh="财务规划">Events</a>
+    </details>
+
+    <!-- Service -->
+    <a href="/index.html#services" data-en="Service" data-zh="服务">Service</a>
+
+    <!-- Membership -->
+    <a href="/membership.html" id="mobileMembership" data-en="Membership" data-zh="会员中心">Membership</a>
+
+    <!-- Get Involved Accordion -->
+    <details class="mobile-group">
+      <summary data-en="Get Involved" data-zh="参与方式">Get Involved</summary>
+      <a href="/zoom.html" data-en="Zoom&Salon" data-zh="讲座与沙龙">Volunteer</a>
+      <a href="/events.html" data-en="Events" data-zh="重要活动">Donation</a>
+      <a href="/aid.html"
+       data-en="Financial Aid"
+       data-zh="计算助学金">
+      scholarship
+    </a>
+      <a href="/index.html#resources" data-en="Resources" data-zh="资源">Resources</a>
+    </details>
+
+    <!-- Contact -->
+    <a href="/index.html#contact" data-en="Contact" data-zh="联系">Contact</a>
+
+    <!-- Login -->
+    <a href="/login.html" id="mobileAuth" data-en="Login" data-zh="登录">Login</a>
+
+    <!-- Mobile action buttons -->
+    <div class="mobile-actions">
+      <button class="btn btn-ghost" id="mobileRegister" data-en="Register/Join" data-zh="注册/加入">
+        Register / Join
+      </button>
+      <button class="btn" id="mobileUnlock" data-en="Unlock Wealth" data-zh="解锁财富">
+        Unlock Education
+      </button>
+    </div>
+  </div>
+</nav>
+
+ 
+  <!-- Reserved space for fixed nav -->
+  <div class="top-offset"></div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-split">
+      <div class="hero-media">
+        <img src="/assets/img/scholarship-hero.webp" alt="Scholarship Program" />
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-kicker"
+             data-en="Edunova Foundation • Scholarship Program"
+             data-zh="助学金支持 • 教育账户 教育税务🎒Edunova 基金会 • 奖学金计划">
+          Edunova Foundation • Scholarship Program
+        </div>
+
+        <h1 data-en="Scholarships that motivate learning and support families"
+            data-zh="支持优化家庭资产结构，多得助学金奖学金">
+          Scholarships that motivate learning and support families
+        </h1>
+
+        <p data-en="We provide scholarships for middle school, high school, college, and university students—rewarding academic effort, leadership, and long-term growth, while offering special aid based on family financial need."
+           data-zh="我们面向初中、高中、本科与大学学生发放奖学金，鼓励学业努力与长期成长；同时也提供基于家庭经济情况的特别奖助学金。">
+          We provide scholarships for middle school, high school, college, and university students—rewarding academic effort, leadership, and long-term growth, while offering special aid based on family financial need.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://edunovafdn.org/donation.html"
+             data-en="Donate to Scholarships"
+             data-zh="捐助奖学金基金">
+            Donate to Scholarships
+          </a>
+
+          <a class="btn btn-secondary" href="/apply.html"
+             data-en="Apply / Express Interest"
+             data-zh="申请 / 提交意向">
+            Apply / Express Interest
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+<!-- Zone A: Overview -->
+  <section class="zone zone-a">
+    <div class="zone-inner">
+      <h2 data-en="Program Overview" data-zh="评估能够得到多少的助学金">Program Overview</h2>
+      <p class="muted"
+         data-en="Edunova scholarships are designed to encourage disciplined learning, celebrate authentic effort, and reduce barriers for families who face heavy educational expenses."
+         data-zh="助学金仿真计算器旨在估算美国业界平均常见情形下，根据家庭可负担性计算出大学可能支持的Financial Aid大致范围">
+        Edunova scholarships are designed to encourage disciplined learning, celebrate authentic effort, and reduce barriers for families who face heavy educational expenses.
+      </p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="icon">🎓</div>
+          <h3 data-en="For Middle & High School Students" data-zh="面向大学学生">For Middle & High School Students</h3>
+          <p data-en="Academic excellence, consistent effort, and positive impact. Some awards may be issued immediately; certain high school awards can be released after graduation when students begin college."
+             data-zh="依据父母和学生的净收入与净资产，来评估家庭对教育的承担能力；收入影响更大；注意有些资产不计入">
+            Academic excellence, consistent effort, and positive impact. Some awards may be issued immediately; certain high school awards can be released after graduation when students begin college.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🏛️</div>
+          <h3 data-en="For College & University Students" data-zh="面向硕士博士等其他研究">For College & University Students</h3>
+          <p data-en="Recognizing strong GPA, academic progress, leadership, research/service involvement, and persistence through challenges."
+             data-zh="这种情形下，不适用于本计算评估器，请直接联系我们或者相关的公益组织，我们将会提供另外的计算方案">
+            Recognizing strong GPA, academic progress, leadership, research/service involvement, and persistence through challenges.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">💛</div>
+          <h3 data-en="Need-Based Special Aid" data-zh="Edunova基于家庭经济的特别奖助">Need-Based Special Aid</h3>
+          <p data-en="For families under financial pressure, we offer special scholarships/grants to reduce tuition burdens and keep education accessible."
+             data-zh="Edunova Foundation 针对低收入或学费负担压力较大的家庭，提供特别奖学金/助学金，帮助学生持续完成学业。">
+            For families under financial pressure, we offer special scholarships/grants to reduce tuition burdens and keep education accessible.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+ <div id="fa_calc" style="font-family: Helvetica Neue,
+    PingFang SC,
+    Noto Sans SC,
+    sans-serif;
+    margin: 22px auto; max-width: 980px; position: relative;"></div>
+
+  
+<!--START: Step7.0-->
+
+
+<script>
+(function(){
+  /* parsing/format helpers */
+  function parseNum(v){ if(v===undefined||v===null) return 0; const s=String(v).trim(); if(s==="") return 0; const n=parseFloat(s.replace(/,/g,"")); return isFinite(n)?n:0; }
+  function formatNum(n){ if(n===undefined||n===null) return ""; if(isNaN(n)) return ""; return Number(n).toLocaleString("en-US"); }
+  function escapeAttr(s){ if(s===undefined||s===null) return ""; return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/'/g,"&#39;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+  function htmlDecode(s){ const d=document.createElement("div"); d.innerHTML = s || ""; return d.textContent || d.innerText || ""; }
+
+  /* localized text */
+  const TEXT = {
+    zh: {
+      title:"🎓 助学金估算器",
+      subtitle:"基于 COA 与家庭收入/资产估算 EFC 与助学金区间（仅供参考）",
+      tip:"👉 不计入或者为零的可以不用填写",
+      concepts:"概念说明",
+      info_efc:"EFC（家庭预计贡献）：决定助学金资格的关键指标，由收入和资产决定。",
+      info_coa:"COA（大学总费用）：包含学费、住宿、书本和生活费；一般请用学费计算。",
+      info_magi:"MAGI：以 1040 表第 11 行 AGI 为基础，加回 IRA/401k 等税前缴款、免税利息、国外排除、非应税社安等。",
+      sec_school:"大学信息", sec_income:"家庭收入", sec_passets:"父母资产", sec_sassets:"学生资产",
+      school_type:"大学类型", school_pub:"公立 (FAFSA)", school_priv:"私立 (CSS)",
+      coa:"总学费 / COA", parent_magi:"父母 MAGI", student_magi:"学生 MAGI",
+      p_cash:"现金 / 银行存款", p_inv:"投资（股票/债券/529 等）", p_ret:"退休账户（不计入）",
+      p_home:"父母自住房（FAFSA 不计入，CSS 计入净值）", p_other:"其他房产净值", p_biz:"企业净值", p_farm:"农场净值",
+      s_cash:"学生现金 / 存款", s_inv:"学生投资（529 等）", s_ret:"学生退休账户（不计入）",
+      calc:"计算", reset:"重置", efc:"EFC 估算范围", aid:"预计助学金区间",
+      parent_contrib:"父母贡献", student_contrib:"学生贡献",
+      disclaimer:"免责声明：结果仅供参考，最终以大学官方通知为准。本工具不保存或上传任何个人数据。",
+      lang_btn:"English",
+      tips:{
+        school_type:"选择大学类型：公立通常使用 FAFSA；私立学校常使用 CSS Profile（院校方法）。",
+        coa:"COA = 学校公布的年度总费用（学费 + 住宿 + 书本 + 生活费），请填写整年总额（美元）。",
+        magi:"MAGI 提示：从 1040 表第 11 行 AGI 开始，必要时加回 IRA/401k、免税利息、国外收入排除、非应税社安等。",
+        p_cash:"父母现金与银行存款（支票/储蓄），通常计入父母可用资产。",
+        p_inv:"父母的非退休投资（股票、债券、共同基金、529 等），通常计入。",
+        p_ret:"退休账户（401k、IRA 等）通常不计入 FAFSA 的资产计算。",
+        p_home:"自住房：FAFSA 通常不计入；CSS 可能需要报告房屋净值（市值 - 未付贷款）。",
+        p_other:"其他房产净值（出租房、度假屋等），通常计入。",
+        p_biz:"企业净值（经营资产 - 负债），视情况计入。",
+        p_farm:"农场净值（营运型农场按营运净值计）。",
+        s_cash:"学生现金与存款（支票/储蓄账户），通常计入学生可用资产。",
+        s_inv:"学生投资（529、股票等），通常计入。",
+        s_ret:"学生退休账户（如学生有 IRA）通常不计入。"
+      }
+    },
+    en: {
+      title:"🎓 Financial Aid Calculator",
+      subtitle:"Estimate EFC & aid range from COA and family income/assets (for reference)",
+      tip:"👉 If not counted or zero, you may leave it blank",
+      concepts:"Concepts",
+      info_efc:"EFC: Expected Family Contribution — determines aid eligibility.",
+      info_coa:"COA: Cost of Attendance — tuition, housing, books and living costs.",
+      info_magi:"MAGI: Start with AGI (Form 1040 line 11); add back IRA/401k contributions, tax-exempt interest, foreign income exclusion, non-taxable Social Security, etc.",
+      sec_school:"School Info", sec_income:"Family Income", sec_passets:"Parent Assets", sec_sassets:"Student Assets",
+      school_type:"School Type", school_pub:"Public (FAFSA)", school_priv:"Private (CSS)",
+      coa:"Total Cost of Attendance (COA)", parent_magi:"Parent MAGI", student_magi:"Student MAGI",
+      p_cash:"Cash / Bank Accounts", p_inv:"Investments (stocks, bonds, 529 etc)", p_ret:"Retirement Accounts (excluded)",
+      p_home:"Primary Home (FAFSA excluded, CSS included)", p_other:"Other Real Estate (net)", p_biz:"Business Net Value", p_farm:"Farm Net Value",
+      s_cash:"Cash / Bank Accounts", s_inv:"Investments (529 etc)", s_ret:"Retirement Accounts (excluded)",
+      calc:"Calculate", reset:"Reset", efc:"Estimated EFC Range", aid:"Estimated Financial Aid",
+      parent_contrib:"Parent Contribution", student_contrib:"Student Contribution",
+      disclaimer:"Disclaimer: Estimates only. No data is saved or uploaded.",
+      lang_btn:"中文",
+      tips:{
+        school_type:"Choose school type: Public typically uses FAFSA; many private schools use CSS.",
+        coa:"COA: the institution's published annual cost (tuition + room/board + books + living expenses).",
+        magi:"MAGI: Start with AGI (Form 1040 line 11); add back IRA/401k contributions, tax-exempt interest, foreign income exclusion, non-taxable Social Security.",
+        p_cash:"Parent cash & bank balances (checking/savings) usually counted as assets.",
+        p_inv:"Parent non-retirement investments (stocks, bonds, 529s) usually counted.",
+        p_ret:"Retirement accounts (401k, IRA) are generally excluded.",
+        p_home:"Primary home: FAFSA typically excludes; CSS may include equity (market value minus mortgage).",
+        p_other:"Other real estate (rental/vacation homes) net value may be counted.",
+        p_biz:"Business net value (assets minus liabilities) may be considered.",
+        p_farm:"Farm net value (operating farm net worth).",
+        s_cash:"Student cash & bank balances often counted.",
+        s_inv:"Student investments (529, stocks) usually counted.",
+        s_ret:"Student retirement accounts typically excluded."
+      }
+    }
+  };
+
+  /* state */
+  let lang = "zh";
+  let chartInstance = null;
+
+  /* helper to generate field HTML with tooltip data-tip */
+  function makeField(id,label,tip,disabled){
+    const tipAttr = tip ? ` data-tip="${escapeAttr(tip)}"` : "";
+    const dis = disabled ? "disabled" : "";
+    return `<div><label for="${id}">${label}${ tip ? `<span class="tooltip-btn"${tipAttr} role="button" aria-label="info">?</span>` : ""}</label><input type="text" id="${id}" inputmode="numeric" ${dis}></div>`;
+  }
+
+  /* ensure tooltip element exists */
+  function ensureTooltipNode(){
+    let n = document.getElementById("fa_global_tooltip");
+    if(n) return n;
+    n = document.createElement("div"); n.id = "fa_global_tooltip";
+    const cont = document.createElement("div"); cont.id = "fa_global_tooltip_content"; n.appendChild(cont);
+    document.body.appendChild(n);
+    return n;
+  }
+
+  /* render UI */
+  function render(){
+    const t = TEXT[lang];
+    const root = document.getElementById("fa_calc");
+
+    // preserve values
+    const saved = {};
+    if(root.querySelectorAll) root.querySelectorAll("input,select").forEach(el => saved[el.id] = el.value);
+
+    root.innerHTML = `
+      <div class="card" style="position:relative;">
+        <button id="lang_btn" class="lang-btn">${t.lang_btn}</button>
+        <h2>${t.title}</h2>
+        <div class="subtitle">${t.subtitle}</div>
+        <div class="top-note">${t.tip}</div>
+      </div>
+
+      <div class="card bg2">
+        <h3>📘 ${t.concepts}</h3>
+        <div style="font-size:14px;color:var(--muted);line-height:1.6">
+          <div>${t.info_efc}</div>
+          <div style="margin-top:6px;">${t.info_coa}</div>
+          <div style="margin-top:6px;">${t.info_magi}</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🏫 ${t.sec_school}</h3>
+        <div class="form-grid">
+          <div>
+            <label>${t.school_type} <span class="tooltip-btn" data-tip="${escapeAttr(t.tips.school_type)}">?</span></label>
+            <select id="school"><option value=""></option><option value="public">${t.school_pub}</option><option value="private">${t.school_priv}</option></select>
+          </div>
+          <div><label>${t.coa}</label><input type="text" id="coa" inputmode="numeric" placeholder=""></div>
+        </div>
+      </div>
+
+      <div class="card bg2">
+        <h3>💵 ${t.sec_income}</h3>
+        <div class="form-grid">
+          ${makeField("p_magi", t.parent_magi, t.tips.magi)}
+          ${makeField("s_magi", t.student_magi, t.tips.magi)}
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🏠 ${t.sec_passets}</h3>
+        <div class="form-grid">
+          ${makeField("p_cash", t.p_cash, t.tips.p_cash)}
+          ${makeField("p_inv", t.p_inv, t.tips.p_inv)}
+          ${makeField("p_ret", t.p_ret, t.tips.p_ret, true)}
+          ${makeField("p_home", t.p_home, t.tips.p_home)}
+          ${makeField("p_other", t.p_other, t.tips.p_other)}
+          ${makeField("p_biz", t.p_biz, t.tips.p_biz)}
+          ${makeField("p_farm", t.p_farm, t.tips.p_farm)}
+        </div>
+      </div>
+
+      <div class="card bg2">
+        <h3>🎒 ${t.sec_sassets}</h3>
+        <div class="form-grid">
+          ${makeField("s_cash", t.s_cash, t.tips.s_cash)}
+          ${makeField("s_inv", t.s_inv, t.tips.s_inv)}
+          ${makeField("s_ret", t.s_ret, t.tips.s_ret, true)}
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="controls">
+          <button id="btn_calc" class="btn btn-primary">📊 ${t.calc}</button>
+          <button id="btn_reset" class="btn btn-ghost">♻️ ${t.reset}</button>
+        </div>
+      </div>
+
+      <div class="card results" id="result" style="display:none;">
+        <div class="result-item"><div class="label">💰 ${t.efc}</div><div class="value" id="out_efc"></div></div>
+        <div class="result-item"><div class="label">🎯 ${t.aid}</div><div class="value" id="out_aid"></div></div>
+        <hr>
+        <div class="breakdown">
+          <div class="result-item"><div class="label">👨‍👩‍👧 ${t.parent_contrib}</div><div class="value" id="out_parent"></div></div>
+          <div class="result-item"><div class="label">🎓 ${t.student_contrib}</div><div class="value" id="out_student"></div></div>
+        </div>
+        <div id="chart_area" style="margin-top:16px;"><div style="font-size:14px;color:var(--muted);margin-bottom:6px;">📊 ${lang==="zh" ? "可视化对比" : "Visual Comparison"}</div><canvas id="aidChart" aria-label="Aid Chart"></canvas></div>
+        <div style="margin-top:12px;color:var(--muted);font-size:13px;">${t.disclaimer}</div>
+      </div>
+    `;
+
+    // restore saved values
+    Object.keys(saved).forEach(id=>{
+      const el = root.querySelector("#"+id);
+      if(el) el.value = saved[id];
+    });
+
+    // input format handling: focus -> raw, blur -> formatted
+    root.querySelectorAll('input[type="text"]').forEach(inp=>{
+      inp.addEventListener("focus", ()=>{ inp.value = inp.value ? inp.value.replace(/,/g,"") : ""; });
+      inp.addEventListener("blur", ()=>{ const v = parseNum(inp.value); inp.value = v ? formatNum(v) : ""; });
+      inp.addEventListener("keydown", ev=>{ if(ev.key==="Enter") ev.target.blur(); });
+    });
+
+    // lang toggle
+    const langBtn = root.querySelector("#lang_btn");
+    if(langBtn) langBtn.onclick = ()=>{ lang = (lang==="zh")?"en":"zh"; render(); };
+
+    // ensure tooltip btns have data-tip
+    root.querySelectorAll(".tooltip-btn").forEach((b,i)=>{
+      if(!b.getAttribute("data-tip")){
+        b.setAttribute("data-tip", lang==="zh" ? "（无更多说明）" : "(No description)");
+        console.warn("Tooltip button missing data-tip at index", i);
+      }
+    });
+
+    ensureTooltipNode();
+  } // render end
+
+  // initial render
+  render();
+
+  /* Tooltip delegation */
+  (function(){
+    const tipNode = ensureTooltipNode();
+    const tipContent = document.getElementById("fa_global_tooltip_content");
+
+    function showTip(btn){
+      const raw = btn.getAttribute("data-tip") || btn.dataset.tip || "";
+      const text = htmlDecode(raw);
+      tipContent.textContent = text;
+      tipNode.style.display = "block";
+      tipNode.style.left = "-9999px"; tipNode.style.top = "-9999px";
+
+      const docW = document.documentElement.clientWidth;
+      tipNode.style.maxWidth = Math.min(520, docW - 24) + "px";
+
+      requestAnimationFrame(()=>{
+        const btnRect = btn.getBoundingClientRect();
+        const boxRect = tipNode.getBoundingClientRect();
+        let left = btnRect.left + (btnRect.width - boxRect.width)/2 + (window.scrollX || window.pageXOffset);
+        if(left < (window.scrollX || window.pageXOffset) + 8) left = (window.scrollX || window.pageXOffset) + 8;
+        if(left + boxRect.width > (window.scrollX || window.pageXOffset) + docW - 8) left = (window.scrollX || window.pageXOffset) + docW - boxRect.width - 8;
+        let top = btnRect.bottom + 8 + (window.scrollY || window.pageYOffset);
+        if(top + boxRect.height > (window.scrollY || window.pageYOffset) + window.innerHeight - 8){
+          top = btnRect.top - boxRect.height - 8 + (window.scrollY || window.pageYOffset);
+        }
+        tipNode.style.left = left + "px";
+        tipNode.style.top = top + "px";
+      });
+    }
+
+    function hideTip(){ tipNode.style.display = "none"; }
+
+    // pointerdown for touch & mouse
+    document.addEventListener("pointerdown", function(e){
+      const btn = e.target.closest && e.target.closest(".tooltip-btn");
+      if(btn && document.body.contains(btn)){
+        e.stopPropagation();
+        showTip(btn);
+      } else {
+        if(!e.target.closest || !e.target.closest("#fa_global_tooltip")) hideTip();
+      }
+    }, true);
+
+    // hover for non-touch devices
+    if(window.matchMedia && window.matchMedia('(hover: hover)').matches){
+      document.addEventListener("mouseover", function(e){
+        const btn = e.target.closest && e.target.closest(".tooltip-btn");
+        if(btn && document.body.contains(btn)) showTip(btn);
+      }, true);
+      document.addEventListener("mouseout", function(e){
+        const btn = e.target.closest && e.target.closest(".tooltip-btn");
+        if(btn && document.body.contains(btn)) hideTip();
+      }, true);
+    }
+
+    window.addEventListener("scroll", hideTip, {passive:true});
+    window.addEventListener("resize", hideTip);
+  })();
+
+  /* Calculation & Chart */
+  (function(){
+    const root = document.getElementById("fa_calc");
+
+    async function drawChart(coa, efcMin, efcMax, faMin, faMax){
+      try{
+        if(!window.Chart){
+          await new Promise((res, rej)=>{
+            const s = document.createElement("script");
+            s.src = "https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js";
+            s.onload = res; s.onerror = rej;
+            document.head.appendChild(s);
+          });
+        }
+        const canvas = document.getElementById("aidChart");
+        if(!canvas) return;
+        const ctx = canvas.getContext("2d");
+        if(chartInstance) chartInstance.destroy();
+        chartInstance = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: ["COA","EFC (min)","EFC (max)","Aid (min)","Aid (max)"],
+            datasets: [{ label: "Amount", data: [coa, efcMin, efcMax, faMin, faMax], backgroundColor: ["#2563eb","#0ea5a4","#0284c7","#f59e0b","#fb923c"] }]
+          },
+          options: {
+            responsive:true,
+            plugins:{ legend:{ display:false }, tooltip:{ callbacks:{ label: ctx => "$" + formatNum(Math.round(ctx.raw)) } } },
+            scales:{ y:{ beginAtZero:true, ticks:{ callback: v => "$" + formatNum(v) } } }
+          }
+        });
+      }catch(err){ console.warn("Chart load/draw failed:", err); }
+    }
+
+    document.addEventListener("click", async function(e){
+      const calcBtn = e.target.closest && e.target.closest("#btn_calc");
+      const resetBtn = e.target.closest && e.target.closest("#btn_reset");
+      if(calcBtn && document.body.contains(calcBtn)){
+        const school = root.querySelector("#school") ? root.querySelector("#school").value : "";
+        const coa = parseNum(root.querySelector("#coa").value);
+        if(!school || coa <= 0){ alert(lang==="zh" ? "请选择学校类型并填写 COA" : "Select school type and enter COA"); return; }
+        const I = parseNum(root.querySelector("#p_magi").value);
+        const i = parseNum(root.querySelector("#s_magi").value);
+        let A = parseNum(root.querySelector("#p_cash").value) + parseNum(root.querySelector("#p_inv").value) + parseNum(root.querySelector("#p_other").value) + parseNum(root.querySelector("#p_biz").value) + parseNum(root.querySelector("#p_farm").value);
+        if(school === "private") A += parseNum(root.querySelector("#p_home").value);
+        let a = parseNum(root.querySelector("#s_cash").value) + parseNum(root.querySelector("#s_inv").value);
+
+        const parentMin = I * 0.20 + A * 0.06;
+        const parentMax = I * 0.40 + A * 0.06;
+        const studentContrib = i * 0.50 + a * 0.20;
+        const efcMin = parentMin + studentContrib;
+        const efcMax = parentMax + studentContrib;
+        const faMin = Math.max(0, coa - efcMax);
+        const faMax = Math.max(0, coa - efcMin);
+
+        const fmt = n => "$" + formatNum(Math.round(n));
+        root.querySelector("#out_efc").textContent = fmt(efcMin) + " - " + fmt(efcMax);
+        root.querySelector("#out_aid").textContent = fmt(faMin) + " - " + fmt(faMax);
+        root.querySelector("#out_parent").textContent = fmt(parentMin) + " - " + fmt(parentMax);
+        root.querySelector("#out_student").textContent = fmt(studentContrib);
+        const resCard = root.querySelector("#result");
+        if(resCard) resCard.style.display = "block";
+
+        await drawChart(coa, efcMin, efcMax, faMin, faMax);
+      }
+
+      if(resetBtn && document.body.contains(resetBtn)){
+        render();
+      }
+    }, true);
+  })();
+
+})(); // IIFE end
+</script>
+<!--END: Step7.0-->
+
+
+  
+  <!-- Zone D: Support / Donate -->
+  <section class="zone zone-d">
+    <div class="zone-inner">
+      <div class="cta">
+        <h2 data-en="Support Student Scholarships" data-zh="Edunova Foundation 学生奖学金">Support Student Scholarships</h2>
+
+        <p data-en="Every contribution helps us award scholarships to students. To donate via Zelle or check, please contact us. Donations of $50 or more may receive an Edunova logo gift (while supplies last)."
+           data-zh="每一笔捐助都会用于支持学生奖学金发放 Zelle：donate@edunovafdn.org，若通过支票等其他形式捐款请与我们联系。捐款 $50 或以上，可获 Edunova Logo 礼品（数量有限，送完为止）。">
+          Every contribution helps us award scholarships to students. To donate via Zelle or check, please contact us. Donations of $50 or more may receive an Edunova logo gift (while supplies last).
+        </p>
+
+        <div class="divider"></div>
+
+        <p class="muted" style="margin:10"
+           data-en="Contact: Phone 1 916-793-0676 (Text) • WeChat Leon_Song_PhD • Email team@@edunovafdn.org"
+           data-zh="联系：电话 1 916-793-0676（短信）• 微信 Leon_Song_PhD • Email team@@edunovafdn.org">
+          Contact: Phone 1 916-793-0676 (Text) • WeChat Leon_Song_PhD
+        </p>
+
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="https://edunovafdn.org/donation.html"
+             data-en="Donate Now"
+             data-zh="立即捐助">
+            Donate Now
+          </a>
+          <a class="btn btn-secondary" href="https://edunovafdn.org/index.html#contact"
+             data-en="Contact Us"
+             data-zh="申请奖学金">
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+
+    <!-- Column 1 -->
+    <div class="footer-col">
+      <h4>Finova</h4>
+      <a href="/apply.html" target="_blank"
+         data-en="Apply for Services"
+         data-zh="申请服务">
+        申请服务
+      </a>
+      <a href="/membership.html"
+         data-en="Membership"
+         data-zh="会员中心">
+        会员中心
+      </a>
+
+      <a href="https://www.lsfinova.com/" target="_blank"
+         data-en="Google Blogger"
+         data-zh="个人Blogger">
+        会员中心
+      </a>
+
+    </div>
+
+    <!-- Column 2 -->
+    <div class="footer-col">
+      <h4 data-en="Financial Plans" data-zh="财务规划">
+        教育与基金
+      </h4>
+       
+      <a href="https://www.lsfinova.com/plan"
+         data-en="FinPlanning" target="_blank"
+         data-zh="税优稳健产品">
+        会员中心
+      </a>
+
+      <a href="#resources"
+         data-en="Resources"
+         data-zh="学习资源">
+        学习资源
+      </a>
+      <a href="https://www.lsfinova.com/aid" target="_blank"
+         data-en="Aid Calculator"
+         data-zh="教育资助计算器">
+        教育资助计算器
+      </a>
+    </div>
+
+    <!-- Column 3 -->
+    <div class="footer-col">
+      <h4 data-en="Contact" data-zh="联系我们">
+        联系我们
+      </h4>
+      <div class="muted"
+           data-en="Email: team@finovawm.com"
+           data-zh="电子邮件: team@finovawm.com">
+        微信：Leon_Song_PhD
+      </div>
+      <div class="muted"
+           data-en="Phone: 1-916-793-0676 (Text)"
+           data-zh="电话 / 短信：1-916-793-0676">
+        电话 / 短信：1-916-793-0676
+      </div>
+      <div class="muted"
+           data-en="WeChat: Leon_Song_PhD"
+           data-zh="微信：Leon_Song_PhD">
+        微信：Leon_Song_PhD
+      </div>
+    </div>
+
+    <!-- Column 4 -->
+    <div class="footer-col">
+      <h4 data-en="Legal" data-zh="法律信息">
+        法律信息
+      </h4>
+      <a href="/privacy.html" target="_blank"
+         data-en="Privacy Policy"
+         data-zh="隐私政策">
+        隐私政策
+      </a>
+      <a href="/terms.html" target="_blank"
+         data-en="Terms of Service"
+         data-zh="服务条款">
+        服务条款
+      </a>
+
+      <a 
+         data-en="Only for Education"
+         data-zh="教育目的">
+        服务条款
+      </a>
+    </div>
+
+  </div>
+
+  <div class="footer-copy"
+       data-en="© 2025 Finova Wealth Management. All rights reserved."
+       data-zh="© 2025 钞能财富管理 版权所有">
+    © 2025 Finova，Edunova & Axonova 版权所有
+  </div>
+</footer>
+
+</body>
+</html>
