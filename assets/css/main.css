@@ -32,6 +32,125 @@ a{color:inherit;text-decoration:none}
 html, body { 
     font-family: var(--font-main);
 }
+
+
+
+/* =========================
+   SOCIAL ICONS (HERO)
+   Finovawm Header Overlay
+========================= */
+
+.top-banner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.top-banner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =========================
+   DARK OVERLAY (提高可读性)
+========================= */
+.top-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.18);
+  z-index: 1;
+}
+
+/* =========================
+   SOCIAL CONTAINER
+========================= */
+.hero-social {
+  position: absolute;
+
+  top: 50%;
+  right: 28px;
+
+  transform: translateY(-50%);
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  z-index: 10;
+}
+
+/* =========================
+   ICON STYLE (BASE)
+========================= */
+.social-icon {
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: 18px;
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  text-decoration: none;
+
+  transition: all 0.3s ease;
+
+  /* subtle glass effect */
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(6px);
+}
+
+/* =========================
+   HOVER EFFECT (重点)
+========================= */
+.social-icon:hover {
+  color: #ffffff;
+
+  transform: translateX(-4px) scale(1.08);
+
+  background: rgba(255, 255, 255, 0.12);
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================
+   MOBILE HERO SOCIAL
+========================= */
+@media (max-width: 768px) {
+
+  .hero-social {
+
+    top: 62%;
+
+    right: 12px;
+
+    transform: translateY(-50%);
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 10px;
+
+  }
+
+  .social-icon {
+
+    width: 34px;
+    height: 34px;
+
+    font-size: 15px;
+  }
+
+}
+
 nav a {
     font-family: var(--font-main);
     font-weight: 500;
@@ -1715,3 +1834,98 @@ body.register-page .register-card {
   color: #15803d;
 }
 
+
+/* =========================
+   FOOTER SOCIAL BAR
+========================= */
+.footer-social-bar {
+
+  width: 100%;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  padding: 12px 20px;
+
+  margin: 0 auto;
+
+  text-align: center;
+
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+/* =========================
+   ICON BASE STYLE
+========================= */
+.footer-icon {
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: 18px;
+
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  text-decoration: none;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  backdrop-filter: blur(6px);
+
+  transition: all 0.3s ease;
+}
+
+/* =========================
+   HOVER EFFECT (统一 Header 风格)
+========================= */
+.footer-icon:hover {
+  color: #ffffff;
+
+  transform: translateY(-3px) scale(1.08);
+
+  background: rgba(255, 255, 255, 0.12);
+
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================
+   FOOTER MAIN LAYOUT (保持一致性)
+========================= */
+footer {
+  padding-top: 6px;
+}
+
+
+/* =========================
+   MOBILE FOOTER SOCIAL
+========================= */
+@media (max-width: 768px) {
+
+  .footer-social-bar {
+
+    gap: 5px;
+
+    padding: 10px 10px;
+
+  }
+
+  .footer-icon {
+
+    width: 34px;
+    height: 34px;
+
+    font-size: 15px;
+  }
+
+}
